@@ -12,6 +12,7 @@ import styles from './styles';
 import logo from '../../assets/images/logo.png';
 import {MediaCard} from '../MediaCard';
 import {catering,classes,equipments,hall,homecare,shuttle} from '../../assets/images/services'
+import { Link } from 'react-router-dom';
 
 const tiers = [
   {
@@ -105,9 +106,12 @@ function LandingPage(props) {
           <Typography variant="h5" color="inherit" noWrap className={classes.toolbarTitle}>
             Best Community Service
           </Typography>
-          <Button className={classes.autoMargin} variant="contained" color="secondary">Get Started</Button>
+          <Link to="/register">
+          <Button className={classes.autoMargin} variant="contained" color="secondary">
+         Get Started</Button></Link>
           <Button className={classes.autoMargin} color="primary" variant="outlined">
-            Login
+          <Link to="/login">Login</Link>
+
           </Button>
         </Toolbar>
       </AppBar>

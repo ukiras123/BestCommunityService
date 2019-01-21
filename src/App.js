@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { history } from './_helpers';
 import { alertActions } from './redux/actions';
 import { PrivateRoute } from './container';
-// import { HomePage } from './container/HomePage';
+import { HomePage } from './container/HomePage';
 import { LoginPage } from './container/LoginPage';
 import { RegisterPage } from './container/RegisterPage';
 import { ErrorPage } from './container/ErrorPage';
@@ -31,8 +31,9 @@ class App extends React.Component {
                         }
                         <Router history={history}>
                             <Switch>
-                                <PrivateRoute exact path="/" component={LandingPage} />
-                                <Route path="/home" component={LandingPage} />
+                                <PrivateRoute exact path="/" component={HomePage} />
+                                <Route path="/main" component={LandingPage} />
+                                <Route path="/home" component={HomePage} />
                                 <Route path="/login" component={LoginPage} />
                                 <Route path="/register" component={RegisterPage} />
                                 <Route path="*" component={ErrorPage} />
