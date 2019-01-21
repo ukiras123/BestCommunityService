@@ -106,6 +106,7 @@ export function configureFakeBackend() {
                                 // delete user
                                 users.splice(i, 1);
                                 localStorage.setItem('users', JSON.stringify(users));
+                                localStorage.removeItem('user');
                                 break;
                             }
                         }
