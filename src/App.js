@@ -32,6 +32,7 @@ class App extends React.Component {
                         <Router history={history}>
                             <Switch>
                                 <PrivateRoute exact path="/" component={LandingPage} />
+                                <Route path="/home" component={LandingPage} />
                                 <Route path="/login" component={LoginPage} />
                                 <Route path="/register" component={RegisterPage} />
                                 <Route path="*" component={ErrorPage} />
