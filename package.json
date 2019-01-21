@@ -1,6 +1,10 @@
 {
-  "name": "bs-sample",
-  "version": "0.1.0",
+  "name": "best-community-service",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ukiras123/BestCommunityService"
+  },
   "private": true,
   "dependencies": {
     "history": "^4.6.3",
