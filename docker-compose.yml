@@ -6,7 +6,7 @@ services:
     container_name: bcs
     build:
       context: .
-      dockerfile: build.Dockerfile
+      dockerfile: Dockerfile
     volumes:
       - '.:/usr/src/app'
       - '/usr/src/app/node_modules'
