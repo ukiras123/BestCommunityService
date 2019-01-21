@@ -21,7 +21,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "docker-build": "docker build -t bcs .; docker tag bcs:latest 240418355038.dkr.ecr.us-east-1.amazonaws.com/bcs:latest;",
+    "docker-deploy": "docker push 240418355038.dkr.ecr.us-east-1.amazonaws.com/bcs:latest"
   },
   "eslintConfig": {
     "extends": "react-app"
