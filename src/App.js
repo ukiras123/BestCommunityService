@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { history } from './_helpers';
 import { alertActions } from './redux/actions';
-import { PrivateRoute } from './container';
+import { PrivateRoute, PublicRoute } from './container';
 import { HomePage } from './container/HomePage';
 import { LoginPage } from './container/LoginPage';
 import { RegisterPage } from './container/RegisterPage';
@@ -22,6 +22,16 @@ class App extends React.Component {
         });
     }
 
+    requireAuth(nextState, replace, next){
+        console.log(`I m ${localStorage.getItem('user')}`)
+        if (!localStorage.getItem('user')) {
+            replace({
+              pathname: "/main",
+              state: {nextPathname: nextState.location.pathname}
+            });
+          }
+          next();
+    }
     render() {
         const { alert } = this.props;
         return (
@@ -31,11 +41,11 @@ class App extends React.Component {
                         }
                         <Router history={history}>
                             <Switch>
-                                <PrivateRoute exact path="/" component={HomePage} />
-                                <Route path="/main" component={LandingPage} />
-                                <Route path="/home" component={HomePage} />
-                                <Route path="/login" component={LoginPage} />
-                                <Route path="/register" component={RegisterPage} />
+                                <PublicRoute path="/main" component={LandingPage} />
+                                <PrivateRoute path="/home" component={HomePage} />
+                                <PublicRoute path="/login" component={LoginPage}/>
+                                <PublicRoute path="/register" component={RegisterPage} />
+                                <PrivateRoute exact path="/" component={HomePage}/>
                                 <Route path="*" component={ErrorPage} />
                                 </Switch>
                         </Router>

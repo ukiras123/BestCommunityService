@@ -78,15 +78,15 @@ const tiers = [
 const footers = [
   {
     title: 'Company',
-    description: ['Team', 'History', 'Contact us', 'Locations'],
+    description: ['Team', 'History', 'Contact us'],
   },
   {
     title: 'Features',
-    description: ['Cool stuff', 'Random feature', 'Team feature', 'Developer stuff', 'Another one'],
+    description: ['Cool stuff',  'Team feature', 'Developer stuff'],
   },
   {
     title: 'Resources',
-    description: ['Resource', 'Resource name', 'Another resource', 'Final resource'],
+    description: ['Resource', 'Resource name', 'Another resource'],
   },
   {
     title: 'Legal',
