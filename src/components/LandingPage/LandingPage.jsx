@@ -141,11 +141,11 @@ function LandingPage(props) {
           {tiers.map(tier => (
             // Enterprise card is full width at sm breakpoint
             <Grid item key={tier.title} xs={12} md={4}>
-              <MediaCard subheader={tier.subheader} image={tier.img} title={tier.title} description={tier.description.map(line => (
-                    <Typography variant="subtitle1" align="center" key={line}>
+              <MediaCard subheader={tier.subheader} image={tier.img} title={tier.title} description={tier.description.map((line, index) => (
+                    <Typography align="center" key={index}>
                       {line}
                     </Typography>
-                  ))}></MediaCard>
+                  ))} />
             </Grid>
           ))}
         </Grid>
