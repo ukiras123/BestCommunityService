@@ -2,13 +2,13 @@ import React from 'react';
 import { Switch, Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { history } from '../_helpers';
-import { alertActions } from '../redux/actions';
-import { PrivateRoute } from '../container';
-import { HomePage } from '../container/HomePage';
-import { LoginPage } from '../container/LoginPage';
-import { RegisterPage } from '../container/RegisterPage';
-import { ErrorPage } from '../container/ErrorPage';
+import { history } from './_helpers';
+import { alertActions } from './redux/actions';
+import { PrivateRoute } from './container';
+import { HomePage } from './container/HomePage';
+import { LoginPage } from './container/LoginPage';
+import { RegisterPage } from './container/RegisterPage';
+import { ErrorPage } from './container/ErrorPage';
 
 class App extends React.Component {
     constructor(props) {
@@ -32,7 +32,7 @@ class App extends React.Component {
                         }
                         <Router history={history}>
                             <Switch>
-                                <PrivateRoute exact path="/" exact component={HomePage} />
+                                <PrivateRoute exact path="/" component={HomePage} />
                                 <Route path="/login" component={LoginPage} />
                                 <Route path="/register" component={RegisterPage} />
                                 <Route path="*" component={ErrorPage} />

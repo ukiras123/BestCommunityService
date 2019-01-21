@@ -1,5 +1,6 @@
-import config from 'config';
 import { authHeader } from '../../_helpers';
+
+import config from '../../config/default.json';
 
 export const userService = {
     login,
@@ -68,7 +69,7 @@ function update(user) {
         body: JSON.stringify(user)
     };
 
-    return fetch(`${config.apiUrl}/users/${user.id}`, requestOptions).then(handleResponse);;
+    return fetch(`${config.apiUrl}/users/${user.id}`, requestOptions).then(handleResponse);
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
@@ -88,7 +89,7 @@ function handleResponse(response) {
             if (response.status === 401) {
                 // auto logout if 401 response returned from api
                 logout();
-                location.reload(true);
+                document.location.reload(true);
             }
 
             const error = (data && data.message) || response.statusText;

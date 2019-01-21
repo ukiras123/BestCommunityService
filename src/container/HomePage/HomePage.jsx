@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-
 import { userActions } from '../../redux/actions';
+
 
 class HomePage extends React.Component {
     componentDidMount() {
@@ -30,7 +30,7 @@ class HomePage extends React.Component {
                                 {
                                     user.deleting ? <em> - Deleting...</em>
                                     : user.deleteError ? <span className="text-danger"> - ERROR: {user.deleteError}</span>
-                                    : <span> - <a onClick={this.handleDeleteUser(user.id)}>Delete</a></span>
+                                    : <span> - <button onClick={this.handleDeleteUser(user.id)}>Delete</button></span>
                                 }
                             </li>
                         )}
