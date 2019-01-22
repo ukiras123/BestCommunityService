@@ -12,12 +12,12 @@ class RegisterPage extends React.Component {
             user: {
                 firstName: '',
                 lastName: '',
+                email: '',
                 username: '',
                 password: ''
             },
             submitted: false
         };
-
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -39,7 +39,7 @@ class RegisterPage extends React.Component {
         this.setState({ submitted: true });
         const { user } = this.state;
         const { dispatch } = this.props;
-        if (user.firstName && user.lastName && user.username && user.password) {
+        if (user.firstName && user.lastName && user.email && user.username  && user.password) {
             dispatch(userActions.register(user));
         }
     }
