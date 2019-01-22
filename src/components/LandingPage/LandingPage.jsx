@@ -1,18 +1,15 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
-import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles';
-import logo from '../../assets/images/logo.png';
 import {MediaCard} from '../MediaCard';
 import {catering,classes,equipments,hall,homecare,shuttle} from '../../assets/images/services'
-import { Link } from 'react-router-dom';
+import NavBar from '../NavBar'
 
 const tiers = [
   {
@@ -100,21 +97,7 @@ function LandingPage(props) {
   return (
     <React.Fragment>
       <CssBaseline />
-      <AppBar position="static" color="default" className={classes.appBar}>
-        <Toolbar>
-        <img className={classes.logo} alt="logo" src={logo}></img>
-          <Typography variant="h5" color="inherit" noWrap className={classes.toolbarTitle}>
-            Best Community Service
-          </Typography>
-          <Link to="/register">
-          <Button className={classes.autoMargin} variant="contained" color="secondary">
-         Get Started</Button></Link>
-          <Button className={classes.autoMargin} color="primary" variant="outlined">
-          <Link to="/login">Login</Link>
-
-          </Button>
-        </Toolbar>
-      </AppBar>
+      <NavBar showLinks='true' />
       <main className={classes.layout}>
         {/* Hero unit */}
         <div className={classes.heroContent}>

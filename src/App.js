@@ -33,12 +33,8 @@ class App extends React.Component {
           next();
     }
     render() {
-        const { alert } = this.props;
         return (
                 <div className="container">
-                        {alert.message &&
-                            <div className={`alert ${alert.type}`}>{alert.message}</div>
-                        }
                         <Router history={history}>
                             <Switch>
                                 <PublicRoute path="/main" component={LandingPage} />

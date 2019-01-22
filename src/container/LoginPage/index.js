@@ -1,1 +1,5 @@
-export * from './LoginPage';
+// export * from './LoginPage';
+import LoginPage  from './LoginPage';
+export {
+    LoginPage
+}
