@@ -8,10 +8,10 @@ import { withStyles } from '@material-ui/core/styles';
 import styles from './styles';
 import logo from '../../assets/images/logo.png';
 import { Link } from 'react-router-dom';
+import StartingButtons from '../StartingButtons'
 
 function NavBar(props) {
-  const { classes, showLinks } = props;
-
+  const { classes, landingButtons } = props;
   return (
       <AppBar position="static" color="default" className={classes.appBar}>
         <Toolbar>
@@ -21,16 +21,7 @@ function NavBar(props) {
           <Typography variant="h5" color="inherit" noWrap className={classes.toolbarTitle}>
             Best Community Service
           </Typography>
-          {
-            showLinks && <div>
-          <Link to="/register">
-          <Button className={classes.autoMargin} variant="contained" color="secondary">
-         Get Started</Button></Link>
-          <Button className={classes.autoMargin} color="primary" variant="outlined">
-          <Link to="/login">Login</Link>
-          </Button>
-          </div>
-          }
+          {landingButtons && <StartingButtons />}
         </Toolbar>
       </AppBar>
   );
