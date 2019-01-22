@@ -15,7 +15,9 @@ function NavBar(props) {
   return (
       <AppBar position="static" color="default" className={classes.appBar}>
         <Toolbar>
+          <Link to="/main">
         <img className={classes.logo} alt="logo" src={logo}></img>
+        </Link>
           <Typography variant="h5" color="inherit" noWrap className={classes.toolbarTitle}>
             Best Community Service
           </Typography>
