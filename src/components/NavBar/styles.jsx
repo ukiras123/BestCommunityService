@@ -5,8 +5,11 @@ export default theme => ({
       },
     },
     appBar: {
-      position: 'relative',
-      backgroundColor: "#CAE6F8"
+      backgroundColor: "#CAE6F8",
+      zIndex: theme.zIndex.drawer + 1,
+    },
+    marginTop: {
+      marginTop: "30px"
     },
     logo: {
       width: '70px',

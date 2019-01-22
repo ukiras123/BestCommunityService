@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { userActions } from '../../redux/actions';
-
+import NavBar from '../../components/NavBar'
+import {ClippedDrawer} from '../../components/Drawer'
 
 class HomePage extends React.Component {
     componentDidMount() {
@@ -14,32 +15,10 @@ class HomePage extends React.Component {
     }
 
     render() {
-        const { user, users } = this.props;
         return (
-            <div className="col-md-6 col-md-offset-3">
-                <h1>Hi {user.firstName}!</h1>
-                <p>You're logged in with React!!</p>
-                <h3>All registered users:</h3>
-                {users.loading && <em>Loading users...</em>}
-                {users.error && <span className="text-danger">ERROR: {users.error}</span>}
-                {users.items &&
-                    <ul>
-                        {users.items.map((user, index) =>
-                            <li key={user.id}>
-                                {user.firstName + ' ' + user.lastName}
-                                {
-                                    user.deleting ? <em> - Deleting...</em>
-                                    : user.deleteError ? <span className="text-danger"> - ERROR: {user.deleteError}</span>
-                                    : <span> - <button onClick={this.handleDeleteUser(user.id)}>Delete</button></span>
-                                }
-                            </li>
-                        )}
-                    </ul>
-                }
-                <p>
-                    <Link to="/main">Logout</Link>
-                </p>
-            </div>
+            <div>
+           <ClippedDrawer />
+           </div>
         );
     }
 }
