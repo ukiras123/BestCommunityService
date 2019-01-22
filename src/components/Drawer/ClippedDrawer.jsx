@@ -2,20 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-import NavBar from '../../components/NavBar'
+import CateringIcon from '@material-ui/icons/Fastfood';
+import ClassesIcon from '@material-ui/icons/LibraryBooks';
+import HomeCareIcon from '@material-ui/icons/People';
+import ShuttleIcon from '@material-ui/icons/AirportShuttle';
+import HallIcon from '@material-ui/icons/Domain';
+import HomeIcon from '@material-ui/icons/Home';
+import EquipmentIcon from '@material-ui/icons/Gavel';
+import { Link } from 'react-router-dom';
 
-const drawerWidth = 240;
+const drawerWidth = 250;
 
 const styles = theme => ({
   root: {
@@ -38,13 +39,57 @@ const styles = theme => ({
   toolbar: theme.mixins.toolbar,
 });
 
+const leftOptions = [
+  {
+  "name": "Home",
+  "icon": <HomeIcon />,
+  "link": "/home"
+  },
+  {
+    
+"name": "Rent Equipments",
+"icon": <EquipmentIcon />,
+"link": "/rent"
+  },
+  {
+"name": "Catering Service",
+"icon": <CateringIcon />,
+"link": "/catering"
+  },
+  {
+"name": "Reserve Hall",
+"icon": <HallIcon />,
+"link": "/hall"
+  },
+  {
+"name": "Home care",
+"icon": <HomeCareIcon />,
+"link": "/homecare"
+  },
+  {
+"name": "Free Classes",
+"icon": <ClassesIcon />,
+"link": "/freeclasses"
+  },
+  {
+"name": "Shuttle Service",
+"icon": <ShuttleIcon /> ,
+"link": "/shuttle"
+  },
+]
+
+const extraOptions = [
+  "Download Payment History",
+  "Help Center",
+  "Contact Support",
+  "Terms of Use",
+  "Security & Privacy"
+]
+
 function ClippedDrawer(props) {
-  const { classes } = props;
+  const { classes, toSelect } = props;
 
   return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <NavBar isFixed="true"/>
       <Drawer
         className={classes.drawer}
         variant="permanent"
@@ -54,50 +99,24 @@ function ClippedDrawer(props) {
       >
         <div className={classes.toolbar} />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
+          {leftOptions.map((option, index) => (
+          <Link style={{ textDecoration: 'none' }} to={option.link}>
+            <ListItem selected={toSelect === option.name ? true : false} button key={index}>
+              <ListItemIcon>{option.icon}</ListItemIcon>
+              <ListItemText primary={option.name} />
             </ListItem>
+            </Link>
           ))}
         </List>
-        <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
+          <Divider />
+          <List>
+          {extraOptions.map((text, index) => (
+            <ListItem  key={index}>
+              <ListItemText secondary={text} />
             </ListItem>
           ))}
         </List>
       </Drawer>
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-        <Typography paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
-          facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in hendrerit
-          gravida rutrum quisque non tellus. Convallis convallis tellus id interdum velit laoreet id
-          donec ultrices. Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-          adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra nibh cras.
-          Metus vulputate eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo quis
-          imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus at augue. At augue eget
-          arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
-          donec massa sapien faucibus et molestie ac.
-        </Typography>
-        <Typography paragraph>
-          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
-          facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac
-          tincidunt. Ornare suspendisse sed nisi lacus sed viverra tellus. Purus sit amet volutpat
-          consequat mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis risus sed
-          vulputate odio. Morbi tincidunt ornare massa eget egestas purus viverra accumsan in. In
-          hendrerit gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem et
-          tortor. Habitant morbi tristique senectus et. Adipiscing elit duis tristique sollicitudin
-          nibh sit. Ornare aenean euismod elementum nisi quis eleifend. Commodo viverra maecenas
-          accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography>
-      </main>
-    </div>
   );
 }
 

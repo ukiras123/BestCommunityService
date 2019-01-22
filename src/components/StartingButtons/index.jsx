@@ -10,7 +10,7 @@ function StartingButtons(props) {
 
   return (
     <div>
-      <Link to="/register">
+      <Link style={{ textDecoration: 'none' }}  to="/register">
         <Button
           className={classes.autoMargin}
           variant="contained"
@@ -20,7 +20,7 @@ function StartingButtons(props) {
         </Button>
       </Link>
       <Button className={classes.autoMargin} color="primary" variant="outlined">
-        <Link to="/login">Login</Link>
+        <Link style={{ textDecoration: 'none' }}  to="/login">Login</Link>
       </Button>
     </div>
   );
