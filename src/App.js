@@ -34,7 +34,6 @@ class App extends React.Component {
     }
     render() {
         return (
-                <div className="container">
                         <Router history={history}>
                             <Switch>
                                 <PublicRoute path="/main" component={LandingPage} />
@@ -45,7 +44,6 @@ class App extends React.Component {
                                 <Route path="*" component={ErrorPage} />
                                 </Switch>
                         </Router>
-                </div>
         );
     }
 }

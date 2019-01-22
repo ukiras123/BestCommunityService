@@ -56,9 +56,8 @@ class LoginPage extends React.Component {
   render() {
     const { classes, alert, loggingIn } = this.props;
     return (
-      <div>
+      <div className={classes.backColor}>
       <NavBar />
-
       <div className={classes.main}>
         <CssBaseline />
         <Paper className={classes.paper}>
@@ -111,11 +110,9 @@ class LoginPage extends React.Component {
             
             </div>
           </form>
-        
         </Paper>
       </div>
       </div>
-
     );
   }
 }

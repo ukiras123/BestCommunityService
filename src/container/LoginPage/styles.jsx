@@ -10,6 +10,11 @@ export default theme => ({
         marginRight: 'auto',
       },
     },
+    '@global': {
+      body: {
+        backgroundColor: "#eeeee7",
+      },
+    },
     paper: {
       marginTop: theme.spacing.unit * 8,
       display: 'flex',
