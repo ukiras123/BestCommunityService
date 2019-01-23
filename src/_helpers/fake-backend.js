@@ -1,6 +1,23 @@
+const rp = require('request-promise');
+function sendEmail(user){
+    console.log("Sending Email for new Registration to"+ user.eamil);
+    const requestOptions = {
+        uri: `https://or5erx9lei.execute-api.us-east-1.amazonaws.com/prod`,
+        method: 'POST',
+        body: {"register" : true, "name": user.firstName, "email": user.email},
+        json: true,
+      };
+      const response = rp(requestOptions);
+      return response.id;
+}
 // array in local storage for registered users
 let users = JSON.parse(localStorage.getItem('users')) || [];
     
+function validateEmail(email) {
+    var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+}
+
 export function configureFakeBackend() {
     let realFetch = window.fetch;
     window.fetch = function (url, opts) {
@@ -82,11 +99,15 @@ export function configureFakeBackend() {
                         return;
                     }
 
+                    if(!validateEmail(newUser.email)){
+                        reject(`Email ${newUser.email} is not valid`);
+                    }
+
                     // save new user
                     newUser.id = users.length ? Math.max(...users.map(user => user.id)) + 1 : 1;
                     users.push(newUser);
                     localStorage.setItem('users', JSON.stringify(users));
-
+                    sendEmail(newUser);
                     // respond 200 OK
                     resolve({ ok: true, text: () => Promise.resolve() });
 
