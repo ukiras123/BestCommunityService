@@ -17,8 +17,8 @@ const styles = theme => ({
     width: "auto"
   },
   image: {
-    width: 200,
-    height: 200
+    width: 300,
+    height: "auto"
   },
   img: {
     margin: "auto",
@@ -36,23 +36,21 @@ function ComplexGrid(props) {
         <Grid container spacing={16}>
           <Grid item>
             <ButtonBase className={classes.image}>
-              <img
-                className={classes.img}
-                alt="complex"
-                src={options.imgSrc}
-              />
+              <img className={classes.img} alt="complex" src={options.imgSrc} />
             </ButtonBase>
           </Grid>
           <Grid item xs={12} sm container>
             <Grid item xs container direction="column" spacing={16}>
               <Grid item xs>
                 <Typography gutterBottom variant="headline">
-                {options.header}
+                  {options.header}
                 </Typography>
                 <Typography gutterBottom>{options.subHeader}</Typography>
-                <Typography color="textSecondary">
-                {options.description}
-                </Typography>
+                {options.description.map((des, index) => (
+                  <Typography color="textSecondary" key={index}>
+                    {des}
+                  </Typography>
+                ))}
               </Grid>
               <Grid item>
                 <Button
@@ -60,7 +58,7 @@ function ComplexGrid(props) {
                   color="secondary"
                   className={classes.button}
                 >
-                {options.actionName}
+                  {options.actionName}
                 </Button>
               </Grid>
             </Grid>
