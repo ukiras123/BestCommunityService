@@ -16,7 +16,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import EquipmentIcon from '@material-ui/icons/Gavel';
 import { Link } from 'react-router-dom';
 
-const drawerWidth = 250;
+const drawerWidth = 150;
 
 const styles = theme => ({
   root: {
@@ -30,7 +30,7 @@ const styles = theme => ({
     flexShrink: 0,
   },
   drawerPaper: {
-    width: drawerWidth,
+    // width: drawerWidth,
   },
   content: {
     flexGrow: 1,
