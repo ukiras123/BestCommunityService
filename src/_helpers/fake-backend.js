@@ -1,4 +1,7 @@
 const rp = require('request-promise');
+const NeverBounce = require('neverbounce');
+const client = new NeverBounce({apiKey: 'private_680502cb34bfcc7ab92a0b08090f4347'});
+
 function sendEmail(user){
     console.log("Sending Email for new Registration to"+ user.eamil);
     const requestOptions = {
@@ -103,7 +106,9 @@ export function configureFakeBackend() {
                         reject(`Email ${newUser.email} is not valid`);
                     }
 
-                    // save new user
+                    client.single.check(newUser.email).then(
+                        result => {
+                            console.log('Email Check: ' + result.getResult()); // prints: "valid"                            // save new user
                     newUser.id = users.length ? Math.max(...users.map(user => user.id)) + 1 : 1;
                     users.push(newUser);
                     localStorage.setItem('users', JSON.stringify(users));
@@ -112,6 +117,21 @@ export function configureFakeBackend() {
                     resolve({ ok: true, text: () => Promise.resolve() });
 
                     return;
+                
+                        },err => {
+                            reject(`Email ${newUser.email} is not valid`);
+                        }
+                    );
+
+                    // // save new user
+                    // newUser.id = users.length ? Math.max(...users.map(user => user.id)) + 1 : 1;
+                    // users.push(newUser);
+                    // localStorage.setItem('users', JSON.stringify(users));
+                    // sendEmail(newUser);
+                    // // respond 200 OK
+                    // resolve({ ok: true, text: () => Promise.resolve() });
+
+                    // return;
                 }
 
                 // delete user
