@@ -1,7 +1,6 @@
 import { authHeader } from '../../_helpers';
 
 import config from '../../config/default.json';
-const rp = require('request-promise');
 
 export const userService = {
     login,
@@ -13,17 +12,7 @@ export const userService = {
     delete: _delete
 };
 
-function sendEmail(user){
-    console.log(JSON.stringify(user));
-    const requestOptions = {
-        uri: `https://or5erx9lei.execute-api.us-east-1.amazonaws.com/prod`,
-        method: 'POST',
-        body: {"register" : true, "name": user.firstName, "email": user.email},
-        json: true,
-      };
-      const response = rp(requestOptions);
-      return response.id;
-}
+
 function login(username, password) {
     const requestOptions = {
         method: 'POST',
@@ -70,8 +59,6 @@ function register(user) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(user)
     };
-
-    sendEmail(user)
 
     return fetch(`${config.apiUrl}/users/register`, requestOptions).then(handleResponse);
 }
