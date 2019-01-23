@@ -100,8 +100,8 @@ function ClippedDrawer(props) {
         <div className={classes.toolbar} />
         <List>
           {leftOptions.map((option, index) => (
-          <Link style={{ textDecoration: 'none' }} to={option.link}>
-            <ListItem selected={toSelect === option.name ? true : false} button key={index}>
+          <Link style={{ textDecoration: 'none' }} to={option.link}  key={option.name}>
+            <ListItem selected={toSelect === option.name ? true : false} button key={option.name}>
               <ListItemIcon>{option.icon}</ListItemIcon>
               <ListItemText primary={option.name} />
             </ListItem>
@@ -111,7 +111,7 @@ function ClippedDrawer(props) {
           <Divider />
           <List>
           {extraOptions.map((text, index) => (
-            <ListItem  key={index}>
+            <ListItem  key={text}>
               <ListItemText secondary={text} />
             </ListItem>
           ))}

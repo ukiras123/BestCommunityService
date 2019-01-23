@@ -22,16 +22,6 @@ class App extends React.Component {
         });
     }
 
-    requireAuth(nextState, replace, next){
-        console.log(`I m ${localStorage.getItem('user')}`)
-        if (!localStorage.getItem('user')) {
-            replace({
-              pathname: "/main",
-              state: {nextPathname: nextState.location.pathname}
-            });
-          }
-          next();
-    }
     render() {
         return (
                         <Router history={history}>

@@ -8,9 +8,10 @@ import styles from './styles';
 import logo from '../../assets/images/logo.png';
 import { Link } from 'react-router-dom';
 import StartingButtons from '../StartingButtons'
+import {ProfilePopover} from '../Popover'
 
 function NavBar(props) {
-  const { classes, isFixed, landingButtons } = props;
+  const { classes, isFixed, landingButtons, loggedInButtons } = props;
   const position = isFixed ? "fixed" : "relative";
   return (
       <AppBar position={position} color="default" className={classes.appBar}>
@@ -22,6 +23,7 @@ function NavBar(props) {
             Best Community Service
           </Typography>
           {landingButtons && <StartingButtons />}
+          {loggedInButtons && <ProfilePopover />}
         </Toolbar>
       </AppBar>
   );

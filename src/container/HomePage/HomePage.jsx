@@ -25,7 +25,7 @@ function HomePage(props) {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <NavBar isFixed="true"/>
+      <NavBar isFixed="true" loggedInButtons="true"/>
       <ClippedDrawer toSelect="Home"/>
       <main className={classes.content}>
         <div className={classes.toolbar} />
