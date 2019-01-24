@@ -23,10 +23,10 @@ TabContainer.propTypes = {
 const styles = theme => ({
   root: {
     backgroundColor: theme.palette.background.paper,
-    paddingLeft: '2px',
-    paddingRight: '2px',
-    marginLeft: '2px',
-    marginRight: '2px',
+    paddingLeft: "2px",
+    paddingRight: "2px",
+    marginLeft: "2px",
+    marginRight: "2px",
     width: "900px"
   }
 });
@@ -69,11 +69,11 @@ class SimpleTab extends React.Component {
         >
           {option.map((option, index) => (
             <TabContainer key={index} dir={theme.direction}>
-  {
-    option.isComponent === true ? <option.component /> : option.component
-  }
-                  
-
+              {option.isComponent === true ? (
+                <option.component />
+              ) : (
+                option.component
+              )}
             </TabContainer>
           ))}
         </SwipeableViews>
