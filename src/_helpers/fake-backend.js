@@ -57,6 +57,7 @@ export function configureFakeBackend() {
             let user = filteredUsers[0];
             let responseJson = {
               id: user.id,
+              email: user.email,
               username: user.username,
               firstName: user.firstName,
               lastName: user.lastName,
@@ -73,6 +74,33 @@ export function configureFakeBackend() {
 
           return;
         }
+
+
+        // Update
+        if (opts && opts.method === "PUT") {
+          // get new user object from post body
+          let newUser = JSON.parse(opts.body);
+          let objIndex = users.findIndex((obj => obj.id === newUser.id));
+          users[objIndex].firstName = newUser.firstName;
+          users[objIndex].lastname = newUser.lastname;
+          users[objIndex].password = newUser.password;
+
+          // Update User
+          localStorage.setItem("users", JSON.stringify(users));
+          let localUser = JSON.parse(localStorage.getItem("user"));
+          localUser.firstName = newUser.firstName;
+          localUser.lastName = newUser.lastName;
+          localStorage.setItem("user", JSON.stringify(localUser));
+
+          // respond 200 OK
+          resolve({ ok: true, text: () => Promise.resolve(JSON.stringify(localUser)) });
+
+          return;
+        }
+
+
+
+
 
         // get users
         if (url.endsWith("/users") && opts.method === "GET") {

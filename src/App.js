@@ -16,6 +16,7 @@ import { HomeCarePage } from './container/HomeCarePage';
 import { RentPage } from './container/RentPage';
 import { ReserveHallPage } from './container/ReserveHallPage';
 import { ShuttlePage } from './container/ShuttlePage';
+import { SettingPage } from './container/SettingPage';
 
 class App extends React.Component {
     constructor(props) {
@@ -35,6 +36,7 @@ class App extends React.Component {
                             <Switch>
                                 <PublicRoute path="/main" component={LandingPage} />
                                 <PrivateRoute path="/home" component={HomePage} />
+                                <PrivateRoute path="/setting" component={SettingPage} />
                                 <PrivateRoute path="/rent" component={RentPage} />
                                 <PrivateRoute path="/catering" component={CateringPage} />
                                 <PrivateRoute path="/hall" component={ReserveHallPage} />

@@ -43,7 +43,6 @@ class LoginPage extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        console.log("i am here")
         this.setState({ submitted: true });
         const { username, password } = this.state;
         const { dispatch } = this.props;

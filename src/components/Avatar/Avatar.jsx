@@ -14,7 +14,7 @@ const styles = {
 function LetterAvatars(props) {
   const { classes, firstName } = props;
   return (
-      <Avatar className={classes.purpleAvatar}>{firstName.charAt(0)}</Avatar>
+      <Avatar className={classes.purpleAvatar}>{firstName && firstName.charAt(0)}</Avatar>
   );
 }
 

@@ -20,9 +20,7 @@ const styles = theme => ({
 });
 
 class ProfilePopover extends React.Component {
-  componentDidMount() {
-    this.props.dispatch(userActions.getAll());
-  }
+
 
   handleDeleteUser(id) {
     return e => this.props.dispatch(userActions.delete(id));
@@ -57,10 +55,9 @@ class ProfilePopover extends React.Component {
       <div>
         <Button onClick={this.handleClick}>
           <Typography variant="h6" align="center" color="textSecondary">
-            Hi {user.firstName} &nbsp;
-            {/* <FaceIcon /> */}
+            Hi {user && user.firstName} &nbsp;
           </Typography>
-          <Avatar firstName={user.firstName}/>
+          <Avatar firstName={user &&  user.firstName}/>
         </Button>
         <Popover
           id="simple-popper"
