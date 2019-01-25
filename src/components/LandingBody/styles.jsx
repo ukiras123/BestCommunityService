@@ -33,6 +33,7 @@ export default theme => ({
         marginLeft: 'auto',
         marginRight: 'auto',
       },
+      marginTop: "50px"
     },
     autoMargin: {
       marginLeft: '10px',

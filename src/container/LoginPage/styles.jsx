@@ -9,6 +9,7 @@ export default theme => ({
         marginLeft: 'auto',
         marginRight: 'auto',
       },
+      marginTop: "100px"
     },
     '@global': {
       body: {

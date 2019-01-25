@@ -11,7 +11,7 @@ function LandingPage(props) {
   return (
     <React.Fragment>
       <CssBaseline />
-      <NavBar landingButtons='true'/>
+      <NavBar isFixed="true" landingButtons='true'/>
       <LandingBody />
       <Footer />
     </React.Fragment>

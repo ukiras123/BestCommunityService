@@ -10,6 +10,8 @@ export default theme => ({
         marginRight: 'auto',
         marginBottom: '50px'
       },
+      marginTop: "100px"
+
     },
     '@global': {
       body: {

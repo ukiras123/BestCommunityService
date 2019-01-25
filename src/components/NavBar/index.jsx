@@ -12,7 +12,7 @@ import {ProfilePopover} from '../Popover'
 
 function NavBar(props) {
   const { classes, isFixed, landingButtons, loggedInButtons } = props;
-  const position = isFixed ? "fixed" : "relative";
+  const position = isFixed ? "fixed" : "fixed";
   return (
       <AppBar position={position} color="default" className={classes.appBar}>
         <Toolbar>

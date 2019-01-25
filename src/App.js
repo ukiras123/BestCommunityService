@@ -13,6 +13,7 @@ import { RegisterPage } from './container/RegisterPage';
 import { CateringPage } from './container/CateringPage';
 import { FreeClassesPage } from './container/FreeClassesPage';
 import { HomeCarePage } from './container/HomeCarePage';
+import { VolunteerPage } from './container/VolunteerPage';
 import { RentPage } from './container/RentPage';
 import { ReserveHallPage } from './container/ReserveHallPage';
 import { ShuttlePage } from './container/ShuttlePage';
@@ -41,6 +42,7 @@ class App extends React.Component {
                                 <PrivateRoute path="/catering" component={CateringPage} />
                                 <PrivateRoute path="/hall" component={ReserveHallPage} />
                                 <PrivateRoute path="/homecare" component={HomeCarePage} />
+                                <Route path="/volunteer" component={VolunteerPage} />
                                 <PrivateRoute path="/freeclasses" component={FreeClassesPage} />
                                 <PrivateRoute path="/shuttle" component={ShuttlePage} />
                                 <PublicRoute path="/login" component={LoginPage}/>

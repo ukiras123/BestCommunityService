@@ -7,6 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 import styles from './styles';
 import {MediaCard} from '../MediaCard';
 import {catering,classes,equipments,hall,homecare,shuttle} from '../../assets/images/services'
+import { Link } from 'react-router-dom';
 
 const tiers = [
   {
@@ -87,12 +88,18 @@ function LandingBody(props) {
           </Typography>
         </div>
         <div className={classes.action}>
+        <Link to="/donate">
+
          <Button size="large" className={classes.autoMargin} color="secondary" variant="outlined">
             Donate Now
           </Button>
+          </Link>
+          <Link to="/volunteer">
+
           <Button size="large"  className={classes.autoMargin} color="secondary" variant="outlined">
             Volunteer
           </Button>
+          </Link>
         </div>
         {/* End hero unit */}
         <div className={classes.features}>
