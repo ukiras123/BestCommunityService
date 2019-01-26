@@ -68,9 +68,10 @@ class Step2 extends React.Component {
                       <MenuItem value="">
                         <em>None</em>
                       </MenuItem>
-                      <MenuItem value="Help Kids">Help Kids</MenuItem>
-                      <MenuItem value="Help Veterans">Help Veterans </MenuItem>
-                      <MenuItem value="Help Hunger">Help Hunger</MenuItem>
+                      <MenuItem value="Kids">Kids</MenuItem>
+                      <MenuItem value="Veterans">Veterans</MenuItem>
+                      <MenuItem value="Hunger">Hunger</MenuItem>
+                      <MenuItem value="Poverty">Poverty</MenuItem>
                     </Select>
                   </FormControl>
                 </Grid>
