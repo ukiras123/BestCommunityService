@@ -6,7 +6,7 @@ import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { history } from '../../_helpers';
-
+import {Step1, Step2, Step3} from '../../container/Steps'
 const useStyles = makeStyles(theme => ({
   root: {
     width: '90%',
@@ -31,11 +31,11 @@ function getSteps() {
 function getStepContent(step) {
   switch (step) {
     case 0:
-      return 'Your Information';
+      return <Step1 />;
     case 1:
-      return 'Select Your Interest';
+      return <Step2 />;
     case 2:
-      return 'Quick Survey';
+      return <Step3 />;
     default:
       return 'Unknown step';
   }
@@ -132,7 +132,7 @@ function HorizontalLinearStepper() {
           </div>
         ) : (
           <div className={classes.alignCenter}>
-            <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
+            {getStepContent(activeStep)}
             <div>
               <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
                 Back
