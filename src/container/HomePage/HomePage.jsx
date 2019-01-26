@@ -83,7 +83,7 @@ function HomePage(props) {
             Show that you do too.
           </Typography>
           <div className={classes.action}>
-          <Link to="/donate">
+          <Link to="/donate" style={{ textDecoration: "none" }} >
 
             <Button
               size="large"
@@ -94,7 +94,7 @@ function HomePage(props) {
               Donate Now
             </Button>
             </Link>
-            <Link to="/volunteer">
+            <Link to="/volunteer" style={{ textDecoration: "none" }} >
             <Button
               size="large"
               className={classes.autoMargin}

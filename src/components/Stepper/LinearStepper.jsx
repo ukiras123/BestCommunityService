@@ -1,31 +1,41 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/styles';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import { history } from '../../_helpers';
-import {Step1, Step2, Step3} from '../../container/Steps'
+import React from "react";
+import { makeStyles } from "@material-ui/styles";
+import Stepper from "@material-ui/core/Stepper";
+import Step from "@material-ui/core/Step";
+import StepLabel from "@material-ui/core/StepLabel";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import { history } from "../../_helpers";
+import { Step1, Step2, Step3 } from "../../container/Steps";
+
+
 const useStyles = makeStyles(theme => ({
   root: {
-    width: '90%',
+    width: "90%"
   },
   button: {
     marginRight: 8,
     textAlign: "center"
   },
   alignCenter: {
-textAlign: "center"
+    textAlign: "center"
   },
   instructions: {
     marginTop: 8,
-    marginBottom: 8,
+    marginBottom: 8
   },
+  image: {
+    width: 300,
+    height: "auto"
+  },
+  smallImage: {
+    width: 60,
+    height: 40
+  }
 }));
 
 function getSteps() {
-  return ['Your Information', 'Select Your Interest', 'Quick Survey'];
+  return ["Your Information", "Select Your Interest", "Quick Survey"];
 }
 
 function getStepContent(step) {
@@ -37,11 +47,11 @@ function getStepContent(step) {
     case 2:
       return <Step3 />;
     default:
-      return 'Unknown step';
+      return "Unknown step";
   }
 }
 
-function HorizontalLinearStepper() {
+function HorizontalLinearStepper(props) {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
@@ -85,10 +95,7 @@ function HorizontalLinearStepper() {
     });
   }
 
-  function handleReset() {
-    setActiveStep(0);
-  }
-  function handleFinish(){
+  function handleFinish() {
     let newSkipped = skipped;
     if (isStepSkipped(activeStep)) {
       newSkipped = new Set(newSkipped.values());
@@ -98,12 +105,10 @@ function HorizontalLinearStepper() {
     setActiveStep(prevActiveStep => prevActiveStep + 1);
     setSkipped(newSkipped);
 
-    setTimeout(function (){
-
-        history.push('/')
-      
-      }, 2000); 
-}
+    setTimeout(function() {
+      history.push("/");
+    }, 2000);
+  }
   return (
     <div className={classes.root}>
       <Stepper activeStep={activeStep}>
@@ -111,7 +116,9 @@ function HorizontalLinearStepper() {
           const stepProps = {};
           const labelProps = {};
           if (isStepOptional(index)) {
-            labelProps.optional = <Typography variant="caption">Optional</Typography>;
+            labelProps.optional = (
+              <Typography variant="caption">Optional</Typography>
+            );
           }
           if (isStepSkipped(index)) {
             stepProps.completed = false;
@@ -123,18 +130,33 @@ function HorizontalLinearStepper() {
           );
         })}
       </Stepper>
-      <div className={classes.alignCenter}> 
+      <div className={classes.alignCenter}>
         {activeStep === steps.length ? (
           <div>
-            <Typography className={classes.instructions}>
-              Thank You. You are amazing. Redirecting back to home page...
+            <img
+              className={classes.image}
+              alt="complex"
+              src="https://pngimg.com/uploads/thank_you/thank_you_PNG69.png"
+            />
+
+            <Typography variant="subheading" className={classes.instructions}>
+              Redirecting back to home page 
+              <img
+              className={classes.smallImage}
+              alt="complex"
+              src="https://loading.io/spinners/typing/lg.-text-entering-comment-loader.gif"
+            />
             </Typography>
           </div>
         ) : (
           <div className={classes.alignCenter}>
             {getStepContent(activeStep)}
             <div>
-              <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
+              <Button
+                disabled={activeStep === 0}
+                onClick={handleBack}
+                className={classes.button}
+              >
                 Back
               </Button>
               {isStepOptional(activeStep) && (
@@ -150,10 +172,12 @@ function HorizontalLinearStepper() {
               <Button
                 variant="contained"
                 color="primary"
-                onClick={activeStep === steps.length - 1 ? handleFinish : handleNext}
+                onClick={
+                  activeStep === steps.length - 1 ? handleFinish : handleNext
+                }
                 className={classes.button}
               >
-                {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                {activeStep === steps.length - 1 ? "Finish" : "Next"}
               </Button>
             </div>
           </div>

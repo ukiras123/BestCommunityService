@@ -92,7 +92,7 @@ function LandingBody(props) {
         </Typography>
       </div>
       <div className={classes.action}>
-        <Link to="/donate">
+        <Link to="/donate" style={{ textDecoration: "none" }} >
           <Button
             size="large"
             className={classes.autoMargin}
@@ -102,7 +102,7 @@ function LandingBody(props) {
             Donate Now
           </Button>
         </Link>
-        <Link to="/volunteer">
+        <Link to="/volunteer" style={{ textDecoration: "none" }} >
           <Button
             size="large"
             className={classes.autoMargin}

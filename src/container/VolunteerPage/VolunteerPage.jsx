@@ -1,43 +1,61 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
-import NavBar from '../../components/NavBar'
-import {ClippedDrawer} from '../../components/Drawer'
-import  {LinearStepper }from '../../components/Stepper'
+import React from "react";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import NavBar from "../../components/NavBar";
+import { LinearStepper } from "../../components/Stepper";
+import { connect } from "react-redux";
+import { compose } from "redux";
 
 const styles = theme => ({
   root: {
-    display: 'flex',
+    display: "flex"
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing.unit * 3,
+    padding: theme.spacing.unit * 3
   },
-  toolbar: theme.mixins.toolbar,
+  toolbar: theme.mixins.toolbar
 });
 
+class VolunteerPage extends React.Component {
+  render() {
+    const { classes, user } = this.props;
+    const loggedInButtons = user ? true : false;
+    const landingButtons = loggedInButtons ? false : true;
+    console.log("loggedInButtons", loggedInButtons);
+    console.log("landingButtons", landingButtons);
+    return (
+      <div className={classes.root}>
+        <CssBaseline />
+        <NavBar
+          isFixed="true"
+          loggedInButtons={loggedInButtons}
+          landingButtons={landingButtons}
+        />
 
-function VolunteerPage(props) {
-  const { classes } = props;
-
-  return (
-    <div className={classes.root}>
-    <CssBaseline />
-    <NavBar isFixed="true" loggedInButtons="true" />
-
-    <main className={classes.content}>
-      <div className={classes.toolbar} />
-      <LinearStepper />
-
-    </main>
-  </div>
-  )
+        <main className={classes.content}>
+          <div className={classes.toolbar} />
+          <LinearStepper />
+        </main>
+      </div>
+    );
+  }
 }
 
 VolunteerPage.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(VolunteerPage);
+function mapStateToProps(state) {
+  const { authentication } = state;
+  const { user } = authentication;
+  return {
+    user
+  };
+}
+
+export default compose(
+  withStyles(styles, { withTheme: true }),
+  connect(mapStateToProps)
+)(VolunteerPage);
