@@ -52,7 +52,8 @@ function getStepContent(step) {
   }
 }
 
-function HorizontalLinearStepper() {
+function HorizontalLinearStepper(props) {
+  const {dispatch, volunteerInfo} = props;
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
@@ -83,8 +84,6 @@ function HorizontalLinearStepper() {
 
   function handleSkip() {
     if (!isStepOptional(activeStep)) {
-      // You probably want to guard against something like this,
-      // it should never occur unless someone's actively trying to break something.
       throw new Error("You can't skip a step that isn't optional.");
     }
 
@@ -105,8 +104,8 @@ function HorizontalLinearStepper() {
 
     setActiveStep(prevActiveStep => prevActiveStep + 1);
     setSkipped(newSkipped);
-    // console.log("Finished"+props.store);
-    // // this.props.store.dispatch(volunteerActions.sendEmail(volunteerDetail));
+    console.log("Sending it out finally" + JSON.stringify(volunteerInfo));
+    dispatch(volunteerActions.sendEmail(volunteerInfo));
     setTimeout(function() {
       history.push("/");
     }, 2000);

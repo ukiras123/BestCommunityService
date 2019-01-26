@@ -33,7 +33,7 @@ class Step1 extends React.Component {
   componentDidMount() {
     const { user , volunteerDetail} = this.props;
     const {info} = this.state;
-    console.log("volunteer detail"+JSON.stringify(volunteerDetail))
+    console.log("volunteer detail Step 1"+JSON.stringify(volunteerDetail))
     if(!_.isEmpty(volunteerDetail, true)){
       const newState = {info: {...info, ...volunteerDetail} }
       this.setState(newState);
@@ -48,12 +48,11 @@ class Step1 extends React.Component {
   }
 
   handleChange(event) {
-    const { dispatch, message } = this.props;
+    const { dispatch } = this.props;
     const { info } = this.state;
     const newState = { info:{...info,[event.target.name]: event.target.value }}
     this.setState(newState);
     dispatch(volunteerActions.addVolunteer(newState));
-    console.log(JSON.stringify(message));
   }
 
   render() {

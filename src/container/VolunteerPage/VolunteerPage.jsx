@@ -36,7 +36,7 @@ class VolunteerPage extends React.Component {
 
         <main className={classes.content}>
           <div className={classes.toolbar} />
-          <LinearStepper />
+          <LinearStepper dispatch={this.props.dispatch} volunteerInfo={this.props.volunteer}/>
         </main>
       </div>
     );
@@ -48,10 +48,11 @@ VolunteerPage.propTypes = {
 };
 
 function mapStateToProps(state) {
-  const { authentication } = state;
+  const { authentication , volunteer} = state;
   const { user } = authentication;
   return {
-    user
+    user,
+    volunteer
   };
 }
 

@@ -9,9 +9,13 @@ export const userService = {
     getAll,
     getById,
     update,
-    delete: _delete
+    delete: _delete,
+    sendEmailToVolunteer
 };
 
+function sendEmailToVolunteer(info){
+    console.log("I am going to send the email now"+ JSON.stringify(info));
+}
 
 function login(username, password) {
     const requestOptions = {

@@ -2,7 +2,8 @@ import { volunteerConstants } from '../constants';
 import { userService } from '../services';
 
 export const volunteerActions = {
-    addVolunteer
+    addVolunteer,
+    sendEmail
 };
 
 function addVolunteer(details) {
@@ -10,5 +11,6 @@ function addVolunteer(details) {
 }
 
 function sendEmail(details){
-    return { type: volunteerConstants.EMAIL_SEND };
+    userService.sendEmailToVolunteer(details);
+    return { type: volunteerConstants.EMAIL_SEND, details };
 }
