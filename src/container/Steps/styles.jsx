@@ -10,7 +10,7 @@ export default theme => ({
       marginRight: "auto",
       marginBottom: "50px"
     },
-    marginTop: "50px"
+    marginTop: "10px"
   },
   paper: {
     marginTop: theme.spacing.unit,

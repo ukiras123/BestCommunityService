@@ -8,11 +8,11 @@ import Typography from "@material-ui/core/Typography";
 import { history } from "../../_helpers";
 import { Step1, Step2, Step3 } from "../../container/Steps";
 import { volunteerActions } from "../../redux/actions/volunteer.action";
-
+import { alertActions } from "../../redux/actions";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: "90%"
+    width: "100%"
   },
   button: {
     marginRight: 8,
@@ -52,8 +52,14 @@ function getStepContent(step) {
   }
 }
 
+function validateEmail(email) {
+  console.log("checking email " + email);
+  var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+}
+
 function HorizontalLinearStepper(props) {
-  const {dispatch, volunteerInfo} = props;
+  const { dispatch, volunteerInfo, alert } = props;
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
@@ -68,6 +74,34 @@ function HorizontalLinearStepper(props) {
   }
 
   function handleNext() {
+    dispatch(alertActions.clear());
+
+    if (activeStep === 0) {
+      console.log("This is first");
+      const { firstName, lastName, email } = volunteerInfo.info;
+      if (!(firstName && lastName && email)) {
+        console.log(
+          "Not all fields are provided" + JSON.stringify(volunteerInfo)
+        );
+        dispatch(alertActions.error("Please fill all required fields"));
+        return;
+      }
+      const isValid = validateEmail(email);
+      if (!isValid) {
+        dispatch(alertActions.error("Email is invalid"));
+        return;
+      }
+    }else if (activeStep === 1) {
+      console.log("This is first");
+      const { interest } = volunteerInfo.interest;
+      if (!interest) {
+        console.log(
+          "Not all fields are provided" + JSON.stringify(volunteerInfo)
+        );
+        dispatch(alertActions.error("Please fill all required fields"));
+        return;
+        }
+    }
     let newSkipped = skipped;
     if (isStepSkipped(activeStep)) {
       newSkipped = new Set(newSkipped.values());
@@ -79,6 +113,7 @@ function HorizontalLinearStepper(props) {
   }
 
   function handleBack() {
+    dispatch(alertActions.clear());
     setActiveStep(prevActiveStep => prevActiveStep - 1);
   }
 
@@ -141,16 +176,19 @@ function HorizontalLinearStepper(props) {
             />
 
             <Typography variant="subheading" className={classes.instructions}>
-              Redirecting back to home page 
+              Redirecting back to home page
               <img
-              className={classes.smallImage}
-              alt="complex"
-              src="https://loading.io/spinners/typing/lg.-text-entering-comment-loader.gif"
-            />
+                className={classes.smallImage}
+                alt="complex"
+                src="https://loading.io/spinners/typing/lg.-text-entering-comment-loader.gif"
+              />
             </Typography>
           </div>
         ) : (
           <div className={classes.alignCenter}>
+            {alert && alert.message && (
+              <div className={`alert ${alert.type}`}>{alert.message}</div>
+            )}
             {getStepContent(activeStep)}
             <div>
               <Button
@@ -170,6 +208,7 @@ function HorizontalLinearStepper(props) {
                   Skip
                 </Button>
               )}
+
               <Button
                 variant="contained"
                 color="primary"

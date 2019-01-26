@@ -31,7 +31,7 @@ class Step1 extends React.Component {
   }
 
   componentDidMount() {
-    const { user , volunteerDetail} = this.props;
+    const { user , volunteerDetail, dispatch} = this.props;
     const {info} = this.state;
     console.log("volunteer detail Step 1"+JSON.stringify(volunteerDetail))
     if(!_.isEmpty(volunteerDetail, true)){
@@ -43,6 +43,7 @@ class Step1 extends React.Component {
         const newState = {info: {...info, ...user} }
         newState.info.existingUser =  true;
         this.setState(newState);
+        dispatch(volunteerActions.addVolunteer(newState));
       }
     }
   }

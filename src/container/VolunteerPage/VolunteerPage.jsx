@@ -6,6 +6,7 @@ import NavBar from "../../components/NavBar";
 import { LinearStepper } from "../../components/Stepper";
 import { connect } from "react-redux";
 import { compose } from "redux";
+import { Typography } from "@material-ui/core";
 
 const styles = theme => ({
   root: {
@@ -13,9 +14,13 @@ const styles = theme => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing.unit * 3
+    padding: theme.spacing.unit * 3,
+    alignText: "center"
   },
-  toolbar: theme.mixins.toolbar
+  toolbar: theme.mixins.toolbar,
+  align: {
+    textAlign: "center",
+  }
 });
 
 class VolunteerPage extends React.Component {
@@ -36,7 +41,18 @@ class VolunteerPage extends React.Component {
 
         <main className={classes.content}>
           <div className={classes.toolbar} />
-          <LinearStepper dispatch={this.props.dispatch} volunteerInfo={this.props.volunteer}/>
+          <Typography 
+          component="h6"
+          variant="h5"
+          align="center"
+          color="textPrimary"
+          gutterBottom
+          className={classes.align}>
+            Register with your information and we will reach out to you soon. 
+          </Typography>
+          <div className={classes.align}>
+          <LinearStepper dispatch={this.props.dispatch} volunteerInfo={this.props.volunteer} alert={this.props.alert}/>
+          </div>
         </main>
       </div>
     );
@@ -48,11 +64,13 @@ VolunteerPage.propTypes = {
 };
 
 function mapStateToProps(state) {
-  const { authentication , volunteer} = state;
+  const { alert,authentication , volunteer} = state;
   const { user } = authentication;
+
   return {
     user,
-    volunteer
+    volunteer,
+    alert
   };
 }
 

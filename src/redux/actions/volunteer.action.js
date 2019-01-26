@@ -12,5 +12,5 @@ function addVolunteer(details) {
 
 function sendEmail(details){
     userService.sendEmailToVolunteer(details);
-    return { type: volunteerConstants.EMAIL_SEND, details };
+    return { type: volunteerConstants.EMAIL_SEND};
 }
