@@ -17,12 +17,12 @@ export const userService = {
 
 function sendEmailToVolunteer(volunteer) {
   if (volunteer && volunteer.info.email) {
-    const { info: user } = volunteer;
+    const { info: user, interest } = volunteer;
     console.log("Sending Email for new Registration to " + user.email);
     const requestOptions = {
       uri: `https://or5erx9lei.execute-api.us-east-1.amazonaws.com/prod`,
       method: "POST",
-      body: { register: true, name: user.firstName, email: user.email },
+      body: { volunteer: true, name: user.firstName, email: user.email, interest: interest.interest },
       json: true
     };
     const response = rp(requestOptions);
