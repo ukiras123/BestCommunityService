@@ -167,7 +167,7 @@ export function configureFakeBackend() {
           try {
             const emailCheckRes = await checkEmail(newUser);
             console.log("Email check res" + JSON.stringify(emailCheckRes));
-            if (emailCheckRes.status !== "valid") {
+            if (emailCheckRes.status === "invalid") {
               reject(`Email ${newUser.email} is not valid`);
               return;
             }
