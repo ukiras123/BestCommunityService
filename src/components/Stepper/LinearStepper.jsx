@@ -7,6 +7,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { history } from "../../_helpers";
 import { Step1, Step2, Step3 } from "../../container/Steps";
+import { volunteerActions } from "../../redux/actions/volunteer.action";
 
 
 const useStyles = makeStyles(theme => ({
@@ -51,7 +52,7 @@ function getStepContent(step) {
   }
 }
 
-function HorizontalLinearStepper(props) {
+function HorizontalLinearStepper() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
@@ -104,7 +105,8 @@ function HorizontalLinearStepper(props) {
 
     setActiveStep(prevActiveStep => prevActiveStep + 1);
     setSkipped(newSkipped);
-
+    // console.log("Finished"+props.store);
+    // // this.props.store.dispatch(volunteerActions.sendEmail(volunteerDetail));
     setTimeout(function() {
       history.push("/");
     }, 2000);
