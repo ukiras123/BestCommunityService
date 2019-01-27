@@ -39,7 +39,7 @@ const client = {
   sandbox:
     "AUWQvmtidvMwS6FYb16PUsW_4oONyzfoujL6BhUWdkTkxT0sTrdwfx3EAzlYE2gPoS9uxaNzedGrKSB_",
   production:
-    "ATGdAt8SlSDbVRMXOBVVIH5M_K-qkNwyN8cmg2QZBKF4ioKTmH4hc-EZ8HU-339htGiNpPxDET8rkgGB"
+    "AR-uw6Ali0Eny1ZfYNb9ijDt_ZY0GGBiUinzPUiR555Gjpc6wV0-b5JE5Yjc9BJClzlc1OtktXd6mMum"
 };
 
 class DonatePage extends React.Component {
