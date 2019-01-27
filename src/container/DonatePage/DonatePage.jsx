@@ -32,7 +32,7 @@ const styles = theme => ({
   }
 });
 
-let env = "sandbox"; // you can set here to 'production' for production
+let env = "production"; // you can set here to 'production' for production
 let currency = "USD"; // or you can set this value from your props or state
 
 const client = {
