@@ -1,4 +1,2 @@
-import DonatePage from './DonatePage'
-export {
-    DonatePage
-}
+import DonatePage from "./DonatePage";
+export { DonatePage };

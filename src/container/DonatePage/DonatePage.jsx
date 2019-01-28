@@ -93,7 +93,7 @@ class DonatePage extends React.Component {
     setTimeout(function() {
       history.push("/");
     }, 3000);
-   };
+  };
 
   onError = err => {
     const { alert } = this.state;
@@ -148,12 +148,13 @@ class DonatePage extends React.Component {
           </Typography>
           <div className={classes.align}>
             {alert && alert.message && alert.type && (
-              <div className={`alert ${alert.type}`}>{alert.message}
-              <img
-                className={classes.smallImage}
-                alt="complex"
-                src="https://loading.io/spinners/typing/lg.-text-entering-comment-loader.gif"
-              />
+              <div className={`alert ${alert.type}`}>
+                {alert.message}
+                <img
+                  className={classes.smallImage}
+                  alt="complex"
+                  src="https://loading.io/spinners/typing/lg.-text-entering-comment-loader.gif"
+                />
               </div>
             )}{" "}
             <FormControl component="fieldset" className={classes.formControl}>

@@ -1,4 +1,2 @@
-import RentPage from './RentPage'
-export {
-    RentPage
-}
+import RentPage from "./RentPage";
+export { RentPage };

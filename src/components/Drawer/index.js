@@ -1,4 +1,2 @@
-import ClippedDrawer from './ClippedDrawer'
-export {
-    ClippedDrawer
-}
+import ClippedDrawer from "./ClippedDrawer";
+export { ClippedDrawer };

@@ -1,4 +1,2 @@
-import SimpleTab  from './SimpleTab';
-export {
-    SimpleTab
-}
+import SimpleTab from "./SimpleTab";
+export { SimpleTab };

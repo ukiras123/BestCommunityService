@@ -1,4 +1,2 @@
-import LinearStepper  from './LinearStepper';
-export {
-  LinearStepper
-}
+import LinearStepper from "./LinearStepper";
+export { LinearStepper };

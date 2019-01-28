@@ -86,7 +86,6 @@ const items = [
   }
 ];
 
-
 function RentPage(props) {
   const { classes } = props;
 
@@ -101,7 +100,7 @@ function RentPage(props) {
 
         {items.map((item, index) => (
           <div key={index}>
-            <CustomAppBar title={item.type} key={item.type}/>
+            <CustomAppBar title={item.type} key={item.type} />
             {item.products.map((product, index) => (
               <ComplexGrid key={index} options={product} />
             ))}

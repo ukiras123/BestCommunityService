@@ -9,7 +9,7 @@ import SimpleTab from "../../components/Tabs/SimpleTab";
 import Button from "@material-ui/core/Button";
 import Divider from "@material-ui/core/Divider";
 import ImageGallery from "../../components/ImageGallery/ImageGallery";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const styles = theme => ({
   root: {
@@ -83,26 +83,25 @@ function HomePage(props) {
             Show that you do too.
           </Typography>
           <div className={classes.action}>
-          <Link to="/donate" style={{ textDecoration: "none" }} >
-
-            <Button
-              size="large"
-              className={classes.autoMargin}
-              color="secondary"
-              variant="outlined"
-            >
-              Donate Now
-            </Button>
+            <Link to="/donate" style={{ textDecoration: "none" }}>
+              <Button
+                size="large"
+                className={classes.autoMargin}
+                color="secondary"
+                variant="outlined"
+              >
+                Donate Now
+              </Button>
             </Link>
-            <Link to="/volunteer" style={{ textDecoration: "none" }} >
-            <Button
-              size="large"
-              className={classes.autoMargin}
-              color="secondary"
-              variant="outlined"
-            >
-              Volunteer
-            </Button>
+            <Link to="/volunteer" style={{ textDecoration: "none" }}>
+              <Button
+                size="large"
+                className={classes.autoMargin}
+                color="secondary"
+                variant="outlined"
+              >
+                Volunteer
+              </Button>
             </Link>
           </div>
         </div>

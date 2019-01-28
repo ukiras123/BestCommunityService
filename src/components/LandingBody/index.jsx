@@ -88,11 +88,12 @@ function LandingBody(props) {
           We are here to serve the community. We are here to help you for your
           social events like wedding, meeting or funerals. We also provide
           rental services and other in-house services provided by volunteers.
-          <br />To help our community thrive, please support us.
+          <br />
+          To help our community thrive, please support us.
         </Typography>
       </div>
       <div className={classes.action}>
-        <Link to="/donate" style={{ textDecoration: "none" }} >
+        <Link to="/donate" style={{ textDecoration: "none" }}>
           <Button
             size="large"
             className={classes.autoMargin}
@@ -102,7 +103,7 @@ function LandingBody(props) {
             Donate Now
           </Button>
         </Link>
-        <Link to="/volunteer" style={{ textDecoration: "none" }} >
+        <Link to="/volunteer" style={{ textDecoration: "none" }}>
           <Button
             size="large"
             className={classes.autoMargin}

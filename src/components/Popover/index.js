@@ -1,4 +1,2 @@
-import ProfilePopover  from './ProfilePopover';
-export {
-    ProfilePopover
-}
+import ProfilePopover from "./ProfilePopover";
+export { ProfilePopover };

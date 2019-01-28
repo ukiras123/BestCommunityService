@@ -86,12 +86,12 @@ function HorizontalLinearStepper(props) {
         dispatch(alertActions.error("Email is invalid"));
         return;
       }
-    }else if (activeStep === 1) {
+    } else if (activeStep === 1) {
       const { interest } = volunteerInfo.interest;
       if (!interest) {
         dispatch(alertActions.error("Please fill all required fields"));
         return;
-        }
+      }
     }
     let newSkipped = skipped;
     if (isStepSkipped(activeStep)) {

@@ -1,4 +1,2 @@
-import ComplexGrid  from './ComplexGrid';
-export {
-    ComplexGrid
-}
+import ComplexGrid from "./ComplexGrid";
+export { ComplexGrid };

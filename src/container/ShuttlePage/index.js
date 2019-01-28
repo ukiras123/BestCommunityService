@@ -1,4 +1,2 @@
-import ShuttlePage from './ShuttlePage'
-export {
-    ShuttlePage
-}
+import ShuttlePage from "./ShuttlePage";
+export { ShuttlePage };

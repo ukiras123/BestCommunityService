@@ -12,7 +12,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Paper from "@material-ui/core/Paper";
 import TextField from "@material-ui/core/TextField";
 import { volunteerActions } from "../../redux/actions/volunteer.action";
-const _ = require('lodash');
+const _ = require("lodash");
 
 class Step1 extends React.Component {
   constructor(props) {
@@ -25,21 +25,21 @@ class Step1 extends React.Component {
         email: "",
         date: "",
         existingUser: false
-      },
+      }
     };
     this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
-    const { user , volunteerDetail, dispatch} = this.props;
-    const {info} = this.state;
-    if(!_.isEmpty(volunteerDetail, true)){
-      const newState = {info: {...info, ...volunteerDetail} }
+    const { user, volunteerDetail, dispatch } = this.props;
+    const { info } = this.state;
+    if (!_.isEmpty(volunteerDetail, true)) {
+      const newState = { info: { ...info, ...volunteerDetail } };
       this.setState(newState);
-    }else{
+    } else {
       if (user) {
-        const newState = {info: {...info, ...user} }
-        newState.info.existingUser =  true;
+        const newState = { info: { ...info, ...user } };
+        newState.info.existingUser = true;
         this.setState(newState);
         dispatch(volunteerActions.addVolunteer(newState));
       }
@@ -49,15 +49,17 @@ class Step1 extends React.Component {
   handleChange(event) {
     const { dispatch } = this.props;
     const { info } = this.state;
-    const newState = { info:{...info,[event.target.name]: event.target.value }}
+    const newState = {
+      info: { ...info, [event.target.name]: event.target.value }
+    };
     this.setState(newState);
     dispatch(volunteerActions.addVolunteer(newState));
   }
 
   render() {
     const { classes } = this.props;
-    const {info: user} = this.state;
-    
+    const { info: user } = this.state;
+
     return (
       <div className={classes.main}>
         <CssBaseline />
@@ -93,7 +95,12 @@ class Step1 extends React.Component {
               </Grid>
 
               <Grid item xs={12} sm={6}>
-                <FormControl  disabled={user.existingUser} margin="normal" required fullWidth>
+                <FormControl
+                  disabled={user.existingUser}
+                  margin="normal"
+                  required
+                  fullWidth
+                >
                   <InputLabel htmlFor="email">Email</InputLabel>
                   <Input
                     id="email"
@@ -137,7 +144,7 @@ Step1.propTypes = {
 function mapStateToProps(state) {
   const { authentication, volunteer } = state;
   const { user } = authentication;
-  const { info : volunteerDetail } = volunteer;
+  const { info: volunteerDetail } = volunteer;
   return {
     user,
     volunteerDetail

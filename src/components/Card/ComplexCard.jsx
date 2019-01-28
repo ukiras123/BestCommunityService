@@ -96,7 +96,9 @@ class ComplexCard extends React.Component {
         <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
           <CardContent>
             {option.moreDetails.map((detail, index) => (
-              <Typography key={index} paragraph>{detail}</Typography>
+              <Typography key={index} paragraph>
+                {detail}
+              </Typography>
             ))}
           </CardContent>
         </Collapse>

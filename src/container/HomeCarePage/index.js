@@ -1,4 +1,2 @@
-import HomeCarePage from './HomeCarePage'
-export {
-    HomeCarePage
-}
+import HomeCarePage from "./HomeCarePage";
+export { HomeCarePage };

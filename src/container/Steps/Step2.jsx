@@ -11,9 +11,9 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Paper from "@material-ui/core/Paper";
 import TextField from "@material-ui/core/TextField";
 import { volunteerActions } from "../../redux/actions/volunteer.action";
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-const _ = require('lodash');
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+const _ = require("lodash");
 
 class Step2 extends React.Component {
   constructor(props) {
@@ -22,17 +22,17 @@ class Step2 extends React.Component {
     this.state = {
       interest: {
         interest: "",
-        yourself: "",
+        yourself: ""
       }
     };
     this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
-    const { volunteerDetail} = this.props;
-    const {interest} = this.state;
-    if(!_.isEmpty(volunteerDetail, true)){
-      const newState = {interest: {...interest, ...volunteerDetail} }
+    const { volunteerDetail } = this.props;
+    const { interest } = this.state;
+    if (!_.isEmpty(volunteerDetail, true)) {
+      const newState = { interest: { ...interest, ...volunteerDetail } };
       this.setState(newState);
     }
   }
@@ -40,14 +40,16 @@ class Step2 extends React.Component {
   handleChange(event) {
     const { dispatch } = this.props;
     const { interest } = this.state;
-    const newState = { interest:{...interest,[event.target.name]: event.target.value }}
+    const newState = {
+      interest: { ...interest, [event.target.name]: event.target.value }
+    };
     this.setState(newState);
     dispatch(volunteerActions.addVolunteer(newState));
   }
 
   render() {
     const { classes } = this.props;
-    const {interest} = this.state;
+    const { interest } = this.state;
     return (
       <div>
         <div className={classes.main}>

@@ -1,4 +1,2 @@
-import Avatar  from './Avatar';
-export {
-    Avatar
-}
+import Avatar from "./Avatar";
+export { Avatar };

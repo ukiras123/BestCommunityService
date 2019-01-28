@@ -1,4 +1,2 @@
-import VolunteerPage from './VolunteerPage'
-export {
-    VolunteerPage
-}
+import VolunteerPage from "./VolunteerPage";
+export { VolunteerPage };

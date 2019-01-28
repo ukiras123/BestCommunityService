@@ -1,4 +1,2 @@
-import ComplexCard from './ComplexCard'
-export {
-    ComplexCard
-}
+import ComplexCard from "./ComplexCard";
+export { ComplexCard };

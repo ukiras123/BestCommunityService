@@ -1,5 +1,3 @@
-import MediaCard from './MediaCard'
+import MediaCard from "./MediaCard";
 
-export {
-    MediaCard
-}
+export { MediaCard };

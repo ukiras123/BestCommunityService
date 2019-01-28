@@ -10,24 +10,24 @@ import { volunteerActions } from "../../redux/actions/volunteer.action";
 
 import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/lab/Slider";
-const _ = require('lodash');
+const _ = require("lodash");
 
 class Step3 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       survey: {
-        value: 80,
+        value: 80
       }
     };
     this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
-    const { volunteerDetail} = this.props;
-    const {survey} = this.state;
-    if(!_.isEmpty(volunteerDetail, true)){
-      const newState = {survey: {...survey, ...volunteerDetail} }
+    const { volunteerDetail } = this.props;
+    const { survey } = this.state;
+    if (!_.isEmpty(volunteerDetail, true)) {
+      const newState = { survey: { ...survey, ...volunteerDetail } };
       this.setState(newState);
     }
   }
@@ -35,16 +35,17 @@ class Step3 extends React.Component {
   handleChange(event) {
     const { dispatch } = this.props;
     const { interest } = this.state;
-    const newState = { interest:{...interest,[event.target.name]: event.target.value }}
+    const newState = {
+      interest: { ...interest, [event.target.name]: event.target.value }
+    };
     this.setState(newState);
     dispatch(volunteerActions.addVolunteer(newState));
   }
 
-
   handleChange = (event, value) => {
     const { dispatch } = this.props;
     const { survey } = this.state;
-    const newState = { survey: {...survey,value: value }}
+    const newState = { survey: { ...survey, value: value } };
     this.setState(newState);
     dispatch(volunteerActions.addVolunteer(newState));
   };
@@ -58,16 +59,18 @@ class Step3 extends React.Component {
         <div className={classes.main}>
           <CssBaseline />
           <Paper className={classes.paper}>
-                <div className={classes.root}>
-                  <Typography variant="headline" id="label" >How do you like it so far?</Typography>
-                  <Slider
-                    min={0}
-                    max={100}
-                    classes={{ container: classes.slider }}
-                    value={value}
-                    onChange={this.handleChange}
-                  />
-                </div>
+            <div className={classes.root}>
+              <Typography variant="headline" id="label">
+                How do you like it so far?
+              </Typography>
+              <Slider
+                min={0}
+                max={100}
+                classes={{ container: classes.slider }}
+                value={value}
+                onChange={this.handleChange}
+              />
+            </div>
           </Paper>
         </div>
       </div>

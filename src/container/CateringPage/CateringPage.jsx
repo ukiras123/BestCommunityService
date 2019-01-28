@@ -63,19 +63,12 @@ const items = [
           "https://c-lj.gnst.jp/public/article/detail/a/00/00/a0000769/img/basic/a0000769_main.jpg?20181226135958",
         header: "Japenese",
         subHeader: "From Top Chefs straight from Japan",
-        description: [
-          `Ramen`,
-          `Sushi`,
-          `Onigiri`,
-          `Onigiri`,
-          `Natto`
-        ],
+        description: [`Ramen`, `Sushi`, `Onigiri`, `Onigiri`, `Natto`],
         actionName: "Order Now",
         price: "$19.99 / plate"
       },
       {
-        imgSrc:
-          "https://i.imgur.com/bcSgaWJ.jpg",
+        imgSrc: "https://i.imgur.com/bcSgaWJ.jpg",
         header: "Chinese",
         subHeader: "Stright from Chinese Market",
         description: [
@@ -83,7 +76,7 @@ const items = [
           `Ma Po Tofu`,
           `Dumplings`,
           `Peking Roasted Duck`,
-          `Spring Rolls          `,
+          `Spring Rolls          `
         ],
         actionName: "Order Now",
         price: "$19.99 / plate"

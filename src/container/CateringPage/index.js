@@ -1,4 +1,2 @@
-import CateringPage from './CateringPage'
-export {
-    CateringPage
-}
+import CateringPage from "./CateringPage";
+export { CateringPage };

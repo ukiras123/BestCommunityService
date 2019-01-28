@@ -1,4 +1,2 @@
-import SettingPage from './SettingPage'
-export {
-    SettingPage
-}
+import SettingPage from "./SettingPage";
+export { SettingPage };

@@ -1,4 +1,2 @@
-import FreeClassesPage from './FreeClassesPage'
-export {
-    FreeClassesPage
-}
+import FreeClassesPage from "./FreeClassesPage";
+export { FreeClassesPage };

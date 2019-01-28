@@ -19,7 +19,7 @@ const styles = theme => ({
   },
   toolbar: theme.mixins.toolbar,
   align: {
-    textAlign: "center",
+    textAlign: "center"
   }
 });
 
@@ -39,17 +39,22 @@ class VolunteerPage extends React.Component {
 
         <main className={classes.content}>
           <div className={classes.toolbar} />
-          <Typography 
-          component="h6"
-          variant="h5"
-          align="center"
-          color="textPrimary"
-          gutterBottom
-          className={classes.align}>
-            Register with your information and we will reach out to you soon. 
+          <Typography
+            component="h6"
+            variant="h5"
+            align="center"
+            color="textPrimary"
+            gutterBottom
+            className={classes.align}
+          >
+            Register with your information and we will reach out to you soon.
           </Typography>
           <div className={classes.align}>
-          <LinearStepper dispatch={this.props.dispatch} volunteerInfo={this.props.volunteer} alert={this.props.alert}/>
+            <LinearStepper
+              dispatch={this.props.dispatch}
+              volunteerInfo={this.props.volunteer}
+              alert={this.props.alert}
+            />
           </div>
         </main>
       </div>
@@ -62,7 +67,7 @@ VolunteerPage.propTypes = {
 };
 
 function mapStateToProps(state) {
-  const { alert,authentication , volunteer} = state;
+  const { alert, authentication, volunteer } = state;
   const { user } = authentication;
 
   return {

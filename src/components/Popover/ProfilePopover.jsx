@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { userActions } from "../../redux/actions";
 import { compose } from "redux";
-import {Avatar} from "../Avatar";
+import { Avatar } from "../Avatar";
 
 const styles = theme => ({
   typography: {
@@ -20,8 +20,6 @@ const styles = theme => ({
 });
 
 class ProfilePopover extends React.Component {
-
-
   handleDeleteUser(id) {
     return e => this.props.dispatch(userActions.delete(id));
   }
@@ -57,7 +55,7 @@ class ProfilePopover extends React.Component {
           <Typography variant="h6" align="center" color="textSecondary">
             Hi {user && user.firstName} &nbsp;
           </Typography>
-          <Avatar firstName={user &&  user.firstName}/>
+          <Avatar firstName={user && user.firstName} />
         </Button>
         <Popover
           id="simple-popper"
@@ -74,14 +72,14 @@ class ProfilePopover extends React.Component {
           }}
         >
           <List>
-              <Link style={{ textDecoration: "none" }} to="/setting">
-                <ListItem button key="1">
-                  <ListItemText primary="Account Setting" />
-                </ListItem>
-              </Link>
-              <ListItem button onClick={this.handleLogOout()} key="2">
-                  <ListItemText  primary="LogOut" />
-                </ListItem>
+            <Link style={{ textDecoration: "none" }} to="/setting">
+              <ListItem button key="1">
+                <ListItemText primary="Account Setting" />
+              </ListItem>
+            </Link>
+            <ListItem button onClick={this.handleLogOout()} key="2">
+              <ListItemText primary="LogOut" />
+            </ListItem>
           </List>
         </Popover>
       </div>

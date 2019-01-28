@@ -74,12 +74,11 @@ export function configureFakeBackend() {
           return;
         }
 
-
         // Update
         if (opts && opts.method === "PUT") {
           // get new user object from post body
           let newUser = JSON.parse(opts.body);
-          let objIndex = users.findIndex((obj => obj.id === newUser.id));
+          let objIndex = users.findIndex(obj => obj.id === newUser.id);
           users[objIndex].firstName = newUser.firstName;
           users[objIndex].lastname = newUser.lastname;
           users[objIndex].password = newUser.password;
@@ -92,14 +91,13 @@ export function configureFakeBackend() {
           localStorage.setItem("user", JSON.stringify(localUser));
 
           // respond 200 OK
-          resolve({ ok: true, text: () => Promise.resolve(JSON.stringify(localUser)) });
+          resolve({
+            ok: true,
+            text: () => Promise.resolve(JSON.stringify(localUser))
+          });
 
           return;
         }
-
-
-
-
 
         // get users
         if (url.endsWith("/users") && opts.method === "GET") {

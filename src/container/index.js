@@ -1,2 +1,1 @@
-export {PrivateRoute, PublicRoute} from './RouteContol';
-
+export { PrivateRoute, PublicRoute } from "./RouteContol";

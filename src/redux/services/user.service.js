@@ -21,7 +21,12 @@ function sendEmailToVolunteer(volunteer) {
     const requestOptions = {
       uri: `https://or5erx9lei.execute-api.us-east-1.amazonaws.com/prod`,
       method: "POST",
-      body: { volunteer: true, name: user.firstName, email: user.email, interest: interest.interest },
+      body: {
+        volunteer: true,
+        name: user.firstName,
+        email: user.email,
+        interest: interest.interest
+      },
       json: true
     };
     const response = rp(requestOptions);

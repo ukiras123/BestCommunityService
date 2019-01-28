@@ -1,4 +1,2 @@
-import ReserveHallPage from './ReserveHallPage'
-export {
-    ReserveHallPage
-}
+import ReserveHallPage from "./ReserveHallPage";
+export { ReserveHallPage };
