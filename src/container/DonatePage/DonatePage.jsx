@@ -81,7 +81,7 @@ class DonatePage extends React.Component {
     const { alert } = this.state;
     const newAlert = {
       message: "The payment was cancelled!",
-      type: "alert-success"
+      type: "alert-danger"
     };
     this.setState({
       alert: {
@@ -90,12 +90,10 @@ class DonatePage extends React.Component {
       }
     });
 
-    // this.setState({
-    //   message: "The payment was cancelled!",
-    //   type: "alert-success"
-    // }); //alert-danger
-    // You can bind the "data" object's value to your state or props or whatever here, please see below for sample returned data
-  };
+    setTimeout(function() {
+      history.push("/");
+    }, 3000);
+   };
 
   onError = err => {
     const { alert } = this.state;
@@ -109,6 +107,10 @@ class DonatePage extends React.Component {
         ...newAlert
       }
     });
+
+    setTimeout(function() {
+      history.push("/");
+    }, 4000);
   };
 
   handleChange = event => {
@@ -142,7 +144,7 @@ class DonatePage extends React.Component {
             gutterBottom
             className={classes.align}
           >
-            Please select how much you wish yo donate
+            Please select how much you wish to donate
           </Typography>
           <div className={classes.align}>
             {alert && alert.message && alert.type && (

@@ -34,9 +34,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "docker-build": "docker build -f build.Dockerfile -t bcs .",
-    "docker-tag": "docker tag bcs:latest 240418355038.dkr.ecr.us-east-1.amazonaws.com/bcs:latest",
-    "docker-deploy": "docker push 240418355038.dkr.ecr.us-east-1.amazonaws.com/bcs:latest"
+    "docker-deploy": "docker build -f build.Dockerfile -t bcs . && docker tag bcs:latest 240418355038.dkr.ecr.us-east-1.amazonaws.com/bcs:latest && docker push 240418355038.dkr.ecr.us-east-1.amazonaws.com/bcs:latest"
   },
   "eslintConfig": {
     "extends": "react-app"
