@@ -18,7 +18,6 @@ export const userService = {
 function sendEmailToVolunteer(volunteer) {
   if (volunteer && volunteer.info.email) {
     const { info: user, interest } = volunteer;
-    console.log("Sending Email for new Registration to " + user.email);
     const requestOptions = {
       uri: `https://or5erx9lei.execute-api.us-east-1.amazonaws.com/prod`,
       method: "POST",
@@ -28,7 +27,6 @@ function sendEmailToVolunteer(volunteer) {
     const response = rp(requestOptions);
     return response.id;
   }
-  console.log("I am going to send the email now" + JSON.stringify(volunteer));
 }
 
 function login(username, password) {

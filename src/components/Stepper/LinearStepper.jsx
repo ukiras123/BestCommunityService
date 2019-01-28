@@ -53,7 +53,6 @@ function getStepContent(step) {
 }
 
 function validateEmail(email) {
-  console.log("checking email " + email);
   var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(String(email).toLowerCase());
 }
@@ -77,12 +76,8 @@ function HorizontalLinearStepper(props) {
     dispatch(alertActions.clear());
 
     if (activeStep === 0) {
-      console.log("This is first");
       const { firstName, lastName, email } = volunteerInfo.info;
       if (!(firstName && lastName && email)) {
-        console.log(
-          "Not all fields are provided" + JSON.stringify(volunteerInfo)
-        );
         dispatch(alertActions.error("Please fill all required fields"));
         return;
       }
@@ -92,12 +87,8 @@ function HorizontalLinearStepper(props) {
         return;
       }
     }else if (activeStep === 1) {
-      console.log("This is first");
       const { interest } = volunteerInfo.interest;
       if (!interest) {
-        console.log(
-          "Not all fields are provided" + JSON.stringify(volunteerInfo)
-        );
         dispatch(alertActions.error("Please fill all required fields"));
         return;
         }
@@ -139,7 +130,6 @@ function HorizontalLinearStepper(props) {
 
     setActiveStep(prevActiveStep => prevActiveStep + 1);
     setSkipped(newSkipped);
-    console.log("Sending it out finally" + JSON.stringify(volunteerInfo));
     dispatch(volunteerActions.sendEmail(volunteerInfo));
     setTimeout(function() {
       history.push("/");

@@ -28,8 +28,6 @@ class VolunteerPage extends React.Component {
     const { classes, user } = this.props;
     const loggedInButtons = user ? true : false;
     const landingButtons = loggedInButtons ? false : true;
-    console.log("loggedInButtons", loggedInButtons);
-    console.log("landingButtons", landingButtons);
     return (
       <div className={classes.root}>
         <CssBaseline />

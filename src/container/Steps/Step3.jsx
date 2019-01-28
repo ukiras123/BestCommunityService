@@ -29,17 +29,15 @@ class Step3 extends React.Component {
     if(!_.isEmpty(volunteerDetail, true)){
       const newState = {survey: {...survey, ...volunteerDetail} }
       this.setState(newState);
-      console.log("Found in Store in Step 3")
     }
   }
 
   handleChange(event) {
-    const { dispatch, message } = this.props;
+    const { dispatch } = this.props;
     const { interest } = this.state;
     const newState = { interest:{...interest,[event.target.name]: event.target.value }}
     this.setState(newState);
     dispatch(volunteerActions.addVolunteer(newState));
-    console.log(JSON.stringify(message));
   }
 
 

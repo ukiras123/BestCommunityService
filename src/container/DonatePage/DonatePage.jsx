@@ -60,7 +60,6 @@ class DonatePage extends React.Component {
 
   onSuccess = payment => {
     // Congratulation, it came here means everything's fine!
-    console.log("The payment was succeeded! Thank You.", payment);
     const { alert } = this.state;
     const newAlert = {
       message: "The payment was succeeded! Thank You.",
@@ -79,7 +78,6 @@ class DonatePage extends React.Component {
 
   onCancel = data => {
     // User pressed "cancel" or close Paypal's popup!
-    console.log("The payment was cancelled!", data);
     const { alert } = this.state;
     const newAlert = {
       message: "The payment was cancelled!",
@@ -100,7 +98,6 @@ class DonatePage extends React.Component {
   };
 
   onError = err => {
-    console.log("Error!", err);
     const { alert } = this.state;
     const newAlert = {
       message: "Error!",
@@ -127,8 +124,6 @@ class DonatePage extends React.Component {
     const { alert } = this.state;
     const loggedInButtons = user ? true : false;
     const landingButtons = loggedInButtons ? false : true;
-    console.log("loggedInButtons", loggedInButtons);
-    console.log("landingButtons", landingButtons);
     return (
       <div className={classes.root}>
         <CssBaseline />

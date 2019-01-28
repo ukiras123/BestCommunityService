@@ -34,7 +34,6 @@ class Step2 extends React.Component {
     if(!_.isEmpty(volunteerDetail, true)){
       const newState = {interest: {...interest, ...volunteerDetail} }
       this.setState(newState);
-      console.log("Found in Store")
     }
   }
 

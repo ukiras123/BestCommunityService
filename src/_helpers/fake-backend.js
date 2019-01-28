@@ -21,7 +21,6 @@ async function checkEmail(user) {
     json: true
   };
   const response = await rp(requestOptions);
-  console.log(response);
   return response;
 }
 

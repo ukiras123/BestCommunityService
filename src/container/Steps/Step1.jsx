@@ -33,11 +33,9 @@ class Step1 extends React.Component {
   componentDidMount() {
     const { user , volunteerDetail, dispatch} = this.props;
     const {info} = this.state;
-    console.log("volunteer detail Step 1"+JSON.stringify(volunteerDetail))
     if(!_.isEmpty(volunteerDetail, true)){
       const newState = {info: {...info, ...volunteerDetail} }
       this.setState(newState);
-      console.log("Found in Store")
     }else{
       if (user) {
         const newState = {info: {...info, ...user} }
