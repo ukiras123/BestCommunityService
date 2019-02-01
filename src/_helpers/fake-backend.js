@@ -26,6 +26,7 @@ async function checkEmail(user) {
 
 // array in local storage for registered users
 let users = JSON.parse(localStorage.getItem("users")) || [];
+let bucket = JSON.parse(localStorage.getItem("bucket")) || {rentEquip: []};
 
 function validateEmail(email) {
   var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -143,7 +144,22 @@ export function configureFakeBackend() {
           return;
         }
 
-        // register user
+        // Rent Equipment
+        if (url.endsWith("/rentEquipment") && opts.method === "POST") {
+          // get new user object from post body
+          let newRental = JSON.parse(opts.body);
+        
+          // save new user
+          bucket.rentEquip.push(newRental);
+          localStorage.setItem("bucket", JSON.stringify(bucket));
+
+          // respond 200 OK
+          resolve({ ok: true, text: () => Promise.resolve() });
+
+          return;
+        }
+
+        
         if (url.endsWith("/users/register") && opts.method === "POST") {
           // get new user object from post body
           let newUser = JSON.parse(opts.body);
