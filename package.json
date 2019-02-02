@@ -36,7 +36,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "docker-build": "docker build -f build.Dockerfile -t bcs . && docker tag bcs:latest 240418355038.dkr.ecr.us-east-1.amazonaws.com/bcs:latest && docker push 240418355038.dkr.ecr.us-east-1.amazonaws.com/bcs:latest",
-    "docker-deploy": "aws ecs update-service --cluster root --service bsc-service --force-new-deployment"
+    "docker-deploy": "aws ecs update-service --cluster main --service bsc-service --force-new-deployment"
   },
   "eslintConfig": {
     "extends": "react-app"
