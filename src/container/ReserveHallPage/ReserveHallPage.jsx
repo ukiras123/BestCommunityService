@@ -55,27 +55,43 @@ const options = [
   }
 ];
 
-function ReserveHallPage(props) {
-  const { classes } = props;
+class ReserveHallPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false
+    };
+    this.drawerHandle = this.drawerHandle.bind(this);
+  }
 
-  return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <NavBar isFixed="true" loggedInButtons="true" />
-      <ClippedDrawer toSelect="Reserve Hall" />
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-        <CustomAppBar title="Choose From Variety of Hall" />
-        <Grid container spacing={8}>
-          {options.map((option, index) => (
-            <Grid continer key={index} item xs={4}>
-              <ComplexCard option={option} />
-            </Grid>
-          ))}
-        </Grid>
-      </main>
-    </div>
-  );
+  drawerHandle() {
+    console.log("handling now", this.state.open);
+    const trueFalse = this.state.open ? false : true;
+    this.setState({ open: trueFalse });
+  }
+
+  render() {
+    const { classes } = this.props;
+
+    return (
+      <div className={classes.root}>
+        <CssBaseline />
+        <NavBar isFixed="true" handleDrawerOpen={this.drawerHandle}  loggedInButtons="true" />
+        <ClippedDrawer toSelect="Reserve Hall" show={this.state.open}/>
+        <main className={classes.content}>
+          <div className={classes.toolbar} />
+          <CustomAppBar title="Choose From Variety of Hall" />
+          <Grid container spacing={8}>
+            {options.map((option, index) => (
+              <Grid justify="center" container key={index} item xs={12} sm={12} lg={4}>
+                <ComplexCard option={option} />
+              </Grid>
+            ))}
+          </Grid>
+        </main>
+      </div>
+    );
+  }
 }
 
 ReserveHallPage.propTypes = {

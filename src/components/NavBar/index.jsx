@@ -3,6 +3,9 @@ import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
+import MediaQuery from "react-responsive";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles";
 import logo from "../../assets/images/logo.png";
@@ -11,22 +14,50 @@ import StartingButtons from "../StartingButtons";
 import { ProfilePopover } from "../Popover";
 
 function NavBar(props) {
-  const { classes, isFixed, landingButtons, loggedInButtons } = props;
+  const {
+    classes,
+    isFixed,
+    landingButtons,
+    loggedInButtons,
+    handleDrawerOpen
+  } = props;
   const position = isFixed ? "fixed" : "fixed";
   return (
     <AppBar position={position} color="default" className={classes.appBar}>
       <Toolbar>
+        {handleDrawerOpen && (
+          <IconButton
+            color="inherit"
+            aria-label="Open drawer"
+            onClick={handleDrawerOpen}
+          >
+            <MenuIcon />
+          </IconButton>
+        )}
         <Link to="/main">
           <img className={classes.logo} alt="logo" src={logo} />
         </Link>
-        <Typography
-          variant="h5"
-          color="inherit"
-          noWrap
-          className={classes.toolbarTitle}
-        >
-          Best Community Service
-        </Typography>
+        <MediaQuery minDeviceWidth={1224}>
+          <Typography
+            variant="h5"
+            color="inherit"
+            noWrap
+            className={classes.toolbarTitle}
+          >
+            Best Community Service
+          </Typography>
+        </MediaQuery>
+        <MediaQuery maxDeviceWidth={1224}>
+          <Typography
+            variant="h5"
+            color="inherit"
+            noWrap
+            className={classes.toolbarTitle}
+          >
+            BCS
+          </Typography>
+        </MediaQuery>
+
         {landingButtons && <StartingButtons />}
         {loggedInButtons && <ProfilePopover />}
       </Toolbar>

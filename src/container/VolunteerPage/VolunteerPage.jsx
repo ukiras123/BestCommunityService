@@ -24,6 +24,20 @@ const styles = theme => ({
 });
 
 class VolunteerPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false
+    };
+    this.drawerHandle = this.drawerHandle.bind(this);
+  }
+
+  drawerHandle() {
+    console.log("handling now", this.state.open);
+    const trueFalse = this.state.open ? false : true;
+    this.setState({ open: trueFalse });
+  }
+
   render() {
     const { classes, user } = this.props;
     const loggedInButtons = user ? true : false;

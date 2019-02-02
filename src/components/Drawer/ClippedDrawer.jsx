@@ -86,15 +86,16 @@ const extraOptions = [
 ];
 
 function ClippedDrawer(props) {
-  const { classes, toSelect } = props;
-
+  const { classes, toSelect, show } = props;
+  console.log("Drawer: ", show);
   return (
     <Drawer
-      className={classes.drawer}
-      variant="permanent"
+      className={show ? classes.drawer : ""}
+      variant="persistent"
       classes={{
         paper: classes.drawerPaper
       }}
+      open={show}
     >
       <div className={classes.toolbar} />
       <List>

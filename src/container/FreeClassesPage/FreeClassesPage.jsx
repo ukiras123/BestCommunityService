@@ -17,20 +17,36 @@ const styles = theme => ({
   toolbar: theme.mixins.toolbar
 });
 
-function FreeClassesPage(props) {
-  const { classes } = props;
+class FreeClassesPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false
+    };
+    this.drawerHandle = this.drawerHandle.bind(this);
+  }
 
-  return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <NavBar isFixed="true" loggedInButtons="true" />
-      <ClippedDrawer toSelect="Free Classes" />
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-        <Typography paragraph>Free Classes</Typography>
-      </main>
-    </div>
-  );
+  drawerHandle() {
+    console.log("handling now", this.state.open);
+    const trueFalse = this.state.open ? false : true;
+    this.setState({ open: trueFalse });
+  }
+
+  render() {
+    const { classes } = this.props;
+
+    return (
+      <div className={classes.root}>
+        <CssBaseline />
+        <NavBar isFixed="true" handleDrawerOpen={this.drawerHandle} loggedInButtons="true" />
+        <ClippedDrawer toSelect="Free Classes" show={this.state.open}/>
+        <main className={classes.content}>
+          <div className={classes.toolbar} />
+          <Typography paragraph>Free Classes</Typography>
+        </main>
+      </div>
+    );
+  }
 }
 
 FreeClassesPage.propTypes = {

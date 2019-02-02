@@ -27,7 +27,6 @@ const styles = theme => ({
     paddingRight: "2px",
     marginLeft: "2px",
     marginRight: "2px",
-    width: "900px"
   }
 });
 

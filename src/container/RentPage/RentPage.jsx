@@ -12,8 +12,6 @@ import { types } from "../../_helpers/const";
 import { rentActions } from "../../redux/actions";
 const { GARDEN, HOME } = types;
 
-
-
 const styles = theme => ({
   root: {
     display: "flex"
@@ -24,8 +22,6 @@ const styles = theme => ({
   },
   toolbar: theme.mixins.toolbar
 });
-
-
 
 const items = [
   {
@@ -105,25 +101,35 @@ const items = [
 ];
 
 class RentPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false
+    };
+    this.drawerHandle = this.drawerHandle.bind(this);
+  }
 
+  drawerHandle() {
+    console.log("handling now", this.state.open);
+    const trueFalse = this.state.open ? false : true;
+    this.setState({ open: trueFalse });
+  }
 
-
-  handleAdd = (detail) => {
-    console.log("HandlClick"+JSON.stringify(detail));
+  handleAdd = detail => {
+    console.log("HandlClick" + JSON.stringify(detail));
     const { dispatch } = this.props;
-    if(detail){
+    if (detail) {
       dispatch(rentActions.addARental(detail));
     }
   };
 
-  handleRemove = (id) => {
-    console.log("handleRemove"+JSON.stringify(id));
+  handleRemove = id => {
+    console.log("handleRemove" + JSON.stringify(id));
     const { dispatch } = this.props;
-    if(id){
+    if (id) {
       dispatch(rentActions.removeARental(id));
     }
   };
-
 
   render() {
     const { classes } = this.props;
@@ -131,8 +137,12 @@ class RentPage extends React.Component {
     return (
       <div className={classes.root}>
         <CssBaseline />
-        <NavBar isFixed="true" loggedInButtons="true" />
-        <ClippedDrawer toSelect="Rent Equipments" />
+        <NavBar
+          isFixed="true"
+          handleDrawerOpen={this.drawerHandle}
+          loggedInButtons="true"
+        />
+        <ClippedDrawer toSelect="Rent Equipments" show={this.state.open} />
 
         <main className={classes.content}>
           <div className={classes.toolbar} />
@@ -141,7 +151,12 @@ class RentPage extends React.Component {
             <div key={index}>
               <CustomAppBar title={item.type} key={item.type} />
               {item.products.map((product, index) => (
-                <ComplexGrid key={index} options={product} handleAdd={this.handleAdd} handleRemove={this.handleRemove}/>
+                <ComplexGrid
+                  key={index}
+                  options={product}
+                  handleAdd={this.handleAdd}
+                  handleRemove={this.handleRemove}
+                />
               ))}
               <br />
               <br />
@@ -152,7 +167,6 @@ class RentPage extends React.Component {
     );
   }
 }
-
 
 function mapStateToProps(state) {
   const { registering } = state.registration;

@@ -8,6 +8,7 @@ import { ClippedDrawer } from "../../components/Drawer";
 import SimpleTab from "../../components/Tabs/SimpleTab";
 import Button from "@material-ui/core/Button";
 import Divider from "@material-ui/core/Divider";
+import Grid from "@material-ui/core/Grid";
 import ImageGallery from "../../components/ImageGallery/ImageGallery";
 import { Link } from "react-router-dom";
 
@@ -28,11 +29,6 @@ const styles = theme => ({
     marginTop: "20px",
     marginBottom: "60px",
     textAlign: "center"
-  },
-  heroContent: {
-    maxWidth: 800,
-    margin: "0 auto",
-    padding: `${theme.spacing.unit * 1}px 0 ${theme.spacing.unit * 1}px`
   }
 });
 
@@ -54,62 +50,86 @@ const option = [
   }
 ];
 
-function HomePage(props) {
-  const { classes } = props;
+class HomePage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false
+    };
+    this.drawerHandle = this.drawerHandle.bind(this);
+  }
 
-  return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <NavBar isFixed="true" loggedInButtons="true" />
-      <ClippedDrawer toSelect="Home" />
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-        <div className={classes.heroContent}>
-          <Typography
-            component="h3"
-            variant="h3"
-            align="center"
-            color="textPrimary"
-            gutterBottom
-          >
-            We believe in Humanity
-          </Typography>
-          <Typography
-            variant="h6"
-            align="center"
-            color="textSecondary"
-            component="p"
-          >
-            Show that you do too.
-          </Typography>
-          <div className={classes.action}>
-            <Link to="/donate" style={{ textDecoration: "none" }}>
-              <Button
-                size="large"
-                className={classes.autoMargin}
-                color="secondary"
-                variant="outlined"
-              >
-                Donate Now
-              </Button>
-            </Link>
-            <Link to="/volunteer" style={{ textDecoration: "none" }}>
-              <Button
-                size="large"
-                className={classes.autoMargin}
-                color="secondary"
-                variant="outlined"
-              >
-                Volunteer
-              </Button>
-            </Link>
-          </div>
-        </div>
-        <Divider />
-        <SimpleTab option={option} />
-      </main>
-    </div>
-  );
+  drawerHandle() {
+    console.log("handling now", this.state.open);
+    const trueFalse = this.state.open ? false : true;
+    this.setState({ open: trueFalse });
+  }
+
+  render() {
+    const { classes } = this.props;
+
+    return (
+      <div className={classes.root}>
+        <CssBaseline />
+        <NavBar isFixed="true" handleDrawerOpen={this.drawerHandle} loggedInButtons="true" />
+        <ClippedDrawer toSelect="Home" show={this.state.open}/>
+        <main className={classes.content}>
+          <div className={classes.toolbar} />
+          <Grid container>
+          <Grid justify="center" container xs={12}>
+            <Typography
+              component="h3"
+              variant="h3"
+              align="center"
+              color="textPrimary"
+              gutterBottom
+            >
+              We believe in Humanity
+            </Typography>
+            </Grid>
+            <Grid justify="center" container xs={12}>
+
+            <Typography
+              variant="h6"
+              align="center"
+              color="textSecondary"
+              component="p"
+            >
+              Show that you do too.
+            </Typography>
+            </Grid>
+            <Grid justify="center" container xs={12}>
+            <div className={classes.action}>
+              <Link to="/donate" style={{ textDecoration: "none" }}>
+                <Button
+                  size="large"
+                  className={classes.autoMargin}
+                  color="secondary"
+                  variant="outlined"
+                >
+                  Donate Now
+                </Button>
+              </Link>
+              <Link to="/volunteer" style={{ textDecoration: "none" }}>
+                <Button
+                  size="large"
+                  className={classes.autoMargin}
+                  color="secondary"
+                  variant="outlined"
+                >
+                  Volunteer
+                </Button>
+              </Link>
+            </div>
+            </Grid>
+            <Grid justify="center" container xs={12}>
+          <SimpleTab option={option} />
+          </Grid>
+          </Grid>
+        </main>
+      </div>
+    );
+  }
 }
 
 HomePage.propTypes = {
