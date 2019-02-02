@@ -3,7 +3,7 @@ import {
 } from "../constants";
 
 const initialState = {
-  items: []
+  rental: [] 
 };
 /*
 id,
@@ -14,16 +14,14 @@ toDate,
 totalPrice,
 pic
 */
-export function rentEquipment(state = {}, action) {
+export function rentEquipment(state = initialState, action) {
   switch (action.type) {
     case rentConstants.RENT_ADD:
-      return { ...state,
-        ...action.rentDetail
-      };
+      return state.rental.push(action.details);
     case rentConstants.RENT_REMOVE:
-      return state.filter(item => item.id !== action.id)
-    case rentConstants.RENT_GET:
-      return state;
+      return state.rental.filter(rent => rent.id !== action.id);
+    case rentConstants.RENT_GETALL_SUCCESS:
+      return {...state, rental : {...state.rental, ...action.allRentals}};
     default:
       return state;
   }

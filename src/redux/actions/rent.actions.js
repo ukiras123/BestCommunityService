@@ -1,45 +1,43 @@
 import { rentConstants } from "../constants";
-import { userService } from "../services";
-import { alertActions } from "./";
-import { history } from "../../_helpers";
+import { rentService } from "../services";
 
-export const rentEquipmentActions = {
-  rentEquipment,
-  removeRentEquipment,
-  getAllRentedEquipment
+export const rentActions = {
+  addARental,
+  removeARental,
+  updateARental,
+  getAllRental
 };
 
-function rentEquipment(rentDetail) {
-  return dispatch => {
-    dispatch(request({ rentDetail }));
-
-    userService.login(username, password).then(
-      user => {
-        dispatch(success(user));
-        history.push("/");
-      },
-      error => {
-        dispatch(failure(error.toString()));
-        dispatch(alertActions.error(error.toString()));
-      }
-    );
-  };
-
-  function request(user) {
-    return { type: rentConstants.RENT_REQUEST, rentDetail };
-  }
-  function success(user) {
-    return { type: rentConstants.RENT_SUCCESS, rentDetail };
-  }
-  function failure(error) {
-    return { type: rentConstants.RENT_SUCCESS, error };
-  }
+function addARental(details) {
+  rentService.addRental(details);
+  return { type: rentConstants.RENT_ADD, details };
 }
 
-function removeRentEquipment(id) {
+function removeARental(id) {
+  rentService.removeARental(id);
   return { type: rentConstants.RENT_REMOVE, id };
 }
 
-function getAllRentedEquipment() {
-  return { type: rentConstants.RENT_GET };
+function updateARental(details) {
+  return { type: rentConstants.RENT_UPDATE, details };
+}
+
+function getAllRental() {
+  return dispatch => {
+    const currentUser = JSON.parse(localStorage.removeItem("user")) || null;
+    const users = JSON.parse(localStorage.removeItem("users")) || [];
+
+    if (currentUser && users) {
+      const userId = currentUser.id;
+      let objIndex = users.findIndex(obj => obj.id === userId);
+      let allRentals = [];
+      if (users[objIndex].rental && users[objIndex].rental !== []) {
+        allRentals = users[objIndex].rental;
+      }
+      dispatch({
+        type: rentConstants.RENT_GETALL_SUCCESS,
+        allRentals: allRentals
+      });
+    }
+  };
 }
