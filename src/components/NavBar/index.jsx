@@ -27,7 +27,7 @@ class NavBar extends React.Component {
     return (
       <AppBar position={position} color="default" className={classes.appBar}>
         <Toolbar>
-          {handleDrawerOpen && (
+          {handleDrawerOpen && loggedInButtons && (
             <IconButton
               color="inherit"
               aria-label="Open drawer"

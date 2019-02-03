@@ -12,6 +12,7 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import { history } from "../../_helpers";
+import { ClippedDrawer } from "../../components/Drawer";
 
 const styles = theme => ({
   root: {
@@ -47,6 +48,7 @@ class DonatePage extends React.Component {
     super(props);
 
     this.state = {
+      open: false,
       value: "1",
       amount: 1,
       alert: {
@@ -54,8 +56,14 @@ class DonatePage extends React.Component {
         type: ""
       }
     };
-    // this.handleChange = this.handleChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
+    this.drawerHandle = this.drawerHandle.bind(this);
+
+  }
+
+  drawerHandle() {
+    console.log("handling now", this.state.open);
+    const trueFalse = this.state.open ? false : true;
+    this.setState({ open: trueFalse });
   }
 
   onSuccess = payment => {
@@ -133,7 +141,9 @@ class DonatePage extends React.Component {
           isFixed="true"
           loggedInButtons={loggedInButtons}
           landingButtons={landingButtons}
+          handleDrawerOpen={this.drawerHandle}
         />
+        {loggedInButtons && <ClippedDrawer show={this.state.open} />}
         <main className={classes.content}>
           <div className={classes.toolbar} />
           <Typography
@@ -156,7 +166,7 @@ class DonatePage extends React.Component {
                   src="https://loading.io/spinners/typing/lg.-text-entering-comment-loader.gif"
                 />
               </div>
-            )}{" "}
+            )}
             <FormControl component="fieldset" className={classes.formControl}>
               <RadioGroup
                 aria-label="Donation"

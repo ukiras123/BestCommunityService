@@ -28,7 +28,7 @@ const styles = theme => ({
     textTransform: "none"
   },
   badge: {
-    top: "50%",
+    top: "20%",
     right: -3,
     // The border color match the background color.
     border: `2px solid ${

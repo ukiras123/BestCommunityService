@@ -7,6 +7,7 @@ import { LinearStepper } from "../../components/Stepper";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { Typography } from "@material-ui/core";
+import { ClippedDrawer } from "../../components/Drawer";
 
 const styles = theme => ({
   root: {
@@ -49,8 +50,9 @@ class VolunteerPage extends React.Component {
           isFixed="true"
           loggedInButtons={loggedInButtons}
           landingButtons={landingButtons}
+          handleDrawerOpen={this.drawerHandle}
         />
-
+        {loggedInButtons && <ClippedDrawer show={this.state.open} />}
         <main className={classes.content}>
           <div className={classes.toolbar} />
           <Typography
