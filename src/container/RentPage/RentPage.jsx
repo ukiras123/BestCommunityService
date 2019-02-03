@@ -6,6 +6,7 @@ import NavBar from "../../components/NavBar";
 import { ClippedDrawer } from "../../components/Drawer";
 import { ComplexGrid } from "../../components/ComplexGrid";
 import CustomAppBar from "../../components/AppBar/CustomAppBar";
+
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { types } from "../../_helpers/const";
@@ -40,7 +41,8 @@ const items = [
           `Includes all hardware and parts for straightforward assembly`
         ],
         actionName: "Rent Now",
-        price: "$19.99 / day"
+        priceText: "$19.99 / day",
+        price: 19.19
       },
       {
         id: 2,
@@ -55,7 +57,8 @@ const items = [
           `Twin blades for superior cut quality, mulching and bagging`
         ],
         actionName: "Rent Now",
-        price: "$35.99 / day"
+        priceText: "$35.99 / day",
+        price: 35.99
       }
     ]
   },
@@ -75,7 +78,8 @@ const items = [
           `Includes pliers, wrenches, screwdrivers, bit driver and bits`
         ],
         actionName: "Rent Now",
-        price: "$9.99 / day"
+        priceText: "$9.99 / day",
+        price: 9.99
       },
       {
         id: 4,
@@ -94,7 +98,8 @@ const items = [
           `Comes in a compact handy plastic storage case`
         ],
         actionName: "Rent Now",
-        price: "$14.99 / day"
+        priceText: "$14.99 / day",
+        price: 14.99
       }
     ]
   }

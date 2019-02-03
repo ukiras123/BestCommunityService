@@ -9,8 +9,10 @@ export const rentActions = {
 };
 
 function addARental(details) {
-  rentService.addRental(details);
-  return { type: rentConstants.RENT_ADD, details };
+  return dispatch => {
+    rentService.addRental(details, dispatch);
+    dispatch({ type: rentConstants.RENT_ADD, details });
+  };
 }
 
 function removeARental(id) {
