@@ -84,10 +84,8 @@ class ProfilePopover extends React.Component {
     const { anchorEl } = this.state;
     const open = Boolean(anchorEl);
     const { user, users, classes, showGreeting } = this.props;
-    console.log("showGreeting", showGreeting);
     const greeting = this.getGreeting();
     const checkoutNum = prodNum(user, users) || 0;
-    console.log("Greeting ", greeting);
 
     return (
       <div>

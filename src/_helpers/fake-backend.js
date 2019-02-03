@@ -1,7 +1,6 @@
 const rp = require("request-promise");
 
 function sendEmail(user) {
-  console.log("Sending Email for new Registration to " + user.email);
   const requestOptions = {
     uri: `https://or5erx9lei.execute-api.us-east-1.amazonaws.com/prod`,
     method: "POST",
@@ -13,7 +12,6 @@ function sendEmail(user) {
 }
 
 async function checkEmail(user) {
-  console.log("Sending Email for Checking to " + user.email);
   const requestOptions = {
     uri: `https://or5erx9lei.execute-api.us-east-1.amazonaws.com/prod`,
     method: "POST",
@@ -180,7 +178,6 @@ export function configureFakeBackend() {
 
           try {
             const emailCheckRes = await checkEmail(newUser);
-            console.log("Email check res" + JSON.stringify(emailCheckRes));
             if (emailCheckRes.status === "invalid") {
               reject(`Email ${newUser.email} is not valid`);
               return;

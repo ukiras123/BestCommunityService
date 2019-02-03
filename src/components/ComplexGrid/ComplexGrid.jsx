@@ -76,11 +76,8 @@ class ComplexGrid extends React.Component {
   }
 
   handleChange(event) {
-    console.log("I am handing", JSON.stringify(this.state));
     const { name, value } = event.target;
     const { prodConfig } = this.state;
-    console.log(JSON.stringify(prodConfig));
-    console.log(name, value);
     this.setState({
       prodConfig: {
         ...prodConfig,
@@ -99,7 +96,6 @@ class ComplexGrid extends React.Component {
 
   render() {
     const { classes, options, alert, handleAdd } = this.props;
-    console.log(JSON.stringify(alert));
     const { prodConfig, spin, added } = this.state;
     return (
       <div>
@@ -190,7 +186,6 @@ class ComplexGrid extends React.Component {
                           ...options,
                           config: { ...prodConfig }
                         };
-                        console.log("Adding ", finalProd);
                         handleAdd(finalProd);
                         this.handleClose();
                         this.setState({ added: true });

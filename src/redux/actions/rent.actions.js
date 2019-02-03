@@ -9,7 +9,6 @@ export const rentActions = {
 };
 
 function addARental(details) {
-  console.log("Add Rental Called");
   return dispatch => {
     rentService.addRental(details, dispatch);
     dispatch({ type: rentConstants.RENT_ADD, details });

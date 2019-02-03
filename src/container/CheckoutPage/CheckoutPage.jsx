@@ -5,13 +5,16 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import NavBar from "../../components/NavBar";
 import { ClippedDrawer } from "../../components/Drawer";
 import { ComplexGridCheckout } from "../../components/ComplexGrid";
+import { EmptyCart } from "../../components/EmptyCart";
 import CustomAppBar from "../../components/AppBar/CustomAppBar";
 import Grid from "@material-ui/core/Grid";
 import { OrderSummary } from "../../components/OrderSummary";
 import { connect } from "react-redux";
 import { compose } from "redux";
+import { getUserProducts } from "../../_helpers/util";
+import { getCheckoutSummary } from "../../_helpers/util";
+
 import { rentActions } from "../../redux/actions";
-import { checkoutSummary, getUserProducts } from "../../_helpers/util";
 import { Button } from "@material-ui/core";
 import PaypalExpressBtn from "react-paypal-express-checkout";
 import { Paypal } from "../../_helpers/const";
@@ -85,13 +88,11 @@ class CheckoutPage extends React.Component {
   };
 
   drawerHandle() {
-    console.log("handling now", this.state.open);
     const trueFalse = this.state.open ? false : true;
     this.setState({ open: trueFalse });
   }
 
   handleAdd = detail => {
-    console.log("HandlClick" + JSON.stringify(detail));
     const { dispatch } = this.props;
     if (detail) {
       dispatch(rentActions.addARental(detail));
@@ -99,7 +100,6 @@ class CheckoutPage extends React.Component {
   };
 
   handleRemove = id => {
-    console.log("handleRemove" + JSON.stringify(id));
     const { dispatch } = this.props;
     if (id) {
       dispatch(rentActions.removeARental(id));
@@ -109,10 +109,8 @@ class CheckoutPage extends React.Component {
   render() {
     const { classes, user, users } = this.props;
     const { alert } = this.state;
-    const summary = checkoutSummary(user, users);
+    const summary = getCheckoutSummary(user, users);
     const items = getUserProducts(user, users);
-    console.log("Items ", JSON.stringify(items));
-    console.log("Summary ", JSON.stringify(summary));
     return (
       <div className={classes.root}>
         <CssBaseline />
@@ -122,10 +120,9 @@ class CheckoutPage extends React.Component {
           loggedInButtons="true"
         />
         <ClippedDrawer show={this.state.open} />
-
         <main className={classes.content}>
           <div className={classes.toolbar} />
-          {!items && "Nothing to show at the moment"}
+          {!items && <EmptyCart />}
           {items && summary && (
             <Grid container spacing={24}>
               <Grid item xs={12} sm={12} lg={8} md={8}>

@@ -87,7 +87,6 @@ const extraOptions = [
 
 function ClippedDrawer(props) {
   const { classes, toSelect, show } = props;
-  console.log("Drawer: ", show);
   return (
     <Drawer
       className={show ? classes.drawer : ""}

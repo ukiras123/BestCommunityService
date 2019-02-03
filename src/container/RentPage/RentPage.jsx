@@ -116,13 +116,11 @@ class RentPage extends React.Component {
   }
 
   drawerHandle() {
-    console.log("handling now", this.state.open);
     const trueFalse = this.state.open ? false : true;
     this.setState({ open: trueFalse });
   }
 
   handleAdd = detail => {
-    console.log("HandlClick" + JSON.stringify(detail));
     const { dispatch } = this.props;
     if (detail) {
       dispatch(rentActions.addARental(detail));

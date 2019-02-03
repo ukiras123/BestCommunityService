@@ -80,7 +80,6 @@ class ReserveHallPage extends React.Component {
   }
 
   drawerHandle() {
-    console.log("handling now", this.state.open);
     const trueFalse = this.state.open ? false : true;
     this.setState({ open: trueFalse });
   }
