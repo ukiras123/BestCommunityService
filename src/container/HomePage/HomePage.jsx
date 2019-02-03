@@ -9,7 +9,7 @@ import SimpleTab from "../../components/Tabs/SimpleTab";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 // import ImageGallery from "../../components/ImageGallery/ImageGallery";
-import ImageGallery3 from "../../components/ImageGallery/ImageGallery3";
+// import ImageGallery3 from "../../components/ImageGallery/ImageGallery3";
 // import ImageGallery2 from "../../components/ImageGallery/ImageGallery2";
 import { Link } from "react-router-dom";
 
@@ -36,17 +36,17 @@ const styles = theme => ({
 const option = [
   {
     title: "View Our Photo Gallery",
-    component: ImageGallery3,
+    component: "Images coming soon",
     isComponent: true
   },
   {
     title: "Manage Your Account",
-    component: "Manage Your Account soobn",
+    component: "Manage Your Account coming soon",
     isComponent: false
   },
   {
     title: "See What's Happening ",
-    component: "See the latest from our company soon",
+    component: "See the latest from our company coming soon",
     isComponent: false
   }
 ];
