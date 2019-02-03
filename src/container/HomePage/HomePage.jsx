@@ -37,7 +37,7 @@ const option = [
   {
     title: "View Our Photo Gallery",
     component: "Images coming soon",
-    isComponent: true
+    isComponent: false
   },
   {
     title: "Manage Your Account",
