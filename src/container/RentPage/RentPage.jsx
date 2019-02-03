@@ -129,14 +129,6 @@ class RentPage extends React.Component {
     }
   };
 
-  handleRemove = id => {
-    console.log("handleRemove" + JSON.stringify(id));
-    const { dispatch } = this.props;
-    if (id) {
-      dispatch(rentActions.removeARental(id));
-    }
-  };
-
   render() {
     const { classes } = this.props;
 
@@ -161,7 +153,6 @@ class RentPage extends React.Component {
                   key={index}
                   options={product}
                   handleAdd={this.handleAdd}
-                  handleRemove={this.handleRemove}
                 />
               ))}
               <br />

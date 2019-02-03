@@ -8,7 +8,9 @@ import { ClippedDrawer } from "../../components/Drawer";
 import SimpleTab from "../../components/Tabs/SimpleTab";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
-import ImageGallery from "../../components/ImageGallery/ImageGallery";
+// import ImageGallery from "../../components/ImageGallery/ImageGallery";
+import ImageGallery3 from "../../components/ImageGallery/ImageGallery3";
+// import ImageGallery2 from "../../components/ImageGallery/ImageGallery2";
 import { Link } from "react-router-dom";
 
 const styles = theme => ({
@@ -34,7 +36,7 @@ const styles = theme => ({
 const option = [
   {
     title: "View Our Photo Gallery",
-    component: ImageGallery,
+    component: ImageGallery3,
     isComponent: true
   },
   {
@@ -124,7 +126,7 @@ class HomePage extends React.Component {
                 </Link>
               </div>
             </Grid>
-            <Grid justify="center" container >
+            <Grid item container justify="center" xs={12} sm={12} lg={12} md={12} >
               <SimpleTab option={option} />
             </Grid>
           </Grid>

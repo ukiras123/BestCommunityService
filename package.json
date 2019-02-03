@@ -16,6 +16,8 @@
     "neverbounce": "^4.2.0",
     "react": "next",
     "react-dom": "next",
+    "react-grid-gallery": "^0.5.3",
+    "react-image-gallery": "^0.8.12",
     "react-images": "^0.5.19",
     "react-paypal-express-checkout": "^1.0.5",
     "react-photo-gallery": "^6.3.0",
