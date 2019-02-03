@@ -34,7 +34,6 @@ const styles = theme => ({
   },
   paper2: {
     position: "absolute",
-    width: theme.spacing.unit * 60,
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
     padding: theme.spacing.unit * 4,
@@ -99,7 +98,7 @@ class ComplexGrid extends React.Component {
   };
 
   render() {
-    const { classes, options, alert, handleAdd, handleRemove } = this.props;
+    const { classes, options, alert, handleAdd } = this.props;
     console.log(JSON.stringify(alert));
     const { prodConfig, spin, added } = this.state;
     return (
@@ -140,19 +139,6 @@ class ComplexGrid extends React.Component {
                           onClick={this.handleOpen}
                         >
                           {options.actionName}
-                        </Button>
-                        <Button
-                          variant="contained"
-                          disabled={added ? true : false}
-                          color="primary"
-                          className={classes.button}
-                          onClick={() =>{
-                            if(options){
-                              handleRemove(options.id);
-                            }
-                          }}
-                        >
-                          Delete It
                         </Button>
                       </Grid>
                       <Grid item>

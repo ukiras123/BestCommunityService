@@ -40,7 +40,7 @@ const items = [
         ],
         actionName: "Order Now",
         priceText: "$19.99 / plate",
-        price: 19.19
+        price: 19.99
       },
       {
         id: 202,
@@ -76,7 +76,7 @@ const items = [
         description: [`Ramen`, `Sushi`, `Onigiri`, `Onigiri`, `Natto`],
         actionName: "Order Now",
         priceText: "$19.99 / plate",
-        price: 19.19
+        price: 19.99
       },
       {
         id: 204,
@@ -93,7 +93,7 @@ const items = [
         ],
         actionName: "Order Now",
         priceText: "$19.99 / plate",
-        price: 19.19
+        price: 19.99
       }
     ]
   }

@@ -20,7 +20,7 @@ class NavBar extends React.Component {
       isFixed,
       landingButtons,
       loggedInButtons,
-      handleDrawerOpen,
+      handleDrawerOpen
     } = this.props;
     const position = isFixed ? "fixed" : "fixed";
 
@@ -48,7 +48,10 @@ class NavBar extends React.Component {
             >
               Best Community Service
             </Typography>
+            {landingButtons && <StartingButtons />}
+            {loggedInButtons && <ProfilePopover showGreeting={true}/>}
           </MediaQuery>
+
           <MediaQuery maxDeviceWidth={1224}>
             <Typography
               variant="h5"
@@ -58,10 +61,9 @@ class NavBar extends React.Component {
             >
               BCS
             </Typography>
+            {landingButtons && <StartingButtons />}
+            {loggedInButtons && <ProfilePopover showGreeting={false}/>}
           </MediaQuery>
-
-          {landingButtons && <StartingButtons />}
-          {loggedInButtons && <ProfilePopover />}
         </Toolbar>
       </AppBar>
     );
@@ -71,6 +73,5 @@ class NavBar extends React.Component {
 NavBar.propTypes = {
   classes: PropTypes.object.isRequired
 };
-
 
 export default withStyles(styles)(NavBar);

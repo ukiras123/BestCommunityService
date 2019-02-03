@@ -98,7 +98,7 @@ class ReserveHallPage extends React.Component {
           <CustomAppBar title="Choose From Variety of Hall" />
           <Grid container spacing={8}>
             {options.map((option, index) => (
-              <Grid justify="center" container key={index} item xs={12} sm={12} lg={4}>
+              <Grid justify="center" container key={index} item xs={12} sm={12} lg={4} md={4}>
                 <ComplexCard option={option} />
               </Grid>
             ))}

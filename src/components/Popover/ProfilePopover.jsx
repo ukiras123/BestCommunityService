@@ -83,7 +83,8 @@ class ProfilePopover extends React.Component {
   render() {
     const { anchorEl } = this.state;
     const open = Boolean(anchorEl);
-    const { user, users, classes } = this.props;
+    const { user, users, classes, showGreeting } = this.props;
+    console.log("showGreeting", showGreeting);
     const greeting = this.getGreeting();
     const checkoutNum = prodNum(user, users) || 0;
     console.log("Greeting ", greeting);
@@ -91,14 +92,16 @@ class ProfilePopover extends React.Component {
     return (
       <div>
         <Button onClick={this.handleClick} className={classes.buttonI}>
-          <Typography
-            variant="h6"
-            component="h6"
-            align="center"
-            color="textSecondary"
-          >
-            {greeting || "Hi"} {user && user.firstName} &nbsp;
-          </Typography>
+          {showGreeting && (
+            <Typography
+              variant="h6"
+              component="h6"
+              align="center"
+              color="textSecondary"
+            >
+              {greeting || "Hi"} {user && user.firstName} &nbsp;
+            </Typography>
+          )}
           <Avatar firstName={user && user.firstName} />
         </Button>
         <Popover

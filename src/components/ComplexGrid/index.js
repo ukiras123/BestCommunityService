@@ -1,2 +1,3 @@
 import ComplexGrid from "./ComplexGrid";
-export { ComplexGrid };
+import ComplexGridCheckout from "./ComplexGridCheckout";
+export { ComplexGrid, ComplexGridCheckout };

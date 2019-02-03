@@ -5,7 +5,7 @@ export default theme => ({
     }
   },
   appBar: {
-    backgroundColor: "#CAE6F8",
+    backgroundColor:  "#90caf9",
     zIndex: theme.zIndex.drawer + 1
   },
   marginTop: {

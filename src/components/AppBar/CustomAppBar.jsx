@@ -7,18 +7,17 @@ import Toolbar from "@material-ui/core/Toolbar";
 
 const styles = theme => ({
   appBar: {
-    backgroundColor: "#E6E6FA"
+    backgroundColor: "#E6E6FA",
   },
-  toolbar: theme.mixins.toolbar,
   toolbarTitle: {}
 });
 
 function CustomAppBar(props) {
-  const { classes, title } = props;
+  const { classes, title, style } = props;
 
   return (
     <AppBar position="relative" color="default" className={classes.appBar}>
-      <Toolbar>
+      <Toolbar style={style} className={classes.toolbar}>
         <Typography
           variant="h5"
           color="inherit"

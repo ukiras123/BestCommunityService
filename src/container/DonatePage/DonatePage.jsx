@@ -7,6 +7,8 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import { Typography } from "@material-ui/core";
 import PaypalExpressBtn from "react-paypal-express-checkout";
+import { Paypal } from "../../_helpers/const";
+
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -33,16 +35,6 @@ const styles = theme => ({
   }
 });
 
-let env = "production"; // you can set here to 'production' for production
-let currency = "USD"; // or you can set this value from your props or state
-
-const client = {
-  sandbox:
-    "AUWQvmtidvMwS6FYb16PUsW_4oONyzfoujL6BhUWdkTkxT0sTrdwfx3EAzlYE2gPoS9uxaNzedGrKSB_",
-  production:
-    "AR-uw6Ali0Eny1ZfYNb9ijDt_ZY0GGBiUinzPUiR555Gjpc6wV0-b5JE5Yjc9BJClzlc1OtktXd6mMum"
-};
-
 class DonatePage extends React.Component {
   constructor(props) {
     super(props);
@@ -57,7 +49,6 @@ class DonatePage extends React.Component {
       }
     };
     this.drawerHandle = this.drawerHandle.bind(this);
-
   }
 
   drawerHandle() {
@@ -195,14 +186,16 @@ class DonatePage extends React.Component {
           </div>
           <div className={classes.align}>
             <PaypalExpressBtn
-              env={env}
-              client={client}
-              currency={currency}
+              env={Paypal.sandbox}
+              client={Paypal.client}
+              currency={Paypal.currency}
               total={this.state.amount}
               onError={this.onError}
               onSuccess={this.onSuccess}
               onCancel={this.onCancel}
             />
+            Note: This Payment is in Sandbox so your account will not be
+            charged. You can try.
           </div>
         </main>
       </div>

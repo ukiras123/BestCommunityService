@@ -43,7 +43,7 @@ const items = [
         ],
         actionName: "Rent Now",
         priceText: "$19.99 / day",
-        price: 19.19
+        price: 19.99
       },
       {
         id: 2,
