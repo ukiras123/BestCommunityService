@@ -11,6 +11,7 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import { types } from "../../_helpers/const";
 import { rentActions } from "../../redux/actions";
+
 const { GARDEN, HOME } = types;
 
 const styles = theme => ({

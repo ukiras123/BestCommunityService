@@ -15,7 +15,7 @@ function LetterAvatars(props) {
   const { classes, firstName } = props;
   return (
     <Avatar className={classes.purpleAvatar}>
-      {firstName && firstName.charAt(0)}
+      {firstName && firstName.charAt(0).toUpperCase()}
     </Avatar>
   );
 }

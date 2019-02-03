@@ -107,6 +107,7 @@ export function configureFakeBackend() {
             opts.headers &&
             opts.headers.Authorization === "Bearer fake-jwt-token"
           ) {
+            let users = JSON.parse(localStorage.getItem("users")) || [];
             resolve({
               ok: true,
               text: () => Promise.resolve(JSON.stringify(users))

@@ -99,9 +99,9 @@ class ComplexGrid extends React.Component {
   };
 
   render() {
-    const { classes, options, alert, handleAdd } = this.props;
+    const { classes, options, alert, handleAdd, handleRemove } = this.props;
     console.log(JSON.stringify(alert));
-    const { isNotClicked, prodConfig, spin, added } = this.state;
+    const { prodConfig, spin, added } = this.state;
     return (
       <div>
         <div>
@@ -135,11 +135,24 @@ class ComplexGrid extends React.Component {
                         <Button
                           variant="contained"
                           disabled={added ? true : false}
-                          color={isNotClicked ? "secondary" : "primary"}
+                          color="secondary"
                           className={classes.button}
                           onClick={this.handleOpen}
                         >
                           {options.actionName}
+                        </Button>
+                        <Button
+                          variant="contained"
+                          disabled={added ? true : false}
+                          color="primary"
+                          className={classes.button}
+                          onClick={() =>{
+                            if(options){
+                              handleRemove(options.id);
+                            }
+                          }}
+                        >
+                          Delete It
                         </Button>
                       </Grid>
                       <Grid item>

@@ -7,7 +7,6 @@ import NavBar from "../../components/NavBar";
 import { ClippedDrawer } from "../../components/Drawer";
 import SimpleTab from "../../components/Tabs/SimpleTab";
 import Button from "@material-ui/core/Button";
-import Divider from "@material-ui/core/Divider";
 import Grid from "@material-ui/core/Grid";
 import ImageGallery from "../../components/ImageGallery/ImageGallery";
 import { Link } from "react-router-dom";
@@ -71,60 +70,63 @@ class HomePage extends React.Component {
     return (
       <div className={classes.root}>
         <CssBaseline />
-        <NavBar isFixed="true" handleDrawerOpen={this.drawerHandle} loggedInButtons="true" />
-        <ClippedDrawer toSelect="Home" show={this.state.open}/>
+        <NavBar
+          isFixed="true"
+          handleDrawerOpen={this.drawerHandle}
+          loggedInButtons="true"
+        />
+        <ClippedDrawer toSelect="Home" show={this.state.open} />
         <main className={classes.content}>
           <div className={classes.toolbar} />
           <Grid container>
-          <Grid justify="center" container xs={12}>
-            <Typography
-              component="h3"
-              variant="h3"
-              align="center"
-              color="textPrimary"
-              gutterBottom
-            >
-              We believe in Humanity
-            </Typography>
+            <Grid justify="center" container >
+              <Typography
+                component="h3"
+                variant="h3"
+                align="center"
+                color="textPrimary"
+                gutterBottom
+              >
+                We believe in Humanity
+              </Typography>
             </Grid>
-            <Grid justify="center" container xs={12}>
-
-            <Typography
-              variant="h6"
-              align="center"
-              color="textSecondary"
-              component="p"
-            >
-              Show that you do too.
-            </Typography>
+            <Grid justify="center" container>
+              <Typography
+                variant="h6"
+                align="center"
+                color="textSecondary"
+                component="p"
+              >
+                Show that you do too.
+              </Typography>
             </Grid>
-            <Grid justify="center" container xs={12}>
-            <div className={classes.action}>
-              <Link to="/donate" style={{ textDecoration: "none" }}>
-                <Button
-                  size="large"
-                  className={classes.autoMargin}
-                  color="secondary"
-                  variant="outlined"
-                >
-                  Donate Now
-                </Button>
-              </Link>
-              <Link to="/volunteer" style={{ textDecoration: "none" }}>
-                <Button
-                  size="large"
-                  className={classes.autoMargin}
-                  color="secondary"
-                  variant="outlined"
-                >
-                  Volunteer
-                </Button>
-              </Link>
-            </div>
+            <Grid justify="center" container>
+              <div className={classes.action}>
+                <Link to="/donate" style={{ textDecoration: "none" }}>
+                  <Button
+                    size="large"
+                    className={classes.autoMargin}
+                    color="secondary"
+                    variant="outlined"
+                  >
+                    Donate Now
+                  </Button>
+                </Link>
+                <Link to="/volunteer" style={{ textDecoration: "none" }}>
+                  <Button
+                    size="large"
+                    className={classes.autoMargin}
+                    color="secondary"
+                    variant="outlined"
+                  >
+                    Volunteer
+                  </Button>
+                </Link>
+              </div>
             </Grid>
-            <Grid justify="center" container xs={12}>
-          <SimpleTab option={option} />
-          </Grid>
+            <Grid justify="center" container >
+              <SimpleTab option={option} />
+            </Grid>
           </Grid>
         </main>
       </div>

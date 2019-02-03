@@ -1,4 +1,5 @@
 import { alertActions } from "../actions";
+import { userActions } from "../actions";
 const _ = require("lodash");
 
 export const rentService = {
@@ -19,6 +20,7 @@ function addRental(details, dispatch) {
       ) {
         users[objIndex].rental.push(details);
         dispatch(alertActions.success("Added to your cart", details.id));
+        dispatch(userActions.getAll());
       } else {
         dispatch(alertActions.error("It is already in your cart", details.id));
       }
@@ -26,13 +28,14 @@ function addRental(details, dispatch) {
       users[objIndex].rental = [];
       users[objIndex].rental.push(details);
       dispatch(alertActions.success("Added to your cart", details.id));
+      dispatch(userActions.getAll());
     }
     // Update Users
     localStorage.setItem("users", JSON.stringify(users));
   }
 }
 
-function removeARental(rentalId) {
+function removeARental(rentalId, dispatch) {
   const currentUser = JSON.parse(localStorage.getItem("user")) || null;
   const users = JSON.parse(localStorage.getItem("users")) || [];
 
@@ -47,5 +50,6 @@ function removeARental(rentalId) {
     }
     // Update Users
     localStorage.setItem("users", JSON.stringify(users));
+    dispatch(userActions.getAll());
   }
 }
