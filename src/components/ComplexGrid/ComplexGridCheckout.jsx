@@ -91,7 +91,8 @@ class ComplexGrid extends React.Component {
                               if (options) {
                                 handleRemove(options.id);
                               }
-                            }, 700);
+                              this.setState({ spin: false });
+                            }.bind(this), 700);
                           }}
                         >
                           Remove
