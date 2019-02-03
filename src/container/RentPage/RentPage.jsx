@@ -12,7 +12,7 @@ import { compose } from "redux";
 import { types } from "../../_helpers/const";
 import { rentActions } from "../../redux/actions";
 
-const { GARDEN, HOME } = types;
+const { RENT } = types;
 
 const styles = theme => ({
   root: {
@@ -31,7 +31,7 @@ const items = [
     products: [
       {
         id: 1,
-        type: GARDEN,
+        type: RENT,
         imgSrc:
           "https://images.homedepot-static.com/productImages/2c112fa6-251f-4c83-ad4f-c89f25af3417/svn/true-temper-wheelbarrows-c6orut14-64_1000.jpg",
         header: "True Temper",
@@ -47,7 +47,7 @@ const items = [
       },
       {
         id: 2,
-        type: GARDEN,
+        type: RENT,
         imgSrc:
           "https://images.homedepot-static.com/productImages/549c9e56-1e17-4e23-9c7a-62274702346a/svn/honda-self-propelled-lawn-mowers-hrr216vka-64_1000.jpg",
         header: "Honda",
@@ -68,7 +68,7 @@ const items = [
     products: [
       {
         id: 3,
-        type: HOME,
+        type: RENT,
         imgSrc:
           "https://images.homedepot-static.com/productImages/46731104-51b3-444c-902a-7aaa70846734/svn/apollo-homeowners-tool-sets-dt9408-64_1000.jpg",
         header: "Apolo",
@@ -84,7 +84,7 @@ const items = [
       },
       {
         id: 4,
-        type: HOME,
+        type: RENT,
         imgSrc:
           "https://images.homedepot-static.com/productImages/8f40448a-0ad4-4ff4-8669-9eb1099e7bbd/svn/american-builder-homeowners-tool-sets-hw4208-24-64_1000.jpg",
         header: "American Builder",

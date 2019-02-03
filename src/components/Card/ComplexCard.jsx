@@ -18,7 +18,7 @@ import { orange } from "@material-ui/core/colors";
 const styles = theme => ({
   card: {
     width: 300,
-    minHeight: 400
+    minHeight: 400,
   },
   media: {
     height: 0,
@@ -64,11 +64,14 @@ class ComplexCard extends React.Component {
             </Avatar>
           }
           title={option.title}
-          subheader={option.subtitle}
+          subheader={option.subHeader}
+          action={
+            option.priceText
+          }
         />
         <CardMedia
           className={classes.media}
-          image={option.imageSrc}
+          image={option.imgSrc}
           title={option.title}
         />
         <CardContent>

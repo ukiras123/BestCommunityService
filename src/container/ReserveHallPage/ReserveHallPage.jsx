@@ -7,6 +7,9 @@ import { ClippedDrawer } from "../../components/Drawer";
 import { ComplexCard } from "../../components/Card";
 import CustomAppBar from "../../components/AppBar/CustomAppBar";
 import Grid from "@material-ui/core/Grid";
+import { types } from "../../_helpers/const";
+
+const { HALL } = types;
 
 const styles = theme => ({
   root: {
@@ -21,37 +24,49 @@ const styles = theme => ({
 
 const options = [
   {
+    id: 301,
+    type: HALL,
     title: "Opera Hall",
-    subtitle: "Good for Wedding",
-    imageSrc:
+    subHeader: "Good for Wedding",
+    imgSrc:
       "http://img.everafterguide.net/s/upload/images/2016/02/c7334d44ef99eb05e8b41ed80ed2fd3d.jpg",
     description: `Opera Hall brings the height of elegance to your guests from the moment they lay eyes on its red carpet-adorned entryway. 
     Bright and breathtaking, this hall offers the ideal venue for a wedding reception, quinceañera, bar or bat mitzvah, anniversary party, corporate event, shower - frankly, 
     for any celebration you can imagine.`,
     actionName: "Reserve Now",
-    moreDetails: ["Designer:", "Arnold Suesecv"]
+    moreDetails: ["Designer:", "Arnold Suesecv"],
+    priceText: "$400 / day",
+    price: 400
   },
   {
+    id: 302,
+    type: HALL,
     title: "Stretch Hall",
-    subtitle: "Good for Bachelors Party",
-    imageSrc:
+    subHeader: "Good for Bachelors Party",
+    imgSrc:
       "http://usa-stretch-ceilings.com/wp-content/gallery/banquet-halls/banquet-hall-installed-stretch-ceiling.jpg",
     description: `Stretch Hall brings the height of elegance to your guests from the moment they lay eyes on its red carpet-adorned entryway. 
     Bright and breathtaking, this hall offers the ideal venue for a wedding reception, quinceañera, bar or bat mitzvah, anniversary party, corporate event, shower - frankly, 
     for any celebration you can imagine.`,
     actionName: "Reserve Now",
-    moreDetails: ["Designer:", "God's Olan"]
+    moreDetails: ["Designer:", "God's Olan"],
+    priceText: "$500 / day",
+    price: 500
   },
   {
+    id: 303,
+    type: HALL,
     title: "MoonShine Hall",
-    subtitle: "Good for Funeral",
-    imageSrc:
+    subHeader: "Good for Funeral",
+    imgSrc:
       "http://dun6irwnoloqf.cloudfront.net/images/venues/3061/The-Camelot-Banquet-Hall-in-Warrendale-Wedding-PA-17.1429557085.jpg",
     description: `MoonShine Hall brings the height of elegance to your guests from the moment they lay eyes on its red carpet-adorned entryway. 
     Bright and breathtaking, this hall offers the ideal venue for a wedding reception, quinceañera, bar or bat mitzvah, anniversary party, corporate event, shower - frankly, 
     for any celebration you can imagine.`,
     actionName: "Reserve Now",
-    moreDetails: ["Designer:", "God of Death"]
+    moreDetails: ["Designer:", "God of Death"],
+    priceText: "$600 / day",
+    price: 600
   }
 ];
 

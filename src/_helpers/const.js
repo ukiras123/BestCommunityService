@@ -1,8 +1,10 @@
-const GARDEN = "GARDEN";
-const HOME = "HOME";
+const RENT = "RENT";
+const CATERING = "CATERING";
+const HALL = "HALL";
 
 export const types = {
-    GARDEN,
-    HOME
+    RENT,
+    CATERING,
+    HALL
 }
 

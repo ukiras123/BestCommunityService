@@ -6,6 +6,8 @@ import NavBar from "../../components/NavBar";
 import { ClippedDrawer } from "../../components/Drawer";
 import { ComplexGrid } from "../../components/ComplexGrid";
 import CustomAppBar from "../../components/AppBar/CustomAppBar";
+import { types } from "../../_helpers/const";
+const { CATERING } = types;
 
 const styles = theme => ({
   root: {
@@ -22,6 +24,8 @@ const items = [
     type: "Wedding Party - Buffet",
     products: [
       {
+        id: 201,
+        type: CATERING,
         imgSrc:
           "https://i.pinimg.com/originals/91/4f/be/914fbec58e0d909b93e3647ba027eb2e.jpg",
         header: "Indian Buffet [Special Fruits]",
@@ -35,9 +39,12 @@ const items = [
           `Fruits`
         ],
         actionName: "Order Now",
-        price: "$19.99 / plate"
+        priceText: "$19.99 / plate",
+        price: 19.19
       },
       {
+        id: 202,
+        type: CATERING,
         imgSrc:
           "http://www.fuzen.co.uk/static1.squarespace.com/static/5345019de4b0cae7ecd4a16a/t/534514a3e4b0fb5fdfb8fcd6/1397036196930/IMG_4064.jpg",
         header: "In House Buffet",
@@ -51,7 +58,8 @@ const items = [
           `
         ],
         actionName: "Order Now",
-        price: "$35.99 / day"
+        priceText: "$35.99 / plate",
+        price: 35.99
       }
     ]
   },
@@ -59,15 +67,20 @@ const items = [
     type: "Choose From Cuisine",
     products: [
       {
+        id: 203,
+        type: CATERING,
         imgSrc:
           "https://c-lj.gnst.jp/public/article/detail/a/00/00/a0000769/img/basic/a0000769_main.jpg?20181226135958",
         header: "Japenese",
         subHeader: "From Top Chefs straight from Japan",
         description: [`Ramen`, `Sushi`, `Onigiri`, `Onigiri`, `Natto`],
         actionName: "Order Now",
-        price: "$19.99 / plate"
+        priceText: "$19.99 / plate",
+        price: 19.19
       },
       {
+        id: 204,
+        type: CATERING,
         imgSrc: "https://i.imgur.com/bcSgaWJ.jpg",
         header: "Chinese",
         subHeader: "Stright from Chinese Market",
@@ -79,7 +92,8 @@ const items = [
           `Spring Rolls          `
         ],
         actionName: "Order Now",
-        price: "$19.99 / plate"
+        priceText: "$19.99 / plate",
+        price: 19.19
       }
     ]
   }
