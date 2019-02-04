@@ -16,12 +16,14 @@ import { userActions } from "../../redux/actions";
 import { compose } from "redux";
 import NavBar from "../../components/NavBar";
 import Grid from "@material-ui/core/Grid";
+import { ClippedDrawer } from "../../components/Drawer";
 
 class SettingPage extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      open: false,
       user: {
         firstName: "",
         lastName: "",
@@ -33,8 +35,13 @@ class SettingPage extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.drawerHandle = this.drawerHandle.bind(this);
   }
 
+  drawerHandle() {
+    const trueFalse = this.state.open ? false : true;
+    this.setState({ open: trueFalse });
+  }
   componentDidMount() {
     const { user } = this.props;
     if (user) {
@@ -74,7 +81,12 @@ class SettingPage extends React.Component {
     const { user } = this.state;
     return (
       <div>
-        <NavBar loggedInButtons="true" />
+        <NavBar
+          isFixed="true"
+          loggedInButtons={true}
+          handleDrawerOpen={this.drawerHandle}
+        />
+        <ClippedDrawer show={this.state.open} />
         <div className={classes.main}>
           <CssBaseline />
           <Paper className={classes.paper}>
