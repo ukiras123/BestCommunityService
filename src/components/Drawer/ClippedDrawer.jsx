@@ -43,37 +43,44 @@ const leftOptions = [
   {
     name: "Home",
     icon: <HomeIcon />,
-    link: "/home"
+    link: "/home",
+    isDisabled: false
   },
   {
     name: "Rent Equipments",
     icon: <EquipmentIcon />,
-    link: "/rent"
+    link: "/rent",
+    isDisabled: false
   },
   {
     name: "Catering Service",
     icon: <CateringIcon />,
-    link: "/catering"
+    link: "/catering",
+    isDisabled: false
   },
   {
     name: "Reserve Hall",
     icon: <HallIcon />,
-    link: "/hall"
+    link: "/hall",
+    isDisabled: false
   },
   {
     name: "Home care",
     icon: <HomeCareIcon />,
-    link: "/homecare"
+    link: "/homecare",
+    isDisabled: true
   },
   {
     name: "Free Classes",
     icon: <ClassesIcon />,
-    link: "/freeclasses"
+    link: "/freeclasses",
+    isDisabled: true
   },
   {
     name: "Shuttle Service",
     icon: <ShuttleIcon />,
-    link: "/shuttle"
+    link: "/shuttle",
+    isDisabled: true
   }
 ];
 
@@ -105,6 +112,7 @@ function ClippedDrawer(props) {
             key={option.name}
           >
             <ListItem
+              disabled={option.isDisabled}
               selected={toSelect === option.name ? true : false}
               button
               key={option.name}
