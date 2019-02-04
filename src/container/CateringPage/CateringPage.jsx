@@ -7,6 +7,9 @@ import { ClippedDrawer } from "../../components/Drawer";
 import { ComplexGrid } from "../../components/ComplexGrid";
 import CustomAppBar from "../../components/AppBar/CustomAppBar";
 import { types } from "../../_helpers/const";
+import { cateringActions } from "../../redux/actions";
+import { connect } from "react-redux";
+import { compose } from "redux";
 const { CATERING } = types;
 
 const styles = theme => ({
@@ -39,7 +42,7 @@ const items = [
           `Fruits`
         ],
         actionName: "Order Now",
-        priceText: "$19.99 / plate",
+        priceText: "$19.99 / person",
         price: 19.99
       },
       {
@@ -58,7 +61,7 @@ const items = [
           `
         ],
         actionName: "Order Now",
-        priceText: "$35.99 / plate",
+        priceText: "$35.99 / person",
         price: 35.99
       }
     ]
@@ -75,7 +78,7 @@ const items = [
         subHeader: "From Top Chefs straight from Japan",
         description: [`Ramen`, `Sushi`, `Onigiri`, `Onigiri`, `Natto`],
         actionName: "Order Now",
-        priceText: "$19.99 / plate",
+        priceText: "$19.99 / person",
         price: 19.99
       },
       {
@@ -92,7 +95,7 @@ const items = [
           `Spring Rolls          `
         ],
         actionName: "Order Now",
-        priceText: "$19.99 / plate",
+        priceText: "$19.99 / person",
         price: 19.99
       }
     ]
@@ -113,14 +116,25 @@ class CateringPage extends React.Component {
     this.setState({ open: trueFalse });
   }
 
+  handleAdd = detail => {
+    const { dispatch } = this.props;
+    if (detail) {
+      dispatch(cateringActions.addACatering(detail));
+    }
+  };
+
   render() {
     const { classes } = this.props;
 
     return (
       <div className={classes.root}>
         <CssBaseline />
-        <NavBar isFixed="true" handleDrawerOpen={this.drawerHandle}  loggedInButtons="true" />
-        <ClippedDrawer toSelect="Catering Service" show={this.state.open}/>
+        <NavBar
+          isFixed="true"
+          handleDrawerOpen={this.drawerHandle}
+          loggedInButtons="true"
+        />
+        <ClippedDrawer toSelect="Catering Service" show={this.state.open} />
 
         <main className={classes.content}>
           <div className={classes.toolbar} />
@@ -129,7 +143,11 @@ class CateringPage extends React.Component {
             <div key={index}>
               <CustomAppBar title={item.type} key={item.type} />
               {item.products.map((product, index) => (
-                <ComplexGrid key={index} options={product} />
+                <ComplexGrid
+                  key={index}
+                  options={product}
+                  handleAdd={this.handleAdd}
+                />
               ))}
               <br />
               <br />
@@ -141,8 +159,20 @@ class CateringPage extends React.Component {
   }
 }
 
+function mapStateToProps(state) {
+  const { registering } = state.registration;
+  const { alert } = state;
+  return {
+    registering,
+    alert
+  };
+}
+
 CateringPage.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(CateringPage);
+export default compose(
+  withStyles(styles, { withTheme: true }),
+  connect(mapStateToProps)
+)(CateringPage);

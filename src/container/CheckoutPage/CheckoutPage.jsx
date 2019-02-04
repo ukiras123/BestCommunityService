@@ -13,11 +13,12 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import { getUserProducts } from "../../_helpers/util";
 import { getCheckoutSummary } from "../../_helpers/util";
-
-import { rentActions } from "../../redux/actions";
+import { rentActions, cateringActions } from "../../redux/actions";
 import { Button } from "@material-ui/core";
 import PaypalExpressBtn from "react-paypal-express-checkout";
 import { Paypal } from "../../_helpers/const";
+import { types } from "../../_helpers/const";
+const { RENT, CATERING } = types;
 
 const styles = theme => ({
   root: {
@@ -27,7 +28,10 @@ const styles = theme => ({
     flexGrow: 1,
     padding: theme.spacing.unit * 3
   },
-  toolbar: theme.mixins.toolbar
+  toolbar: theme.mixins.toolbar,
+  fixed: {
+    position: "fixed"
+  }
 });
 
 class CheckoutPage extends React.Component {
@@ -92,17 +96,12 @@ class CheckoutPage extends React.Component {
     this.setState({ open: trueFalse });
   }
 
-  handleAdd = detail => {
+  handleRemove = (id, type) => {
     const { dispatch } = this.props;
-    if (detail) {
-      dispatch(rentActions.addARental(detail));
-    }
-  };
-
-  handleRemove = id => {
-    const { dispatch } = this.props;
-    if (id) {
+    if (id && type === RENT) {
       dispatch(rentActions.removeARental(id));
+    } else if (id && type === CATERING) {
+      dispatch(cateringActions.removeACatering(id));
     }
   };
 
@@ -141,31 +140,31 @@ class CheckoutPage extends React.Component {
                   />
                 ))}
               </Grid>
-              <Grid item xs={12} sm={12} lg={4} md={4}>
-                <CustomAppBar
-                  title="Summary"
-                  style={{
-                    backgroundColor: "#CAE6F8"
-                  }}
-                />
-                <OrderSummary summary={summary} />
-                <Button fullWidth variant="contained" color="inherit">
-                  <PaypalExpressBtn
-                    env={Paypal.sandBoxEnv}
-                    client={Paypal.client}
-                    currency={Paypal.currency}
-                    total={summary.total}
-                    onError={this.onError}
-                    onSuccess={this.onSuccess}
-                    onCancel={this.onCancel}
+                <Grid item xs={12} sm={12} lg={4} md={4}>
+                  <CustomAppBar
+                    title="Summary"
+                    style={{
+                      backgroundColor: "#CAE6F8"
+                    }}
                   />
-                </Button>
-                Note: This Payment is in Sandbox so your account will not be
-                charged. You can try.
-                {alert && alert.message && alert.type && (
-                  <div className={`alert ${alert.type}`}>{alert.message}</div>
-                )}
-              </Grid>
+                  <OrderSummary summary={summary} />
+                  <Button fullWidth variant="contained" color="inherit">
+                    <PaypalExpressBtn
+                      env={Paypal.sandBoxEnv}
+                      client={Paypal.client}
+                      currency={Paypal.currency}
+                      total={summary.total}
+                      onError={this.onError}
+                      onSuccess={this.onSuccess}
+                      onCancel={this.onCancel}
+                    />
+                  </Button>
+                  Note: This Payment is in Sandbox so your account will not be
+                  charged. You can try.
+                  {alert && alert.message && alert.type && (
+                    <div className={`alert ${alert.type}`}>{alert.message}</div>
+                  )}
+                </Grid>
             </Grid>
           )}
         </main>

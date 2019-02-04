@@ -26,22 +26,22 @@ class OrderSummary extends React.Component {
         <Paper className={classes.paper} elevation={1}>
           <Grid container spacing={24}>
             <Grid item xs={8}>
-              <Typography variant="h6" component="h6">
+              <Typography variant="h6" component="h6" color="textSecondary">
                 Item ({itemNum}):
               </Typography>
             </Grid>
             <Grid item xs={4}>
-              <Typography variant="h6" component="h6">
+              <Typography variant="h6" component="h6" color="textSecondary">
                 ${itemTotal}
               </Typography>
             </Grid>
             <Grid item xs={8}>
-              <Typography variant="h6" component="h6">
+              <Typography variant="h6" component="h6" color="textSecondary">
                 Tax:
               </Typography>
             </Grid>
             <Grid item xs={4}>
-              <Typography variant="h6" component="h6">
+              <Typography variant="h6" component="h6" color="textSecondary">
                 ${tax}
               </Typography>
             </Grid>
@@ -56,7 +56,7 @@ class OrderSummary extends React.Component {
             </Grid>
 
             <Grid item xs={4}>
-              <Typography variant="h5" component="h5">
+              <Typography variant="h6" component="h6">
                 ${total}
               </Typography>
             </Grid>

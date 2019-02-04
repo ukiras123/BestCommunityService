@@ -5,10 +5,15 @@ const prodNum = function(user, users) {
   if (user && users && !_.isEmpty(users)) {
     const userId = user.id;
     const userDetail = users.filter(user => user.id === userId);
+    let number = 0;
     if (!_.isEmpty(userDetail)) {
       if (userDetail[0].rental) {
-        return userDetail[0].rental.length;
+        number = number + userDetail[0].rental.length;
       }
+      if (userDetail[0].catering) {
+        number = number + userDetail[0].catering.length;
+      }
+      return number;
     }
   } else {
     return 0;
@@ -25,17 +30,41 @@ const getCheckoutSummary = function(user, users) {
     const userId = user.id;
     const userDetail = users.filter(user => user.id === userId);
     if (!_.isEmpty(userDetail)) {
+      let itemCount = 0;
+      let total = 0;
       if (userDetail[0].rental && userDetail[0].rental.length > 0) {
         const rentals = userDetail[0].rental;
-        const itemTotal = rentals
-          .map(rent => rent.price)
-          .reduce((a, b) => a + b, 0)
-          .toFixed(2);
-        const tax = calculateTax(itemTotal).toFixed(2);
-        summary.itemNum = rentals.length;
-        summary.itemTotal = itemTotal;
+        itemCount = itemCount + rentals.length;
+        total =
+          total +
+          parseFloat(
+            rentals
+              .map(rent => rent.price * rent.config.days)
+              .reduce((a, b) => a + b, 0)
+              .toFixed(2)
+          );
+      }
+      if (userDetail[0].catering && userDetail[0].catering.length > 0) {
+        const catering = userDetail[0].catering;
+        itemCount = itemCount + catering.length;
+        total =
+          total +
+          parseFloat(
+            catering
+              .map(cat => cat.price * cat.config.people)
+              .reduce((a, b) => a + b, 0)
+              .toFixed(2)
+          );
+      }
+
+      if (itemCount > 0) {
+        const tax = calculateTax(total).toFixed(2);
+        summary.itemNum = itemCount;
+        summary.itemTotal = total.toFixed(2);
         summary.tax = tax;
-        summary.total = (parseFloat(itemTotal) + parseFloat(tax)).toFixed(2);
+        summary.total = parseFloat(
+          (parseFloat(total) + parseFloat(tax)).toFixed(2)
+        );
         return summary;
       }
     }
@@ -49,9 +78,19 @@ const getUserProducts = function(user, users) {
     const userId = user.id;
     const userDetail = users.filter(user => user.id === userId);
     if (!_.isEmpty(userDetail)) {
+      let items = [];
       if (userDetail[0].rental && userDetail[0].rental.length > 0) {
         const rentals = userDetail[0].rental;
-        return rentals;
+        items = items.concat(rentals);
+      }
+      if (userDetail[0].catering && userDetail[0].catering.length > 0) {
+        const caterings = userDetail[0].catering;
+        items = items.concat(caterings);
+      }
+      if (items.length > 0) {
+        return items;
+      } else {
+        return null;
       }
     }
   } else {
@@ -89,5 +128,5 @@ export {
   prodNum,
   getCheckoutSummary,
   getUserProducts,
-  getRandomCategory,
+  getRandomCategory
 };

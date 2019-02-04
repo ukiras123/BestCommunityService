@@ -12,6 +12,8 @@ import Typography from "@material-ui/core/Typography";
 import ButtonBase from "@material-ui/core/ButtonBase";
 import Button from "@material-ui/core/Button";
 import Modal from "@material-ui/core/Modal";
+import { types } from "../../_helpers/const";
+const { CATERING, RENT } = types;
 
 const styles = theme => ({
   root: {
@@ -67,16 +69,22 @@ class ComplexGrid extends React.Component {
       isNotClicked: true,
       open: false,
       prodConfig: {
-        days: 1
+        days: 1,
+        people: 1
       },
       spin: false,
       added: false
     };
     this.handleChange = this.handleChange.bind(this);
+    this.rentalQuestion = this.rentalQuestion.bind(this);
+    this.cateringQuestion = this.cateringQuestion.bind(this);
   }
 
   handleChange(event) {
     const { name, value } = event.target;
+    if (value && (value < 1 || value > 1000)) {
+      return;
+    }
     const { prodConfig } = this.state;
     this.setState({
       prodConfig: {
@@ -94,9 +102,58 @@ class ComplexGrid extends React.Component {
     this.setState({ open: false });
   };
 
+  rentalQuestion() {
+    const { prodConfig } = this.state;
+
+    return (
+      <FormControl margin="normal" required fullWidth>
+        <InputLabel htmlFor="firstName">Rental Days</InputLabel>
+        <Input
+          id="days"
+          name="days"
+          value={prodConfig.days}
+          autoFocus
+          min="1"
+          type="number"
+          onChange={this.handleChange}
+        />
+      </FormControl>
+    );
+  }
+
+  cateringQuestion() {
+    const { prodConfig } = this.state;
+
+    return (
+      <FormControl margin="normal" required fullWidth>
+        <InputLabel htmlFor="people">How Many People?</InputLabel>
+        <Input
+          id="people"
+          name="people"
+          value={prodConfig.people}
+          autoFocus
+          min="1"
+          max="1000"
+          type="number"
+          onChange={this.handleChange}
+        />
+      </FormControl>
+    );
+  }
+
+  getQuestion(options) {
+    if (options.type === RENT) {
+      return this.rentalQuestion();
+    } else if (options.type === CATERING) {
+      return this.cateringQuestion();
+    }
+  }
+
   render() {
     const { classes, options, alert, handleAdd } = this.props;
     const { prodConfig, spin, added } = this.state;
+    const { days, people } = prodConfig;
+    const Question = this.getQuestion(options);
     return (
       <div>
         <div>
@@ -160,9 +217,9 @@ class ComplexGrid extends React.Component {
             >
               <div style={getModalStyle()} className={classes.paper2}>
                 <Typography variant="h6" id="modal-title">
-                  Please confim
+                  Please confirm
                 </Typography>
-                <FormControl margin="normal" required fullWidth>
+                {/* <FormControl margin="normal" required fullWidth>
                   <InputLabel htmlFor="firstName">Rental Days</InputLabel>
                   <Input
                     id="days"
@@ -172,11 +229,13 @@ class ComplexGrid extends React.Component {
                     type="number"
                     onChange={this.handleChange}
                   />
-                </FormControl>
+                </FormControl> */}
+                {Question}
 
                 <Button
                   className={classes.buttonI}
                   variant="contained"
+                  disabled={!(days === "") && !(people === "") ? false : true}
                   color="primary"
                   onClick={() => {
                     this.setState({ spin: true });

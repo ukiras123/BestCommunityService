@@ -8,6 +8,8 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import ButtonBase from "@material-ui/core/ButtonBase";
 import Button from "@material-ui/core/Button";
+import { types } from "../../_helpers/const";
+const { RENT, CATERING } = types;
 
 const styles = theme => ({
   root: {
@@ -41,18 +43,30 @@ const styles = theme => ({
   }
 });
 
-
 class ComplexGrid extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      spin: false,
+      spin: false
     };
   }
 
+  getCartDetailInfo(config, type) {
+    if (type === RENT && config) {
+      return `You are renting it for ${config.days} ${
+        config.days === 1 ? "day" : "days"
+      }`;
+    } else if (type === CATERING && config) {
+      return `You are ordering it for ${config.people} ${
+        config.people === 1 ? "person" : "people"
+      }`;
+    }
+  }
 
   render() {
     const { classes, options, alert, handleRemove } = this.props;
+    const type = options.type;
+    console.log(JSON.stringify(options));
     const { spin } = this.state;
     return (
       <div>
@@ -75,7 +89,10 @@ class ComplexGrid extends React.Component {
                       <Typography gutterBottom variant="h6">
                         {options.header}
                       </Typography>
-                      <Typography gutterBottom>{options.subHeader}</Typography>
+                      <Typography gutterBottom variant="subheading">{options.subHeader}</Typography>
+                      <Typography gutterBottom color="textSecondary" noWrap>
+                        {this.getCartDetailInfo(options.config, type)}
+                      </Typography>
                     </Grid>
                     <Grid item xs>
                       <Grid item>
@@ -87,12 +104,15 @@ class ComplexGrid extends React.Component {
                           className={classes.button}
                           onClick={() => {
                             this.setState({ spin: true });
-                            setTimeout(function() {
-                              if (options) {
-                                handleRemove(options.id);
-                              }
-                              this.setState({ spin: false });
-                            }.bind(this), 700);
+                            setTimeout(
+                              function() {
+                                if (options) {
+                                  handleRemove(options.id, options.type);
+                                }
+                                this.setState({ spin: false });
+                              }.bind(this),
+                              700
+                            );
                           }}
                         >
                           Remove
