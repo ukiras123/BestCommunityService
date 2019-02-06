@@ -66,7 +66,6 @@ class ComplexGrid extends React.Component {
   render() {
     const { classes, options, alert, handleRemove } = this.props;
     const type = options.type;
-    console.log(JSON.stringify(options));
     const { spin } = this.state;
     return (
       <div>

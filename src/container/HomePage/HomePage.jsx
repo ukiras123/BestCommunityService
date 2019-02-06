@@ -55,7 +55,7 @@ class HomePage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false
+      open: true
     };
     this.drawerHandle = this.drawerHandle.bind(this);
   }
