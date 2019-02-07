@@ -8,6 +8,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import CardHeader from "@material-ui/core/CardHeader";
+import Grow from '@material-ui/core/Grow';
 
 const styles = {
   card: {
@@ -22,30 +23,33 @@ const styles = {
 };
 
 function MediaCard(props) {
-  const { classes } = props;
+  const { classes, number } = props;
   return (
-    <Card className={classes.card}>
-      <CardActionArea>
-        <CardHeader
-          className={classes.cardHeader}
-          titleTypographyProps={{ align: "center" }}
-          subheaderTypographyProps={{ align: "center" }}
-          title={props.title}
-          subheader={props.subheader}
-        />
-        <CardMedia
-          className={classes.media}
-          image={props.image}
-          title={props.title}
-        />
-        <CardContent>{props.description}</CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button fullWidth size="small" color="primary">
-          Learn More
-        </Button>
-      </CardActions>
-    </Card>
+    <Grow in={true} style={{ transformOrigin: '0 0 0' }}
+    {...{ timeout: 700 * number }}>
+      <Card className={classes.card}>
+        <CardActionArea>
+          <CardHeader
+            className={classes.cardHeader}
+            titleTypographyProps={{ align: "center" }}
+            subheaderTypographyProps={{ align: "center" }}
+            title={props.title}
+            subheader={props.subheader}
+          />
+          <CardMedia
+            className={classes.media}
+            image={props.image}
+            title={props.title}
+          />
+          <CardContent>{props.description}</CardContent>
+        </CardActionArea>
+        <CardActions>
+          <Button fullWidth size="small" color="primary">
+            Learn More
+          </Button>
+        </CardActions>
+      </Card>
+    </Grow>
   );
 }
 

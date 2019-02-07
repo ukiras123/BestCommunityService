@@ -148,6 +148,7 @@ class RentPage extends React.Component {
               <CustomAppBar title={item.type} key={item.type} />
               {item.products.map((product, index) => (
                 <ComplexGrid
+                  number={index + 1}
                   key={index}
                   options={product}
                   handleAdd={this.handleAdd}

@@ -8,6 +8,7 @@ import { ComplexCard } from "../../components/Card";
 import CustomAppBar from "../../components/AppBar/CustomAppBar";
 import Grid from "@material-ui/core/Grid";
 import { types } from "../../_helpers/const";
+import Slide from "@material-ui/core/Slide";
 
 const { HALL } = types;
 
@@ -90,16 +91,37 @@ class ReserveHallPage extends React.Component {
     return (
       <div className={classes.root}>
         <CssBaseline />
-        <NavBar isFixed="true" handleDrawerOpen={this.drawerHandle}  loggedInButtons="true" />
-        <ClippedDrawer toSelect="Reserve Hall" show={this.state.open}/>
+        <NavBar
+          isFixed="true"
+          handleDrawerOpen={this.drawerHandle}
+          loggedInButtons="true"
+        />
+        <ClippedDrawer toSelect="Reserve Hall" show={this.state.open} />
         <main className={classes.content}>
           <div className={classes.toolbar} />
           <CustomAppBar title="Choose From Variety of Hall" />
           <Grid container spacing={8}>
             {options.map((option, index) => (
-              <Grid justify="center" container key={index} item xs={12} sm={12} lg={4} md={4}>
-                <ComplexCard option={option} />
-              </Grid>
+              <Slide
+                mountOnEnter
+                unmountOnExit
+                direction="down"
+                in={true}
+                {...{ timeout: 700 * (index +1) }}
+              >
+                <Grid
+                  justify="center"
+                  container
+                  key={index}
+                  item
+                  xs={12}
+                  sm={12}
+                  lg={4}
+                  md={4}
+                >
+                  <ComplexCard option={option} />
+                </Grid>
+              </Slide>
             ))}
           </Grid>
         </main>

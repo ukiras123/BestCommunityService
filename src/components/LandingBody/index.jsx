@@ -6,6 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles";
 import { MediaCard } from "../MediaCard";
+
 import {
   catering,
   classes,
@@ -116,20 +117,28 @@ function LandingBody(props) {
       </div>
       {/* End hero unit */}
       <div className={classes.features}>
-        <Grid container spacing={40} alignItems="flex-end">
-          {tiers.map(tier => (
+        <Grid container spacing={40} justify="center">
+          {tiers.map((tier, index) => (
             // Enterprise card is full width at sm breakpoint
-            <Grid item key={tier.title} xs={12} md={4}>
-              <MediaCard
-                subheader={tier.subheader}
-                image={tier.img}
-                title={tier.title}
-                description={tier.description.map((line, index) => (
-                  <Typography align="center" key={index}>
-                    {line}
-                  </Typography>
-                ))}
-              />
+            <Grid
+              item
+              key={tier.title}
+              xs={12}
+              sm={12}
+              lg={4}
+              md={4}
+            >
+                <MediaCard
+                  number={index + 1}
+                  subheader={tier.subheader}
+                  image={tier.img}
+                  title={tier.title}
+                  description={tier.description.map((line, index) => (
+                    <Typography align="center" key={index}>
+                      {line}
+                    </Typography>
+                  ))}
+                />
             </Grid>
           ))}
         </Grid>

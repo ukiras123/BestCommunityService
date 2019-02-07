@@ -13,6 +13,8 @@ import ButtonBase from "@material-ui/core/ButtonBase";
 import Button from "@material-ui/core/Button";
 import Modal from "@material-ui/core/Modal";
 import { types } from "../../_helpers/const";
+import Fade from '@material-ui/core/Fade';
+
 const { CATERING, RENT } = types;
 
 const styles = theme => ({
@@ -158,6 +160,7 @@ class ComplexGrid extends React.Component {
       <div>
         <div>
           <div className={classes.root}>
+          <Fade in={true} {...{ timeout: 700 * this.props.number  }}>
             <Paper className={classes.paper}>
               <Grid container spacing={16}>
                 <Grid item>
@@ -209,6 +212,7 @@ class ComplexGrid extends React.Component {
                 </Grid>
               </Grid>
             </Paper>
+            </Fade>
             <Modal
               aria-labelledby="simple-modal-title"
               aria-describedby="simple-modal-description"
@@ -219,17 +223,6 @@ class ComplexGrid extends React.Component {
                 <Typography variant="h6" id="modal-title">
                   Please confirm
                 </Typography>
-                {/* <FormControl margin="normal" required fullWidth>
-                  <InputLabel htmlFor="firstName">Rental Days</InputLabel>
-                  <Input
-                    id="days"
-                    name="days"
-                    value={prodConfig.days}
-                    autoFocus
-                    type="number"
-                    onChange={this.handleChange}
-                  />
-                </FormControl> */}
                 {Question}
 
                 <Button
