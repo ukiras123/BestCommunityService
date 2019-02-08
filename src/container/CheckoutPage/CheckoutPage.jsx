@@ -7,6 +7,7 @@ import { ClippedDrawer } from "../../components/Drawer";
 import { ComplexGridCheckout } from "../../components/ComplexGrid";
 import { EmptyCart } from "../../components/EmptyCart";
 import CustomAppBar from "../../components/AppBar/CustomAppBar";
+import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import { OrderSummary } from "../../components/OrderSummary";
 import { connect } from "react-redux";
@@ -16,9 +17,12 @@ import { getCheckoutSummary } from "../../_helpers/util";
 import { rentActions, cateringActions, hallActions } from "../../redux/actions";
 import { Button } from "@material-ui/core";
 import PaypalExpressBtn from "react-paypal-express-checkout";
+import classNames from "classnames";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import { Paypal } from "../../_helpers/const";
 import { types } from "../../_helpers/const";
-const { RENT, CATERING , HALL} = types;
+import green from '@material-ui/core/colors/green';
+const { RENT, CATERING, HALL } = types;
 
 const styles = theme => ({
   root: {
@@ -31,7 +35,24 @@ const styles = theme => ({
   toolbar: theme.mixins.toolbar,
   fixed: {
     position: "fixed"
-  }
+  },
+  button1: {
+    "&:hover": {
+      background: "#2098D1"
+    }
+  },
+  buttonProgress: {
+    color: green[500],
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    marginTop: -12,
+    marginLeft: -12,
+  },
+  wrapper: {
+    margin: theme.spacing.unit,
+    position: 'relative',
+  },
 });
 
 class CheckoutPage extends React.Component {
@@ -42,10 +63,35 @@ class CheckoutPage extends React.Component {
       alert: {
         message: "",
         type: ""
-      }
+      },
+      loading: false,
+      success: false
     };
     this.drawerHandle = this.drawerHandle.bind(this);
   }
+
+  componentWillUnmount() {
+    clearTimeout(this.timer);
+  }
+
+  handleButtonClick = () => {
+    if (!this.state.loading) {
+      this.setState(
+        {
+          success: false,
+          loading: true
+        },
+        () => {
+          this.timer = setTimeout(() => {
+            this.setState({
+              loading: false,
+              success: true
+            });
+          }, 2000);
+        }
+      );
+    }
+  };
 
   onSuccess = payment => {
     // Congratulation, it came here means everything's fine!
@@ -109,9 +155,15 @@ class CheckoutPage extends React.Component {
 
   render() {
     const { classes, user, users } = this.props;
-    const { alert } = this.state;
+    const { alert, loading, success } = this.state;
     const summary = getCheckoutSummary(user, users);
     const items = getUserProducts(user, users);
+    const buttonClassname = classNames(
+      {
+        [classes.buttonSuccess]: success
+      },
+      classes.button1
+    );
     return (
       <div className={classes.root}>
         <CssBaseline />
@@ -142,31 +194,61 @@ class CheckoutPage extends React.Component {
                   />
                 ))}
               </Grid>
-                <Grid item xs={12} sm={12} lg={4} md={4}>
-                  <CustomAppBar
-                    title="Summary"
-                    style={{
-                      backgroundColor: "#CAE6F8"
-                    }}
+              <Grid item xs={12} sm={12} lg={4} md={4}>
+                <CustomAppBar
+                  title="Summary"
+                  style={{
+                    backgroundColor: "#CAE6F8"
+                  }}
+                />
+                <OrderSummary summary={summary} />
+                <div className={classes.wrapper}>
+                <Button
+                  fullWidth
+                  variant="contained"
+                  color="inherit"
+                  className={buttonClassname}
+                  disabled={loading}
+                  onClick={this.handleButtonClick}
+                >
+                  <Typography
+                    variant="h6"
+                    component="h6"
+                    align="center"
+                    color="textSecondary"
+                  >
+                    Checkout For Free
+                  </Typography>
+                </Button>
+                {loading && (
+                  <CircularProgress
+                    size={24}
+                    className={classes.buttonProgress}
                   />
-                  <OrderSummary summary={summary} />
-                  <Button fullWidth variant="contained" color="inherit">
-                    <PaypalExpressBtn
-                      env={Paypal.sandBoxEnv}
-                      client={Paypal.client}
-                      currency={Paypal.currency}
-                      total={summary.total}
-                      onError={this.onError}
-                      onSuccess={this.onSuccess}
-                      onCancel={this.onCancel}
-                    />
-                  </Button>
-                  Note: This Payment is in Sandbox so your account will not be
-                  charged. You can try.
-                  {alert && alert.message && alert.type && (
-                    <div className={`alert ${alert.type}`}>{alert.message}</div>
-                  )}
-                </Grid>
+                )}
+                </div>
+                <Button
+                  fullWidth
+                  variant="flat"
+                  color="inherit"
+                  className={classes.button1}
+                >
+                  <PaypalExpressBtn
+                    env={Paypal.sandBoxEnv}
+                    client={Paypal.client}
+                    currency={Paypal.currency}
+                    total={summary.total}
+                    onError={this.onError}
+                    onSuccess={this.onSuccess}
+                    onCancel={this.onCancel}
+                  />
+                </Button>
+                Note: This Paypal payment is in Sandbox so your account will not
+                be charged. You can try.
+                {alert && alert.message && alert.type && (
+                  <div className={`alert ${alert.type}`}>{alert.message}</div>
+                )}
+              </Grid>
             </Grid>
           )}
         </main>

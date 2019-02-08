@@ -1,19 +1,25 @@
-import {
-  rentConstants
-} from "../constants";
+import { rentConstants } from "../constants";
 
 const initialState = {
-  rental: [] 
+  rental: []
 };
 
 export function rentEquipment(state = initialState, action) {
   switch (action.type) {
     case rentConstants.RENT_ADD:
-      return state.rental.push(action.details);
+      if (state.rental) {
+        return state.rental.push(action.details);
+      } else {
+        return state;
+      }
     case rentConstants.RENT_REMOVE:
-      return state.rental.filter(rent => rent.id !== action.id);
+      if (state.rental && state.rental.length > 0) {
+        return state.rental.filter(rent => rent.id !== action.id);
+      } else {
+        return state;
+      }
     case rentConstants.RENT_GETALL_SUCCESS:
-      return {...state, rental : {...state.rental, ...action.allRentals}};
+      return { ...state, rental: { ...state.rental, ...action.allRentals } };
     default:
       return state;
   }
