@@ -1,6 +1,4 @@
-import {
-  hallConstants
-} from "../constants";
+import { hallConstants } from "../constants";
 
 const initialState = {
   hall: []
@@ -22,11 +20,7 @@ export function reserveHall(state = initialState, action) {
       }
     case hallConstants.HALL_GETALL_SUCCESS:
       return {
-        ...state,
-        hall: {
-          ...state.hall,
-          ...action.allHalls
-        }
+        hall: action.allHalls
       };
     default:
       return state;

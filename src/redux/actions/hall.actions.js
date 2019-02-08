@@ -28,8 +28,8 @@ function updateAHall(details) {
 
 function getAllHall() {
   return dispatch => {
-    const currentUser = JSON.parse(localStorage.removeItem("user")) || null;
-    const users = JSON.parse(localStorage.removeItem("users")) || [];
+    const currentUser = JSON.parse(localStorage.getItem("user")) || null;
+    const users = JSON.parse(localStorage.getItem("users")) || [];
 
     if (currentUser && users) {
       const userId = currentUser.id;

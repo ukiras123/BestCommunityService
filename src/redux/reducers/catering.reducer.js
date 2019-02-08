@@ -20,8 +20,7 @@ export function bookCatering(state = initialState, action) {
       }
     case cateringConstants.CATERING_GETALL_SUCCESS:
       return {
-        ...state,
-        catering: { ...state.catering, ...action.allCaterings }
+        catering: action.allCaterings
       };
     default:
       return state;

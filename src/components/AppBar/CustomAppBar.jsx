@@ -13,13 +13,13 @@ const styles = theme => ({
 });
 
 function CustomAppBar(props) {
-  const { classes, title, style } = props;
+  const { classes, title, style, variant } = props;
 
   return (
     <AppBar position="relative" color="default" className={classes.appBar}>
       <Toolbar style={style} className={classes.toolbar}>
         <Typography
-          variant="h5"
+          variant={variant || "h5"}
           color="inherit"
           noWrap
           className={classes.toolbarTitle}

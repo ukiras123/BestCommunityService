@@ -140,7 +140,7 @@ class CheckoutPage extends React.Component {
     this.setState({ loading: true });
     setTimeout(() => {
       const { dispatch } = this.props;
-      const checkoutDetails = { items, summary, date: new Date() };
+      const checkoutDetails = { items, summary, date: new Date(), orderId: Math.floor(Math.random() * 9999999999 + 1) };
       dispatch(checkoutActions.checkout(checkoutDetails));
       this.setState({ checkoutSuccess: true, loading: false });
     }, 2400);
