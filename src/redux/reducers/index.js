@@ -9,6 +9,7 @@ import { quiz } from "./quiz.reducer";
 import { reserveHall } from "./hall.reducer";
 import { rentEquipment } from "./rent.reducer";
 import { bookCatering } from "./catering.reducer";
+import { checkout } from "./checkout.reducer";
 
 const rootReducer = combineReducers({
   authentication,
@@ -19,7 +20,8 @@ const rootReducer = combineReducers({
   quiz,
   reserveHall,
   rentEquipment,
-  bookCatering
+  bookCatering,
+  checkout
 });
 
 export default rootReducer;

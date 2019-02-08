@@ -14,14 +14,17 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import { getUserProducts } from "../../_helpers/util";
 import { getCheckoutSummary } from "../../_helpers/util";
-import { rentActions, cateringActions, hallActions } from "../../redux/actions";
-import { Button } from "@material-ui/core";
+import {
+  rentActions,
+  cateringActions,
+  hallActions,
+  checkoutActions
+} from "../../redux/actions";
+import { Button, LinearProgress, Link } from "@material-ui/core";
 import PaypalExpressBtn from "react-paypal-express-checkout";
-import classNames from "classnames";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import { Paypal } from "../../_helpers/const";
 import { types } from "../../_helpers/const";
-import green from '@material-ui/core/colors/green';
+import green from "@material-ui/core/colors/green";
 const { RENT, CATERING, HALL } = types;
 
 const styles = theme => ({
@@ -43,16 +46,19 @@ const styles = theme => ({
   },
   buttonProgress: {
     color: green[500],
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
+    position: "absolute",
+    top: "50%",
+    left: "50%",
     marginTop: -12,
-    marginLeft: -12,
+    marginLeft: -12
   },
   wrapper: {
     margin: theme.spacing.unit,
-    position: 'relative',
+    position: "relative"
   },
+  allCenter: {
+    textAlign: "center"
+  }
 });
 
 class CheckoutPage extends React.Component {
@@ -65,33 +71,10 @@ class CheckoutPage extends React.Component {
         type: ""
       },
       loading: false,
-      success: false
+      checkoutSuccess: false
     };
     this.drawerHandle = this.drawerHandle.bind(this);
   }
-
-  componentWillUnmount() {
-    clearTimeout(this.timer);
-  }
-
-  handleButtonClick = () => {
-    if (!this.state.loading) {
-      this.setState(
-        {
-          success: false,
-          loading: true
-        },
-        () => {
-          this.timer = setTimeout(() => {
-            this.setState({
-              loading: false,
-              success: true
-            });
-          }, 2000);
-        }
-      );
-    }
-  };
 
   onSuccess = payment => {
     // Congratulation, it came here means everything's fine!
@@ -153,17 +136,21 @@ class CheckoutPage extends React.Component {
     }
   };
 
+  handleCheckout = (items, summary) => {
+    this.setState({ loading: true });
+    setTimeout(() => {
+      const { dispatch } = this.props;
+      const checkoutDetails = { items, summary, date: new Date() };
+      dispatch(checkoutActions.checkout(checkoutDetails));
+      this.setState({ checkoutSuccess: true, loading: false });
+    }, 2400);
+  };
+
   render() {
     const { classes, user, users } = this.props;
-    const { alert, loading, success } = this.state;
+    const { alert, loading, checkoutSuccess } = this.state;
     const summary = getCheckoutSummary(user, users);
     const items = getUserProducts(user, users);
-    const buttonClassname = classNames(
-      {
-        [classes.buttonSuccess]: success
-      },
-      classes.button1
-    );
     return (
       <div className={classes.root}>
         <CssBaseline />
@@ -175,7 +162,23 @@ class CheckoutPage extends React.Component {
         <ClippedDrawer show={this.state.open} />
         <main className={classes.content}>
           <div className={classes.toolbar} />
-          {!items && <EmptyCart />}
+          {!items && !checkoutSuccess && <EmptyCart />}
+          {!items && checkoutSuccess && (
+            <div className={classes.allCenter}>
+              <Typography variant="h4" component="h4" align="center">
+                Checkout Succeeded
+              </Typography>
+              <Typography variant="subtitle1" align="center">
+                We will send you a confirmation shortly. Go Back to{" "}
+                <Link href="/home">Home.</Link>
+              </Typography>
+              <img
+                className={classes.smallImage}
+                alt="complex"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQek3DywSpbH6ALce-qH9L5THJTYdr44-18Krx-TL1EvhA4O7Hu"
+              />
+            </div>
+          )}
           {items && summary && (
             <Grid container spacing={24}>
               <Grid item xs={12} sm={12} lg={8} md={8}>
@@ -203,33 +206,30 @@ class CheckoutPage extends React.Component {
                 />
                 <OrderSummary summary={summary} />
                 <div className={classes.wrapper}>
-                <Button
-                  fullWidth
-                  variant="contained"
-                  color="inherit"
-                  className={buttonClassname}
-                  disabled={loading}
-                  onClick={this.handleButtonClick}
-                >
-                  <Typography
-                    variant="h6"
-                    component="h6"
-                    align="center"
-                    color="textSecondary"
+                  <Button
+                    fullWidth
+                    variant="contained"
+                    color="inherit"
+                    className={classes.button1}
+                    disabled={loading}
+                    onClick={() => {
+                      this.handleCheckout(items, summary);
+                    }}
                   >
-                    Checkout For Free
-                  </Typography>
-                </Button>
-                {loading && (
-                  <CircularProgress
-                    size={24}
-                    className={classes.buttonProgress}
-                  />
-                )}
+                    <Typography
+                      variant="h6"
+                      component="h6"
+                      align="center"
+                      color="textSecondary"
+                    >
+                      Checkout For Free
+                    </Typography>
+                  </Button>
+                  {loading && <LinearProgress />}
                 </div>
                 <Button
                   fullWidth
-                  variant="flat"
+                  variant="text"
                   color="inherit"
                   className={classes.button1}
                 >

@@ -5,3 +5,4 @@ export * from "./rent.constants";
 export * from "./quiz.constants";
 export * from "./catering.constants";
 export * from "./hall.constants";
+export * from "./checkout.constants";

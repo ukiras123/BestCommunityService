@@ -5,3 +5,4 @@ export * from "./rent.actions";
 export * from "./quiz.actions";
 export * from "./catering.actions";
 export * from "./hall.actions";
+export * from "./checkout.actions";
