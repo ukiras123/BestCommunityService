@@ -114,9 +114,9 @@ class CustomizedExpansionPanel extends React.Component {
                 </Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
-                <Grid  justify="center" spacing={16}>
+                <Grid container key={index} justify="center" spacing={16}>
                   {checkout.items.map((item, index) => (
-                    <div  key={index} >
+                    <Grid container key={index} justify="center" spacing={16}>
                       <Grid item xs={4}>
                         <ButtonBase className={classes.image}>
                           <img
@@ -130,16 +130,16 @@ class CustomizedExpansionPanel extends React.Component {
                         <Typography variant="subtitle1">
                           {item.header}
                         </Typography>
-                        <Typography variant="subtitle1">
+                        <Typography variant="subtitle2">
                           {item.subHeader}
                         </Typography>
                       </Grid>
                       <Grid item xs={4}>
                         <Typography variant="subtitle1">
-                          {item.priceText}
+                          Rate: {item.priceText}
                         </Typography>
                       </Grid>
-                    </div>
+                    </Grid>
                   ))}
                 </Grid>
               </ExpansionPanelDetails>
