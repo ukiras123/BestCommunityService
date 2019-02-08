@@ -33,7 +33,7 @@ const styles = theme => ({
 
 const option = [
   {
-    title: "Manage Your Account",
+    title: "Order Details",
     component: ManageAccount,
     isComponent: true
   },

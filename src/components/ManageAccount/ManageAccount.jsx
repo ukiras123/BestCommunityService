@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import { userActions, checkoutActions } from "../../redux/actions";
 import { ExpansionPanel } from "../ExpansionPanels";
-import CustomAppBar from "../../components/AppBar/CustomAppBar";
+import { Typography } from "@material-ui/core";
 
 const styles = theme => ({
   paper: {
@@ -31,8 +31,15 @@ class ManageAccount extends React.Component {
     const { checkoutItems } = this.props;
     return (
       <div>
-        <CustomAppBar title="Order Details" variant="h6" />
-        <ExpansionPanel details={checkoutItems} />
+        {checkoutItems && checkoutItems.length > 0 ? (
+          <ExpansionPanel details={checkoutItems} />
+        ) :
+        (
+          <Typography>
+            There is nothing on your order history. Please buy something.
+          </Typography>
+        )}
+
       </div>
     );
   }
