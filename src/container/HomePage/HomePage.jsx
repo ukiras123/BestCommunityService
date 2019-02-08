@@ -8,7 +8,8 @@ import { ClippedDrawer } from "../../components/Drawer";
 import SimpleTab from "../../components/Tabs/SimpleTab";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
-import { ManageAccount }from "../../components/ManageAccount";
+import { OrderDetails }from "../../components/OrderDetails";
+import { ImageCollection }from "../../components/ImageCollection";
 import { Link } from "react-router-dom";
 
 const styles = theme => ({
@@ -34,13 +35,13 @@ const styles = theme => ({
 const option = [
   {
     title: "Order Details",
-    component: ManageAccount,
+    component: OrderDetails,
     isComponent: true
   },
   {
     title: "View Our Photo Gallery",
-    component: "Images coming soon",
-    isComponent: false
+    component: ImageCollection,
+    isComponent: true
   },
   {
     title: "See What's Happening ",

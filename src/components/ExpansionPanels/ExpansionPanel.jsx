@@ -27,13 +27,13 @@ const styles = theme => ({
   },
   image: {
     width: "70px",
-    height: "70px"
+    height: "70px",
+    marginLeft: "40px"
   },
   img: {
     display: "block",
     maxWidth: "100%",
     maxHeight: "100%",
-    marginLeft: "100px"
   }
 });
 

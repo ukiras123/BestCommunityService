@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import { userActions, checkoutActions } from "../../redux/actions";
 import { ExpansionPanel } from "../ExpansionPanels";
-import { Typography } from "@material-ui/core";
+import { Typography, Grid } from "@material-ui/core";
 
 const styles = theme => ({
   paper: {
@@ -13,10 +13,17 @@ const styles = theme => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing.unit * 4,
     outline: "none"
+  },
+  allCenter: {
+    textAlign: "center"
+  },
+  smallImage: {
+    width: 400,
+    height: 400
   }
 });
 
-class ManageAccount extends React.Component {
+class OrderDetails extends React.Component {
   // constructor(props) {
   //   super(props);
   // }
@@ -28,18 +35,24 @@ class ManageAccount extends React.Component {
   }
 
   render() {
-    const { checkoutItems } = this.props;
+    const { checkoutItems, classes } = this.props;
     return (
       <div>
         {checkoutItems && checkoutItems.length > 0 ? (
           <ExpansionPanel details={checkoutItems} />
-        ) :
-        (
-          <Typography>
-            There is nothing on your order history. Please buy something.
-          </Typography>
-        )}
+        ) : (
+          <Grid className={classes.allCenter}>
+              <Typography variant="headline" align="center">
+                There is nothing on your order history. Please buy something.
+              </Typography>
 
+              <img
+                className={classes.smallImage}
+                alt="complex"
+                src="https://cdn.dribbble.com/users/357929/screenshots/2276751/orderup-emptystate-sadbag.png"
+              />
+          </Grid>
+        )}
       </div>
     );
   }
@@ -54,11 +67,11 @@ function mapStateToProps(state) {
     checkoutItems: checkout.checkoutItems
   };
 }
-ManageAccount.propTypes = {
+OrderDetails.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
 export default compose(
   withStyles(styles, { withTheme: true }),
   connect(mapStateToProps)
-)(ManageAccount);
+)(OrderDetails);

@@ -32,11 +32,12 @@ const styles = theme => ({
 
 class SimpleTab extends React.Component {
   state = {
-    value: 0
+    value: 0,
+    show: false,
   };
 
   handleChange = (event, value) => {
-    this.setState({ value });
+    this.setState({ value, show: true });
   };
 
   handleChangeIndex = index => {
@@ -45,7 +46,8 @@ class SimpleTab extends React.Component {
 
   render() {
     const { classes, theme, option } = this.props;
-
+    const {show} = this.state;
+    console.log("Show"+show);
     return (
       <div className={classes.root}>
         <AppBar position="static" color="default">
@@ -69,7 +71,7 @@ class SimpleTab extends React.Component {
           {option.map((option, index) => (
             <TabContainer key={index} dir={theme.direction}>
               {option.isComponent === true ? (
-                <option.component />
+                <option.component show={show}/>
               ) : (
                 option.component
               )}
