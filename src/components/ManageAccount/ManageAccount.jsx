@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { userActions, checkoutActions } from "../../redux/actions";
-import {ExpansionPanel} from "../ExpansionPanels"
+import { ExpansionPanel } from "../ExpansionPanels";
+import CustomAppBar from "../../components/AppBar/CustomAppBar";
 
 const styles = theme => ({
   paper: {
@@ -28,10 +28,11 @@ class ManageAccount extends React.Component {
   }
 
   render() {
-    const { classes, checkoutItems } = this.props;
+    const { checkoutItems } = this.props;
     return (
       <div>
-      <ExpansionPanel details={checkoutItems}/>
+        <CustomAppBar title="Order Details" variant="h6" />
+        <ExpansionPanel details={checkoutItems} />
       </div>
     );
   }

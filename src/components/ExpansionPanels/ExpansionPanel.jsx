@@ -4,12 +4,9 @@ import MuiExpansionPanel from "@material-ui/core/ExpansionPanel";
 import MuiExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import MuiExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import Typography from "@material-ui/core/Typography";
-import CustomAppBar from "../../components/AppBar/CustomAppBar";
 import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
 import ButtonBase from "@material-ui/core/ButtonBase";
 const moment = require("moment");
-
 const styles = theme => ({
   allCenter: {
     textAlign: "center"
@@ -96,12 +93,8 @@ class CustomizedExpansionPanel extends React.Component {
   render() {
     const { expanded } = this.state;
     const { details, classes } = this.props;
-    console.log(JSON.stringify(details));
     return (
       <div>
-        {details && details.length > 0 && (
-          <CustomAppBar title="Order Details" variant="h6" />
-        )}
         {details &&
           details.length > 0 &&
           details.map((checkout, index) => (
@@ -121,32 +114,34 @@ class CustomizedExpansionPanel extends React.Component {
                 </Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
-                {checkout.items.map((item, index) => (
-                  <Grid container justify="center" spacing={16}>
-                    <Grid item xs={4}>
-                      <ButtonBase className={classes.image}>
-                        <img
-                          alt="complex"
-                          src={item.imgSrc}
-                          className={classes.img}
-                        />
-                      </ButtonBase>
-                    </Grid>
-                    <Grid item xs={4}>
-                      <Typography variant="subtitle1">
-                        {item.header}
-                      </Typography>
-                      <Typography variant="subtitle1">
-                        {item.subHeader}
-                      </Typography>
-                    </Grid>
-                    <Grid item xs={4}>
-                    <Typography variant="subtitle1">
-                        {item.priceText}
-                      </Typography>
-                    </Grid>
-                  </Grid>
-                ))}
+                <Grid  justify="center" spacing={16}>
+                  {checkout.items.map((item, index) => (
+                    <div  key={index} >
+                      <Grid item xs={4}>
+                        <ButtonBase className={classes.image}>
+                          <img
+                            alt="complex"
+                            src={item.imgSrc}
+                            className={classes.img}
+                          />
+                        </ButtonBase>
+                      </Grid>
+                      <Grid item xs={4}>
+                        <Typography variant="subtitle1">
+                          {item.header}
+                        </Typography>
+                        <Typography variant="subtitle1">
+                          {item.subHeader}
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={4}>
+                        <Typography variant="subtitle1">
+                          {item.priceText}
+                        </Typography>
+                      </Grid>
+                    </div>
+                  ))}
+                </Grid>
               </ExpansionPanelDetails>
             </ExpansionPanel>
           ))}

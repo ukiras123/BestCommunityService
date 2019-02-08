@@ -1,6 +1,5 @@
 import { alertActions } from "../actions";
 import { userActions } from "../actions";
-const _ = require("lodash");
 
 export const checkoutService = {
   checkout
