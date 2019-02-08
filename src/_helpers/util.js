@@ -13,6 +13,9 @@ const prodNum = function(user, users) {
       if (userDetail[0].catering) {
         number = number + userDetail[0].catering.length;
       }
+      if (userDetail[0].hall) {
+        number = number + userDetail[0].hall.length;
+      }
       return number;
     }
   } else {
@@ -56,6 +59,18 @@ const getCheckoutSummary = function(user, users) {
               .toFixed(2)
           );
       }
+      if (userDetail[0].hall && userDetail[0].hall.length > 0) {
+        const halls = userDetail[0].hall;
+        itemCount = itemCount + halls.length;
+        total =
+          total +
+          parseFloat(
+            halls
+              .map(cat => cat.price * cat.config.hallDays)
+              .reduce((a, b) => a + b, 0)
+              .toFixed(2)
+          );
+      }
 
       if (itemCount > 0) {
         const tax = calculateTax(total).toFixed(2);
@@ -86,6 +101,10 @@ const getUserProducts = function(user, users) {
       if (userDetail[0].catering && userDetail[0].catering.length > 0) {
         const caterings = userDetail[0].catering;
         items = items.concat(caterings);
+      }
+      if (userDetail[0].hall && userDetail[0].hall.length > 0) {
+        const halls = userDetail[0].hall;
+        items = items.concat(halls);
       }
       if (items.length > 0) {
         return items;

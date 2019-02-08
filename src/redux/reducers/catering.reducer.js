@@ -5,16 +5,8 @@ import {
 const initialState = {
   catering: [] 
 };
-/*
-id,
-name,
-price,
-fromDate,
-toDate,
-totalPrice,
-pic
-*/
-export function rentEquipment(state = initialState, action) {
+
+export function bookCatering(state = initialState, action) {
   switch (action.type) {
     case cateringConstants.CATERING_ADD:
       return state.catering.push(action.details);

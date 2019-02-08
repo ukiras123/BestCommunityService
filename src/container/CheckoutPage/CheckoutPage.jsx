@@ -13,12 +13,12 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import { getUserProducts } from "../../_helpers/util";
 import { getCheckoutSummary } from "../../_helpers/util";
-import { rentActions, cateringActions } from "../../redux/actions";
+import { rentActions, cateringActions, hallActions } from "../../redux/actions";
 import { Button } from "@material-ui/core";
 import PaypalExpressBtn from "react-paypal-express-checkout";
 import { Paypal } from "../../_helpers/const";
 import { types } from "../../_helpers/const";
-const { RENT, CATERING } = types;
+const { RENT, CATERING , HALL} = types;
 
 const styles = theme => ({
   root: {
@@ -102,6 +102,8 @@ class CheckoutPage extends React.Component {
       dispatch(rentActions.removeARental(id));
     } else if (id && type === CATERING) {
       dispatch(cateringActions.removeACatering(id));
+    } else if (id && type === HALL) {
+      dispatch(hallActions.removeAHall(id));
     }
   };
 

@@ -3,25 +3,31 @@ import {
 } from "../constants";
 
 const initialState = {
-  hall: [] 
+  hall: []
 };
-/*
-id,
-name,
-price,
-fromDate,
-toDate,
-totalPrice,
-pic
-*/
+
 export function reserveHall(state = initialState, action) {
   switch (action.type) {
     case hallConstants.HALL_ADD:
-      return state.catering.push(action.details);
+      if (state.hall) {
+        return state.hall.push(action.details);
+      } else {
+        return state;
+      }
     case hallConstants.HALL_REMOVE:
-      return state.catering.filter(cater => cater.id !== action.id);
+      if (state.hall && state.hall.length > 0) {
+        return state.hall.filter(cater => cater.id !== action.id);
+      } else {
+        return state;
+      }
     case hallConstants.HALL_GETALL_SUCCESS:
-      return {...state, hall : {...state.hall, ...action.allHalls}};
+      return {
+        ...state,
+        hall: {
+          ...state.hall,
+          ...action.allHalls
+        }
+      };
     default:
       return state;
   }

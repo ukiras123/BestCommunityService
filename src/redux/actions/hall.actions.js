@@ -1,5 +1,5 @@
-import { hallConstants } from "../constants";
 import { hallService } from "../services";
+import { hallConstants } from "../constants";
 
 export const hallActions = {
   addAHall,

@@ -5,15 +5,7 @@ import {
 const initialState = {
   rental: [] 
 };
-/*
-id,
-name,
-price,
-fromDate,
-toDate,
-totalPrice,
-pic
-*/
+
 export function rentEquipment(state = initialState, action) {
   switch (action.type) {
     case rentConstants.RENT_ADD:

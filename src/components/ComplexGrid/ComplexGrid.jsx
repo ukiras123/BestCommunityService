@@ -192,7 +192,7 @@ class ComplexGrid extends React.Component {
                           disabled={added ? true : false}
                           color="secondary"
                           className={classes.button}
-                          onClick={this.handleOpen}
+                            onClick={this.handleOpen}
                         >
                           {options.actionName}
                         </Button>

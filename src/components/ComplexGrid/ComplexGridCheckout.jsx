@@ -9,7 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import ButtonBase from "@material-ui/core/ButtonBase";
 import Button from "@material-ui/core/Button";
 import { types } from "../../_helpers/const";
-const { RENT, CATERING } = types;
+const { RENT, CATERING, HALL } = types;
 
 const styles = theme => ({
   root: {
@@ -60,6 +60,10 @@ class ComplexGrid extends React.Component {
       return `You are ordering it for ${config.people} ${
         config.people === 1 ? "person" : "people"
       }`;
+    } else if (type === HALL && config) {
+      return `You are booking the hall for ${config.hallDays} ${
+        config.hallDays === 1 ? "day" : "days"
+      }`;
     }
   }
 
@@ -88,7 +92,9 @@ class ComplexGrid extends React.Component {
                       <Typography gutterBottom variant="h6">
                         {options.header}
                       </Typography>
-                      <Typography gutterBottom variant="subheading">{options.subHeader}</Typography>
+                      <Typography gutterBottom variant="subheading">
+                        {options.subHeader}
+                      </Typography>
                       <Typography gutterBottom color="textSecondary" noWrap>
                         {this.getCartDetailInfo(options.config, type)}
                       </Typography>

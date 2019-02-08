@@ -9,6 +9,9 @@ import CustomAppBar from "../../components/AppBar/CustomAppBar";
 import Grid from "@material-ui/core/Grid";
 import { types } from "../../_helpers/const";
 import Slide from "@material-ui/core/Slide";
+import { hallActions } from "../../redux/actions";
+import { connect } from "react-redux";
+import { compose } from "redux";
 
 const { HALL } = types;
 
@@ -28,6 +31,7 @@ const options = [
     id: 301,
     type: HALL,
     title: "Opera Hall",
+    header: "Opera Hall",
     subHeader: "Good for Wedding",
     imgSrc:
       "http://img.everafterguide.net/s/upload/images/2016/02/c7334d44ef99eb05e8b41ed80ed2fd3d.jpg",
@@ -43,6 +47,7 @@ const options = [
     id: 302,
     type: HALL,
     title: "Stretch Hall",
+    header: "Stretch Hall",
     subHeader: "Good for Bachelors Party",
     imgSrc:
       "http://usa-stretch-ceilings.com/wp-content/gallery/banquet-halls/banquet-hall-installed-stretch-ceiling.jpg",
@@ -58,6 +63,7 @@ const options = [
     id: 303,
     type: HALL,
     title: "MoonShine Hall",
+    header: "MoonShine Hall",
     subHeader: "Good for Funeral",
     imgSrc:
       "http://dun6irwnoloqf.cloudfront.net/images/venues/3061/The-Camelot-Banquet-Hall-in-Warrendale-Wedding-PA-17.1429557085.jpg",
@@ -79,6 +85,13 @@ class ReserveHallPage extends React.Component {
     };
     this.drawerHandle = this.drawerHandle.bind(this);
   }
+
+  handleAdd = detail => {
+    const { dispatch } = this.props;
+    if (detail) {
+      dispatch(hallActions.addAHall(detail));
+    }
+  };
 
   drawerHandle() {
     const trueFalse = this.state.open ? false : true;
@@ -103,11 +116,12 @@ class ReserveHallPage extends React.Component {
           <Grid container spacing={8}>
             {options.map((option, index) => (
               <Slide
+                key={index}
                 mountOnEnter
                 unmountOnExit
                 direction="down"
                 in={true}
-                {...{ timeout: 700 * (index +1) }}
+                {...{ timeout: 700 * (index + 1) }}
               >
                 <Grid
                   justify="center"
@@ -119,7 +133,7 @@ class ReserveHallPage extends React.Component {
                   lg={4}
                   md={4}
                 >
-                  <ComplexCard option={option} />
+                  <ComplexCard option={option} handleAdd={this.handleAdd} />
                 </Grid>
               </Slide>
             ))}
@@ -130,8 +144,20 @@ class ReserveHallPage extends React.Component {
   }
 }
 
+function mapStateToProps(state) {
+  const { registering } = state.registration;
+  const { alert } = state;
+  return {
+    registering,
+    alert
+  };
+}
+
 ReserveHallPage.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(ReserveHallPage);
+export default compose(
+  withStyles(styles, { withTheme: true }),
+  connect(mapStateToProps)
+)(ReserveHallPage);
