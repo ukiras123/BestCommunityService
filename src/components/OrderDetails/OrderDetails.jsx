@@ -39,7 +39,7 @@ class OrderDetails extends React.Component {
     return (
       <div>
         {checkoutItems && checkoutItems.length > 0 ? (
-          <ExpansionPanel details={checkoutItems} />
+          <ExpansionPanel details={checkoutItems.reverse()} />
         ) : (
           <Grid className={classes.allCenter}>
               <Typography variant="headline" align="center">

@@ -10,6 +10,7 @@ import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import { OrderDetails }from "../../components/OrderDetails";
 import { ImageCollection }from "../../components/ImageCollection";
+import { WhatsHappening }from "../../components/WhatsHappening";
 import { Link } from "react-router-dom";
 
 const styles = theme => ({
@@ -45,8 +46,8 @@ const option = [
   },
   {
     title: "See What's Happening ",
-    component: "See the latest from our company coming soon",
-    isComponent: false
+    component: WhatsHappening,
+    isComponent: true
   }
 ];
 
