@@ -4,3 +4,4 @@ export * from "./quiz.service";
 export * from "./hall.service";
 export * from "./catering.service";
 export * from "./checkout.service";
+export * from "./news.service";

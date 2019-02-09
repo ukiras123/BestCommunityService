@@ -7,7 +7,6 @@ import GridListTileBar from "@material-ui/core/GridListTileBar";
 import IconButton from "@material-ui/core/IconButton";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 import ListSubheader from "@material-ui/core/ListSubheader";
-import Grow from "@material-ui/core/Grow";
 
 const styles = theme => ({
   root: {
@@ -85,11 +84,6 @@ function ImageCollection(props) {
           <ListSubheader component="div">Travel Places</ListSubheader>
         </GridListTile>
         {tileData.map((tile, index) => (
-          <Grow
-            in={show}
-            style={{ transformOrigin: "0 0 0" }}
-            {...{ timeout: 1000 * (index + 3) }}
-          >
             <GridListTile key={index}>
               <img src={tile.img} alt={tile.title} />
               <GridListTileBar
@@ -106,7 +100,6 @@ function ImageCollection(props) {
                 className={classes.titleBar}
               />
             </GridListTile>
-          </Grow>
         ))}
       </GridList>
     </div>

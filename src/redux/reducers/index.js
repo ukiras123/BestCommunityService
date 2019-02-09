@@ -10,6 +10,7 @@ import { reserveHall } from "./hall.reducer";
 import { rentEquipment } from "./rent.reducer";
 import { bookCatering } from "./catering.reducer";
 import { checkout } from "./checkout.reducer";
+import { news } from "./news.reducer";
 
 const rootReducer = combineReducers({
   authentication,
@@ -21,7 +22,8 @@ const rootReducer = combineReducers({
   reserveHall,
   rentEquipment,
   bookCatering,
-  checkout
+  checkout,
+  news
 });
 
 export default rootReducer;

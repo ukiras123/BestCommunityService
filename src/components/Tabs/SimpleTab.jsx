@@ -6,6 +6,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
 
 function TabContainer({ children, dir }) {
   return (
@@ -26,14 +27,14 @@ const styles = theme => ({
     paddingLeft: "2px",
     paddingRight: "2px",
     marginLeft: "2px",
-    marginRight: "2px",
+    marginRight: "2px"
   }
 });
 
 class SimpleTab extends React.Component {
   state = {
     value: 0,
-    show: false,
+    show: false
   };
 
   handleChange = (event, value) => {
@@ -46,38 +47,42 @@ class SimpleTab extends React.Component {
 
   render() {
     const { classes, theme, option } = this.props;
-    const {show} = this.state;
-    console.log("Show"+show);
+    const { show } = this.state;
+    console.log("Show" + show);
     return (
       <div className={classes.root}>
-        <AppBar position="static" color="default">
-          <Tabs
-            value={this.state.value}
-            onChange={this.handleChange}
-            indicatorColor="primary"
-            textColor="primary"
-            variant="fullWidth"
+        <Grid item xs={12}>
+          <AppBar position="static" color="default">
+            <Tabs
+              value={this.state.value}
+              onChange={this.handleChange}
+              indicatorColor="primary"
+              textColor="primary"
+              variant="fullWidth"
+            >
+              {option.map((option, index) => (
+                <Tab key={index} label={option.title} />
+              ))}
+            </Tabs>
+          </AppBar>
+        </Grid>
+        <Grid item xs={12} align="stretch">
+          <SwipeableViews
+            axis={theme.direction === "rtl" ? "x-reverse" : "x"}
+            index={this.state.value}
+            onChangeIndex={this.handleChangeIndex}
           >
             {option.map((option, index) => (
-              <Tab key={index} label={option.title} />
+              <TabContainer key={index} dir={theme.direction}>
+                {option.isComponent === true ? (
+                  <option.component/>
+                ) : (
+                  option.component
+                )}
+              </TabContainer>
             ))}
-          </Tabs>
-        </AppBar>
-        <SwipeableViews
-          axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-          index={this.state.value}
-          onChangeIndex={this.handleChangeIndex}
-        >
-          {option.map((option, index) => (
-            <TabContainer key={index} dir={theme.direction}>
-              {option.isComponent === true ? (
-                <option.component show={show}/>
-              ) : (
-                option.component
-              )}
-            </TabContainer>
-          ))}
-        </SwipeableViews>
+          </SwipeableViews>
+        </Grid>
       </div>
     );
   }

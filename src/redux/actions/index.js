@@ -6,3 +6,4 @@ export * from "./quiz.actions";
 export * from "./catering.actions";
 export * from "./hall.actions";
 export * from "./checkout.actions";
+export * from "./news.action";
