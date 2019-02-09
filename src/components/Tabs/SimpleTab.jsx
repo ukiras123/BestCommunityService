@@ -28,6 +28,9 @@ const styles = theme => ({
     paddingRight: "2px",
     marginLeft: "2px",
     marginRight: "2px"
+  },
+  appBar: {
+    backgroundColor: "#b2d7f4"
   }
 });
 
@@ -52,7 +55,7 @@ class SimpleTab extends React.Component {
     return (
       <div className={classes.root}>
         <Grid item xs={12}>
-          <AppBar position="static" color="default">
+          <AppBar position="static" color="default" className={classes.appBar}>
             <Tabs
               value={this.state.value}
               onChange={this.handleChange}
@@ -75,7 +78,7 @@ class SimpleTab extends React.Component {
             {option.map((option, index) => (
               <TabContainer key={index} dir={theme.direction}>
                 {option.isComponent === true ? (
-                  <option.component/>
+                  <option.component />
                 ) : (
                   option.component
                 )}
