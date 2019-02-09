@@ -75,7 +75,7 @@ function shuffle(a) {
 }
 
 function ImageCollection(props) {
-  const { classes, show } = props;
+  const { classes } = props;
   shuffle(tileData);
   return (
     <div className={classes.root}>

@@ -18,7 +18,7 @@ const styles = {
     height: 140
   },
   cardHeader: {
-    backgroundColor: "#D3D3D3"
+    backgroundColor: "#cbe2f4"
   }
 };
 

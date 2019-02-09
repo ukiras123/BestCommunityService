@@ -12,8 +12,7 @@ import Grid from "@material-ui/core/Grid";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { newsActions } from "../../redux/actions/news.action";
-import { Link, Fade, Slide } from "@material-ui/core";
-import Collapse from "@material-ui/core/Collapse";
+import { Link, Slide } from "@material-ui/core";
 
 const styles = theme => ({
   card: {},
