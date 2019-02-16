@@ -1,16 +1,25 @@
 # BestCommunityService
-Web Application for Best Community Service (Non-Profit Organization)
+[Web Application](http://bcs.kirangautam.com) for Best Community Service (Non-Profit Organization)
 
+## Stack
+. React + Redux
+. Docker
+. AWS Lambda Function
+. AWS ECS
+. AWS SES
 
-# How to build with docker
+## How to run locally
+npm install
+npm start
+
+## How to Run using Docker
 docker-compose up -d 
+http://localhost:3000/
 
-OR
-
-docker build . -t app-docker
-docker run -p 3000:3000 app-docker
-
+## How to Deploy on ECS
 $(aws ecr get-login --no-include-email --region us-east-1)
+npm run docker-build
+npm run docker-deploy
 
 
 

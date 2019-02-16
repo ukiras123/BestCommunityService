@@ -123,7 +123,7 @@ class ProfilePopover extends React.Component {
               </ListItem>
             </Link>
             <ListItem button onClick={this.handleLogOout()} key="2">
-              <ListItemText primary="LogOut" />
+              <ListItemText primary="Log Out" />
             </ListItem>
           </List>
         </Popover>

@@ -6,7 +6,7 @@ import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { history } from "../../_helpers";
-import { Step1, Step2, Step3 } from "../../container/Steps";
+import { Step1, Step2, Step3 } from "../Steps"
 import { volunteerActions } from "../../redux/actions/volunteer.action";
 import { alertActions } from "../../redux/actions";
 

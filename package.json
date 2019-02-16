@@ -1,11 +1,33 @@
 {
   "name": "best-community-service",
+  "description": "Web Application for Best Community Service (Non-Profit Organization)",
+  "keywords": [
+    "react",
+    "redux",
+    "web-app",
+    "web",
+    "services"
+  ],
+  "homepage": "http://bcs.kirangautam.com",
+  "author": {
+    "name": "Kiran Gautam",
+    "email": "ukiras@gmail.com",
+    "url": "https://kirangautam.com"
+  },
   "version": "1.0.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/ukiras123/BestCommunityService"
   },
-  "private": true,
+  "private": false,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "docker-build": "docker build -f build.Dockerfile -t bcs . && docker tag bcs:latest 240418355038.dkr.ecr.us-east-1.amazonaws.com/bcs:latest && docker push 240418355038.dkr.ecr.us-east-1.amazonaws.com/bcs:latest",
+    "docker-deploy": "aws ecs update-service --cluster main --service bcs-service --force-new-deployment"
+  },
   "dependencies": {
     "@material-ui/core": "^3.9.0",
     "@material-ui/icons": "^3.0.2",
@@ -17,31 +39,19 @@
     "neverbounce": "^4.2.0",
     "react": "next",
     "react-dom": "next",
-    "react-grid-gallery": "^0.5.3",
-    "react-image-gallery": "^0.8.12",
     "react-images": "^0.5.19",
     "react-paypal-express-checkout": "^1.0.5",
-    "react-photo-gallery": "^6.3.0",
     "react-quiz-component": "^0.2.3",
     "react-redux": "^5.0.5",
     "react-responsive": "^6.1.1",
     "react-router-dom": "^4.1.2",
-    "react-scripts": "2.1.3",
-    "react-snake-game": "^1.0.9",
+    "react-scripts": "^2.1.5",
     "react-swipeable-views": "^0.13.1",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
     "request": "^2.88.0",
     "request-promise": "^4.2.2"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "docker-build": "docker build -f build.Dockerfile -t bcs . && docker tag bcs:latest 240418355038.dkr.ecr.us-east-1.amazonaws.com/bcs:latest && docker push 240418355038.dkr.ecr.us-east-1.amazonaws.com/bcs:latest",
-    "docker-deploy": "aws ecs update-service --cluster main --service bcs-service --force-new-deployment"
   },
   "eslintConfig": {
     "extends": "react-app"
