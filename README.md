@@ -25,5 +25,8 @@ npm run docker-build
 
 npm run docker-deploy
 
+## Home Page
+![alt text](https://github.com/ukiras123/BestCommunityService/blob/master/public/home.png "Home Page")
+
 
 
